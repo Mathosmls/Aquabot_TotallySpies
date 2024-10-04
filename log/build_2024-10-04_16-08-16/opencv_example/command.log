@@ -1,6 +1,0 @@
-Invoking command in '/home/mls/vrx_ws/build/opencv_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot-Competitor/aquabot_examples/opencv_example -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
-Invoked command in '/home/mls/vrx_ws/build/opencv_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot-Competitor/aquabot_examples/opencv_example -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
-Invoking command in '/home/mls/vrx_ws/build/opencv_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/opencv_example -- -j8 -l8
-Invoked command in '/home/mls/vrx_ws/build/opencv_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/opencv_example -- -j8 -l8
-Invoking command in '/home/mls/vrx_ws/build/opencv_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/opencv_example
-Invoked command in '/home/mls/vrx_ws/build/opencv_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/opencv_example

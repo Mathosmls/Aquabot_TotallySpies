@@ -1,6 +1,0 @@
-[0.083s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
-[0.238s] [35m[1mConsolidate compiler generated dependencies of target navigation[0m
-[0.345s] [ 33%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
-[1.758s] gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Interrupt
-[1.758s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Interrupt
-[1.759s] gmake: *** [Makefile:146: all] Interrupt

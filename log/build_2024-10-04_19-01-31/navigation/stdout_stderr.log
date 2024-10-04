@@ -1,5 +1,0 @@
-[35m[1mConsolidate compiler generated dependencies of target navigation[0m
-[ 33%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
-gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Interrupt
-gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Interrupt
-gmake: *** [Makefile:146: all] Interrupt
