@@ -1,0 +1,26 @@
+[0.020s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[0.099s] [35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[0.143s] [ 33%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[29.308s] [ 66%] [32m[1mLinking CXX executable navigation[0m
+[31.506s] [100%] Built target navigation
+[31.541s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[31.628s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/navigation
+[31.649s] -- Install configuration: ""
+[31.656s] -- Installing: /home/mls/vrx_ws/install/lib/navigation/navigation
+[31.678s] -- Set runtime path of "/home/mls/vrx_ws/install/lib/navigation/navigation" to ""
+[31.679s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/navigation
+[31.679s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/navigation
+[31.679s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.sh
+[31.679s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.dsv
+[31.680s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/environment/path.sh
+[31.680s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/environment/path.dsv
+[31.680s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/local_setup.bash
+[31.680s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/local_setup.sh
+[31.680s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/local_setup.zsh
+[31.681s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/local_setup.dsv
+[31.681s] -- Installing: /home/mls/vrx_ws/install/share/navigation/package.dsv
+[31.681s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/navigation
+[31.681s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig.cmake
+[31.681s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig-version.cmake
+[31.681s] -- Up-to-date: /home/mls/vrx_ws/install/share/navigation/package.xml
+[31.684s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/navigation

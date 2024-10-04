@@ -1,0 +1,251 @@
+[0.000000] (-) TimerEvent: {}
+[0.000521] (-) JobUnselected: {'identifier': 'aquabot_description'}
+[0.000569] (-) JobUnselected: {'identifier': 'aquabot_example'}
+[0.000599] (-) JobUnselected: {'identifier': 'aquabot_gz'}
+[0.000625] (-) JobUnselected: {'identifier': 'aquabot_python'}
+[0.000650] (-) JobUnselected: {'identifier': 'opencv_example'}
+[0.000674] (-) JobUnselected: {'identifier': 'package_example'}
+[0.000697] (-) JobUnselected: {'identifier': 'vrx_gazebo'}
+[0.000720] (-) JobUnselected: {'identifier': 'vrx_gz'}
+[0.000743] (-) JobUnselected: {'identifier': 'vrx_ros'}
+[0.000766] (-) JobUnselected: {'identifier': 'wamv_description'}
+[0.000788] (-) JobUnselected: {'identifier': 'wamv_gazebo'}
+[0.000814] (navigation) JobQueued: {'identifier': 'navigation', 'dependencies': OrderedDict()}
+[0.001123] (navigation) JobStarted: {'identifier': 'navigation'}
+[0.015428] (navigation) JobProgress: {'identifier': 'navigation', 'progress': 'cmake'}
+[0.016632] (navigation) JobProgress: {'identifier': 'navigation', 'progress': 'build'}
+[0.018225] (navigation) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/mls/vrx_ws/build/navigation', '--', '-j8', '-l8'], 'cwd': '/home/mls/vrx_ws/build/navigation', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', '/home/mls/vrx_ws/src/install/lib'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', '/home/mls/vrx_ws/src/install/share/wamv_description/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/models/tmp:/home/mls/vrx_ws/src/install/share/aquabot_gz/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/worlds:/home/mls/vrx_ws/src/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/src/install/share/vrx_gz/models:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds:/home/mls/vrx_ws/src/install/share/aquabot_description/models:/home/mls/vrx_ws/src/install/share/vrx_gazebo/models:/home/mls/vrx_ws/src/install/share/'), ('USER', 'mls'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/mls/vrx_ws/src/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/mls'), ('OLDPWD', '/home/mls/vrx_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '5136'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/mls/vrx_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'mls'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mls'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/mls/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/mls-Lenovo-ideapad-330-15ICH:@/tmp/.ICE-unix/1744,unix/mls-Lenovo-ideapad-330-15ICH:/tmp/.ICE-unix/1744'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a35a36a_4c98_4f7f_be3d_32c8a03d05a4'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.XPYLU2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.151'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mls/vrx_ws/build/navigation'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/mls/vrx_ws/src/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble')]), 'shell': False}
+[0.089279] (navigation) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target navigation\x1b[0m\n'}
+[0.099585] (-) TimerEvent: {}
+[0.118529] (navigation) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o\x1b[0m\n'}
+[0.199717] (-) TimerEvent: {}
+[0.300053] (-) TimerEvent: {}
+[0.400372] (-) TimerEvent: {}
+[0.500681] (-) TimerEvent: {}
+[0.601041] (-) TimerEvent: {}
+[0.701420] (-) TimerEvent: {}
+[0.801818] (-) TimerEvent: {}
+[0.902115] (-) TimerEvent: {}
+[1.002421] (-) TimerEvent: {}
+[1.102788] (-) TimerEvent: {}
+[1.203147] (-) TimerEvent: {}
+[1.303528] (-) TimerEvent: {}
+[1.404198] (-) TimerEvent: {}
+[1.504561] (-) TimerEvent: {}
+[1.604891] (-) TimerEvent: {}
+[1.705223] (-) TimerEvent: {}
+[1.805556] (-) TimerEvent: {}
+[1.905909] (-) TimerEvent: {}
+[2.006224] (-) TimerEvent: {}
+[2.106606] (-) TimerEvent: {}
+[2.206989] (-) TimerEvent: {}
+[2.307294] (-) TimerEvent: {}
+[2.407589] (-) TimerEvent: {}
+[2.508336] (-) TimerEvent: {}
+[2.608688] (-) TimerEvent: {}
+[2.709049] (-) TimerEvent: {}
+[2.809394] (-) TimerEvent: {}
+[2.909759] (-) TimerEvent: {}
+[3.010099] (-) TimerEvent: {}
+[3.110419] (-) TimerEvent: {}
+[3.210720] (-) TimerEvent: {}
+[3.311017] (-) TimerEvent: {}
+[3.411345] (-) TimerEvent: {}
+[3.511631] (-) TimerEvent: {}
+[3.611931] (-) TimerEvent: {}
+[3.712285] (-) TimerEvent: {}
+[3.812667] (-) TimerEvent: {}
+[3.912971] (-) TimerEvent: {}
+[4.013288] (-) TimerEvent: {}
+[4.113642] (-) TimerEvent: {}
+[4.214021] (-) TimerEvent: {}
+[4.314364] (-) TimerEvent: {}
+[4.414677] (-) TimerEvent: {}
+[4.515003] (-) TimerEvent: {}
+[4.615333] (-) TimerEvent: {}
+[4.715644] (-) TimerEvent: {}
+[4.815999] (-) TimerEvent: {}
+[4.916333] (-) TimerEvent: {}
+[5.016711] (-) TimerEvent: {}
+[5.117018] (-) TimerEvent: {}
+[5.217379] (-) TimerEvent: {}
+[5.317728] (-) TimerEvent: {}
+[5.418238] (-) TimerEvent: {}
+[5.518593] (-) TimerEvent: {}
+[5.618922] (-) TimerEvent: {}
+[5.719241] (-) TimerEvent: {}
+[5.819540] (-) TimerEvent: {}
+[5.919840] (-) TimerEvent: {}
+[6.020169] (-) TimerEvent: {}
+[6.120491] (-) TimerEvent: {}
+[6.220846] (-) TimerEvent: {}
+[6.321198] (-) TimerEvent: {}
+[6.421560] (-) TimerEvent: {}
+[6.521988] (-) TimerEvent: {}
+[6.622309] (-) TimerEvent: {}
+[6.722628] (-) TimerEvent: {}
+[6.822959] (-) TimerEvent: {}
+[6.923328] (-) TimerEvent: {}
+[7.023606] (-) TimerEvent: {}
+[7.123927] (-) TimerEvent: {}
+[7.224282] (-) TimerEvent: {}
+[7.324848] (-) TimerEvent: {}
+[7.425194] (-) TimerEvent: {}
+[7.525504] (-) TimerEvent: {}
+[7.625849] (-) TimerEvent: {}
+[7.726175] (-) TimerEvent: {}
+[7.826592] (-) TimerEvent: {}
+[7.926978] (-) TimerEvent: {}
+[8.027348] (-) TimerEvent: {}
+[8.127730] (-) TimerEvent: {}
+[8.228037] (-) TimerEvent: {}
+[8.328383] (-) TimerEvent: {}
+[8.428741] (-) TimerEvent: {}
+[8.529165] (-) TimerEvent: {}
+[8.629537] (-) TimerEvent: {}
+[8.729954] (-) TimerEvent: {}
+[8.830345] (-) TimerEvent: {}
+[8.930747] (-) TimerEvent: {}
+[9.031148] (-) TimerEvent: {}
+[9.131682] (-) TimerEvent: {}
+[9.232065] (-) TimerEvent: {}
+[9.332372] (-) TimerEvent: {}
+[9.432668] (-) TimerEvent: {}
+[9.533035] (-) TimerEvent: {}
+[9.633384] (-) TimerEvent: {}
+[9.733685] (-) TimerEvent: {}
+[9.834054] (-) TimerEvent: {}
+[9.934459] (-) TimerEvent: {}
+[10.034857] (-) TimerEvent: {}
+[10.135157] (-) TimerEvent: {}
+[10.235528] (-) TimerEvent: {}
+[10.335923] (-) TimerEvent: {}
+[10.436281] (-) TimerEvent: {}
+[10.536635] (-) TimerEvent: {}
+[10.637008] (-) TimerEvent: {}
+[10.737296] (-) TimerEvent: {}
+[10.837991] (-) TimerEvent: {}
+[10.938376] (-) TimerEvent: {}
+[11.038680] (-) TimerEvent: {}
+[11.138995] (-) TimerEvent: {}
+[11.239362] (-) TimerEvent: {}
+[11.339731] (-) TimerEvent: {}
+[11.440024] (-) TimerEvent: {}
+[11.540390] (-) TimerEvent: {}
+[11.640678] (-) TimerEvent: {}
+[11.741021] (-) TimerEvent: {}
+[11.841335] (-) TimerEvent: {}
+[11.941654] (-) TimerEvent: {}
+[12.042024] (-) TimerEvent: {}
+[12.142330] (-) TimerEvent: {}
+[12.242669] (-) TimerEvent: {}
+[12.343040] (-) TimerEvent: {}
+[12.443417] (-) TimerEvent: {}
+[12.543727] (-) TimerEvent: {}
+[12.644000] (-) TimerEvent: {}
+[12.744296] (-) TimerEvent: {}
+[12.844624] (-) TimerEvent: {}
+[12.944952] (-) TimerEvent: {}
+[13.045249] (-) TimerEvent: {}
+[13.145578] (-) TimerEvent: {}
+[13.245878] (-) TimerEvent: {}
+[13.346262] (-) TimerEvent: {}
+[13.446579] (-) TimerEvent: {}
+[13.546931] (-) TimerEvent: {}
+[13.647240] (-) TimerEvent: {}
+[13.747592] (-) TimerEvent: {}
+[13.847948] (-) TimerEvent: {}
+[13.948269] (-) TimerEvent: {}
+[14.048561] (-) TimerEvent: {}
+[14.148867] (-) TimerEvent: {}
+[14.249184] (-) TimerEvent: {}
+[14.349611] (-) TimerEvent: {}
+[14.450349] (-) TimerEvent: {}
+[14.550643] (-) TimerEvent: {}
+[14.650957] (-) TimerEvent: {}
+[14.751321] (-) TimerEvent: {}
+[14.851643] (-) TimerEvent: {}
+[14.951935] (-) TimerEvent: {}
+[15.052341] (-) TimerEvent: {}
+[15.152646] (-) TimerEvent: {}
+[15.253049] (-) TimerEvent: {}
+[15.353425] (-) TimerEvent: {}
+[15.453752] (-) TimerEvent: {}
+[15.554056] (-) TimerEvent: {}
+[15.654420] (-) TimerEvent: {}
+[15.754729] (-) TimerEvent: {}
+[15.855110] (-) TimerEvent: {}
+[15.955383] (-) TimerEvent: {}
+[16.055734] (-) TimerEvent: {}
+[16.156021] (-) TimerEvent: {}
+[16.256417] (-) TimerEvent: {}
+[16.356763] (-) TimerEvent: {}
+[16.457054] (-) TimerEvent: {}
+[16.557379] (-) TimerEvent: {}
+[16.657676] (-) TimerEvent: {}
+[16.758048] (-) TimerEvent: {}
+[16.858500] (-) TimerEvent: {}
+[16.958835] (-) TimerEvent: {}
+[17.059184] (-) TimerEvent: {}
+[17.159489] (-) TimerEvent: {}
+[17.259845] (-) TimerEvent: {}
+[17.360210] (-) TimerEvent: {}
+[17.460544] (-) TimerEvent: {}
+[17.560851] (-) TimerEvent: {}
+[17.661209] (-) TimerEvent: {}
+[17.761570] (-) TimerEvent: {}
+[17.861934] (-) TimerEvent: {}
+[17.962308] (-) TimerEvent: {}
+[18.062614] (-) TimerEvent: {}
+[18.162897] (-) TimerEvent: {}
+[18.263223] (-) TimerEvent: {}
+[18.363573] (-) TimerEvent: {}
+[18.463902] (-) TimerEvent: {}
+[18.564218] (-) TimerEvent: {}
+[18.664530] (-) TimerEvent: {}
+[18.764852] (-) TimerEvent: {}
+[18.814166] (navigation) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable navigation\x1b[0m\n'}
+[18.864960] (-) TimerEvent: {}
+[18.965338] (-) TimerEvent: {}
+[19.065668] (-) TimerEvent: {}
+[19.165995] (-) TimerEvent: {}
+[19.266297] (-) TimerEvent: {}
+[19.366646] (-) TimerEvent: {}
+[19.466977] (-) TimerEvent: {}
+[19.567348] (-) TimerEvent: {}
+[19.667741] (-) TimerEvent: {}
+[19.768111] (-) TimerEvent: {}
+[19.868532] (-) TimerEvent: {}
+[19.968843] (-) TimerEvent: {}
+[20.069158] (-) TimerEvent: {}
+[20.169477] (-) TimerEvent: {}
+[20.269809] (-) TimerEvent: {}
+[20.370186] (-) TimerEvent: {}
+[20.470539] (-) TimerEvent: {}
+[20.569496] (navigation) StdoutLine: {'line': b'[100%] Built target navigation\n'}
+[20.570617] (-) TimerEvent: {}
+[20.586710] (navigation) CommandEnded: {'returncode': 0}
+[20.629230] (navigation) JobProgress: {'identifier': 'navigation', 'progress': 'install'}
+[20.643828] (navigation) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/mls/vrx_ws/build/navigation'], 'cwd': '/home/mls/vrx_ws/build/navigation', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', '/home/mls/vrx_ws/src/install/lib'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', '/home/mls/vrx_ws/src/install/share/wamv_description/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/models/tmp:/home/mls/vrx_ws/src/install/share/aquabot_gz/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/worlds:/home/mls/vrx_ws/src/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/src/install/share/vrx_gz/models:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds:/home/mls/vrx_ws/src/install/share/aquabot_description/models:/home/mls/vrx_ws/src/install/share/vrx_gazebo/models:/home/mls/vrx_ws/src/install/share/'), ('USER', 'mls'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/mls/vrx_ws/src/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/mls'), ('OLDPWD', '/home/mls/vrx_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '5136'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/mls/vrx_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'mls'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mls'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/mls/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/mls-Lenovo-ideapad-330-15ICH:@/tmp/.ICE-unix/1744,unix/mls-Lenovo-ideapad-330-15ICH:/tmp/.ICE-unix/1744'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a35a36a_4c98_4f7f_be3d_32c8a03d05a4'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.XPYLU2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.151'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mls/vrx_ws/build/navigation'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/mls/vrx_ws/src/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble')]), 'shell': False}
+[20.655805] (navigation) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.656183] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/lib/navigation/navigation\n'}
+[20.663948] (navigation) StdoutLine: {'line': b'-- Set runtime path of "/home/mls/vrx_ws/install/lib/navigation/navigation" to ""\n'}
+[20.664230] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/navigation\n'}
+[20.664502] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/navigation\n'}
+[20.664773] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.sh\n'}
+[20.665011] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.dsv\n'}
+[20.665208] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/path.sh\n'}
+[20.665416] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/path.dsv\n'}
+[20.665635] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.bash\n'}
+[20.665802] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.sh\n'}
+[20.665923] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.zsh\n'}
+[20.666158] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.dsv\n'}
+[20.666470] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/package.dsv\n'}
+[20.666692] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/navigation\n'}
+[20.666927] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig.cmake\n'}
+[20.667088] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig-version.cmake\n'}
+[20.667279] (navigation) StdoutLine: {'line': b'-- Installing: /home/mls/vrx_ws/install/share/navigation/package.xml\n'}
+[20.669986] (navigation) CommandEnded: {'returncode': 0}
+[20.671061] (-) TimerEvent: {}
+[20.740553] (navigation) JobEnded: {'identifier': 'navigation', 'rc': 0}
+[20.741533] (-) EventReactorShutdown: {}

@@ -1,0 +1,12 @@
+[0.027s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[0.109s] [35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[0.145s] [ 33%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[6.025s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kvoid Navigation::keyboard_callback(geometry_msgs::msg::Twist_<std::allocator<void> >::SharedPtr) const[m[K’:
+[6.026s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:66:33:[m[K [01;31m[Kerror: [m[K‘[01m[KmotorD[m[K’ was not declared in this scope; did you mean ‘[01m[KmotorR[m[K’?
+[6.026s]    66 |       publisher_motorR->publish([01;31m[KmotorD[m[K);
+[6.026s]       |                                 [01;31m[K^~~~~~[m[K
+[6.026s]       |                                 [32m[KmotorR[m[K
+[15.365s] gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+[15.366s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+[15.366s] gmake: *** [Makefile:146: all] Error 2
+[15.635s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8

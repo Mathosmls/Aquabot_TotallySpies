@@ -1,0 +1,135 @@
+[0.000000] (-) TimerEvent: {}
+[0.000426] (-) JobUnselected: {'identifier': 'aquabot_description'}
+[0.000491] (-) JobUnselected: {'identifier': 'aquabot_example'}
+[0.000546] (-) JobUnselected: {'identifier': 'aquabot_gz'}
+[0.000599] (-) JobUnselected: {'identifier': 'aquabot_python'}
+[0.000651] (-) JobUnselected: {'identifier': 'opencv_example'}
+[0.000703] (-) JobUnselected: {'identifier': 'package_example'}
+[0.000754] (-) JobUnselected: {'identifier': 'vrx_gazebo'}
+[0.000806] (-) JobUnselected: {'identifier': 'vrx_gz'}
+[0.000858] (-) JobUnselected: {'identifier': 'vrx_ros'}
+[0.000914] (-) JobUnselected: {'identifier': 'wamv_description'}
+[0.000966] (-) JobUnselected: {'identifier': 'wamv_gazebo'}
+[0.001033] (navigation) JobQueued: {'identifier': 'navigation', 'dependencies': OrderedDict()}
+[0.001154] (navigation) JobStarted: {'identifier': 'navigation'}
+[0.012113] (navigation) JobProgress: {'identifier': 'navigation', 'progress': 'cmake'}
+[0.012954] (navigation) JobProgress: {'identifier': 'navigation', 'progress': 'build'}
+[0.014112] (navigation) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/mls/vrx_ws/build/navigation', '--', '-j8', '-l8'], 'cwd': '/home/mls/vrx_ws/build/navigation', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', '/home/mls/vrx_ws/src/install/lib'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', '/home/mls/vrx_ws/src/install/share/wamv_description/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/models/tmp:/home/mls/vrx_ws/src/install/share/aquabot_gz/models:/home/mls/vrx_ws/src/install/share/aquabot_gz/worlds:/home/mls/vrx_ws/src/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/src/install/share/vrx_gz/models:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/src/install/share/vrx_gz/worlds:/home/mls/vrx_ws/src/install/share/aquabot_description/models:/home/mls/vrx_ws/src/install/share/vrx_gazebo/models:/home/mls/vrx_ws/src/install/share/'), ('USER', 'mls'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/mls/vrx_ws/src/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/mls'), ('OLDPWD', '/home/mls/vrx_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '5136'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/mls/vrx_ws/src/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'mls'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mls'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/mls/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/mls-Lenovo-ideapad-330-15ICH:@/tmp/.ICE-unix/1744,unix/mls-Lenovo-ideapad-330-15ICH:/tmp/.ICE-unix/1744'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a35a36a_4c98_4f7f_be3d_32c8a03d05a4'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.XPYLU2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.151'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mls/vrx_ws/build/navigation'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/mls/vrx_ws/src/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/mls/vrx_ws/src/install:/opt/ros/humble')]), 'shell': False}
+[0.085521] (navigation) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target navigation\x1b[0m\n'}
+[0.098870] (-) TimerEvent: {}
+[0.114657] (navigation) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o\x1b[0m\n'}
+[0.198987] (-) TimerEvent: {}
+[0.299318] (-) TimerEvent: {}
+[0.399670] (-) TimerEvent: {}
+[0.499988] (-) TimerEvent: {}
+[0.600294] (-) TimerEvent: {}
+[0.700665] (-) TimerEvent: {}
+[0.800989] (-) TimerEvent: {}
+[0.901405] (-) TimerEvent: {}
+[1.001692] (-) TimerEvent: {}
+[1.102029] (-) TimerEvent: {}
+[1.202356] (-) TimerEvent: {}
+[1.302642] (-) TimerEvent: {}
+[1.403358] (-) TimerEvent: {}
+[1.503728] (-) TimerEvent: {}
+[1.604103] (-) TimerEvent: {}
+[1.704434] (-) TimerEvent: {}
+[1.804757] (-) TimerEvent: {}
+[1.905099] (-) TimerEvent: {}
+[2.005475] (-) TimerEvent: {}
+[2.105808] (-) TimerEvent: {}
+[2.206097] (-) TimerEvent: {}
+[2.306454] (-) TimerEvent: {}
+[2.406792] (-) TimerEvent: {}
+[2.507455] (-) TimerEvent: {}
+[2.607761] (-) TimerEvent: {}
+[2.708131] (-) TimerEvent: {}
+[2.808496] (-) TimerEvent: {}
+[2.908835] (-) TimerEvent: {}
+[3.009169] (-) TimerEvent: {}
+[3.109492] (-) TimerEvent: {}
+[3.209820] (-) TimerEvent: {}
+[3.310174] (-) TimerEvent: {}
+[3.410518] (-) TimerEvent: {}
+[3.510846] (-) TimerEvent: {}
+[3.611150] (-) TimerEvent: {}
+[3.711483] (-) TimerEvent: {}
+[3.811786] (-) TimerEvent: {}
+[3.912144] (-) TimerEvent: {}
+[4.012485] (-) TimerEvent: {}
+[4.112810] (-) TimerEvent: {}
+[4.213109] (-) TimerEvent: {}
+[4.273725] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid Navigation::imu_callback(const Imu&) const\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.273945] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:41:48:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kpassing \xe2\x80\x98\x1b[01m\x1b[Kconst Navigation\x1b[m\x1b[K\xe2\x80\x99 as \xe2\x80\x98\x1b[01m\x1b[Kthis\x1b[m\x1b[K\xe2\x80\x99 argument discards qualifiers [\x1b[01;31m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive\x07-fpermissive\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[4.274075] (navigation) StderrLine: {'line': b'   41 |     auto freeAccImu = \x1b[01;31m\x1b[KcalculateFreeAcceleration(accImu, rotation_matrix)\x1b[m\x1b[K;\n'}
+[4.274165] (navigation) StderrLine: {'line': b'      |                       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.274273] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:53:3:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  in call to \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> > Navigation::calculateFreeAcceleration(const std::vector<double, std::allocator<double> >&, const tf2::Matrix3x3&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.274484] (navigation) StderrLine: {'line': b'   53 |   \x1b[01;36m\x1b[KcalculateFreeAcceleration\x1b[m\x1b[K(const std::vector<double> &accImu,\n'}
+[4.274596] (navigation) StderrLine: {'line': b'      |   \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.287540] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> > Navigation::calculateFreeAcceleration(const std::vector<double, std::allocator<double> >&, const tf2::Matrix3x3&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.287741] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:74:41:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KgravityVector\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[4.287840] (navigation) StderrLine: {'line': b'   74 |       freeAcceleration[i] = accImu[i] - \x1b[01;31m\x1b[KgravityVector\x1b[m\x1b[K[i];\n'}
+[4.287924] (navigation) StderrLine: {'line': b'      |                                         \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.296688] (navigation) StderrLine: {'line': b'\x1b[01m\x1b[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:77:12:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kfree_accel\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[4.296881] (navigation) StderrLine: {'line': b'   77 |     return \x1b[01;31m\x1b[Kfree_accel\x1b[m\x1b[K;\n'}
+[4.296976] (navigation) StderrLine: {'line': b'      |            \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.313245] (-) TimerEvent: {}
+[4.413670] (-) TimerEvent: {}
+[4.514082] (-) TimerEvent: {}
+[4.614465] (-) TimerEvent: {}
+[4.714870] (-) TimerEvent: {}
+[4.815229] (-) TimerEvent: {}
+[4.915612] (-) TimerEvent: {}
+[5.015920] (-) TimerEvent: {}
+[5.116274] (-) TimerEvent: {}
+[5.216599] (-) TimerEvent: {}
+[5.317030] (-) TimerEvent: {}
+[5.417342] (-) TimerEvent: {}
+[5.517656] (-) TimerEvent: {}
+[5.617948] (-) TimerEvent: {}
+[5.718305] (-) TimerEvent: {}
+[5.818619] (-) TimerEvent: {}
+[5.918956] (-) TimerEvent: {}
+[6.019356] (-) TimerEvent: {}
+[6.119653] (-) TimerEvent: {}
+[6.220042] (-) TimerEvent: {}
+[6.320352] (-) TimerEvent: {}
+[6.420709] (-) TimerEvent: {}
+[6.521095] (-) TimerEvent: {}
+[6.621490] (-) TimerEvent: {}
+[6.721841] (-) TimerEvent: {}
+[6.822173] (-) TimerEvent: {}
+[6.922459] (-) TimerEvent: {}
+[7.022790] (-) TimerEvent: {}
+[7.123058] (-) TimerEvent: {}
+[7.223373] (-) TimerEvent: {}
+[7.323752] (-) TimerEvent: {}
+[7.424048] (-) TimerEvent: {}
+[7.524345] (-) TimerEvent: {}
+[7.624699] (-) TimerEvent: {}
+[7.725075] (-) TimerEvent: {}
+[7.825422] (-) TimerEvent: {}
+[7.925742] (-) TimerEvent: {}
+[8.026069] (-) TimerEvent: {}
+[8.126413] (-) TimerEvent: {}
+[8.226758] (-) TimerEvent: {}
+[8.327093] (-) TimerEvent: {}
+[8.427517] (-) TimerEvent: {}
+[8.527864] (-) TimerEvent: {}
+[8.628237] (-) TimerEvent: {}
+[8.728571] (-) TimerEvent: {}
+[8.828893] (-) TimerEvent: {}
+[8.929212] (-) TimerEvent: {}
+[9.029515] (-) TimerEvent: {}
+[9.129795] (-) TimerEvent: {}
+[9.230060] (-) TimerEvent: {}
+[9.330399] (-) TimerEvent: {}
+[9.430785] (-) TimerEvent: {}
+[9.531173] (-) TimerEvent: {}
+[9.631529] (-) TimerEvent: {}
+[9.655585] (navigation) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1\n'}
+[9.655947] (navigation) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2\n'}
+[9.656328] (navigation) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[9.659435] (navigation) CommandEnded: {'returncode': 2}
+[9.715180] (navigation) JobEnded: {'identifier': 'navigation', 'rc': 2}
+[9.725776] (-) EventReactorShutdown: {}

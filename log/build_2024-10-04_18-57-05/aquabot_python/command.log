@@ -1,0 +1,4 @@
+Invoking command in '/home/mls/vrx_ws/build/aquabot_python': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_python -- -j8 -l8
+Invoked command in '/home/mls/vrx_ws/build/aquabot_python' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_python -- -j8 -l8
+Invoking command in '/home/mls/vrx_ws/build/aquabot_python': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_python
+Invoked command in '/home/mls/vrx_ws/build/aquabot_python' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_python

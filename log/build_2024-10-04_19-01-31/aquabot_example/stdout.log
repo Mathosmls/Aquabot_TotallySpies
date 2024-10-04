@@ -1,0 +1,20 @@
+[100%] Built target aquabot_node
+-- Install configuration: ""
+-- Up-to-date: /home/mls/vrx_ws/install/lib/aquabot_example/aquabot_node
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/launch
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/launch/aquabot.launch.py
+-- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_example
+-- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_example
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.sh
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.sh
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.dsv
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.bash
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.sh
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.zsh
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.dsv
+-- Installing: /home/mls/vrx_ws/install/share/aquabot_example/package.dsv
+-- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_example
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig.cmake
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig-version.cmake
+-- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/package.xml

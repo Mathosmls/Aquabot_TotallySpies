@@ -1,0 +1,74 @@
+[0.039s] Invoking command in '/home/mls/vrx_ws/build/aquabot_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot-Competitor/aquabot_examples/aquabot_example -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[0.150s] -- The C compiler identification is GNU 11.4.0
+[0.291s] -- The CXX compiler identification is GNU 11.4.0
+[0.307s] -- Detecting C compiler ABI info
+[0.439s] -- Detecting C compiler ABI info - done
+[0.453s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.454s] -- Detecting C compile features
+[0.455s] -- Detecting C compile features - done
+[0.459s] -- Detecting CXX compiler ABI info
+[0.621s] -- Detecting CXX compiler ABI info - done
+[0.633s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.634s] -- Detecting CXX compile features
+[0.635s] -- Detecting CXX compile features - done
+[0.639s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.910s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.113s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[1.210s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.218s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.232s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.253s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.278s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.358s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.362s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.528s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.598s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.703s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.722s] -- Looking for pthread.h
+[1.875s] -- Looking for pthread.h - found
+[1.876s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.005s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[2.007s] -- Found Threads: TRUE  
+[2.105s] -- Found tf2: 0.25.8 (/opt/ros/humble/share/tf2/cmake)
+[2.188s] -- Found tf2_ros: 0.25.8 (/opt/ros/humble/share/tf2_ros/cmake)
+[2.934s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[3.095s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[3.095s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/mls/vrx_ws/src/Aquabot-Competitor/aquabot_examples/aquabot_example/include>
+[3.095s] -- Configured cppcheck exclude dirs and/or files: 
+[3.097s] -- Added test 'flake8' to check Python code syntax and style conventions
+[3.099s] -- Added test 'lint_cmake' to check CMake code style
+[3.100s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[3.102s] -- Added test 'uncrustify' to check C / C++ code style
+[3.102s] -- Configured uncrustify additional arguments: 
+[3.105s] -- Added test 'xmllint' to check XML markup files
+[3.109s] -- Configuring done
+[3.139s] -- Generating done
+[3.142s] -- Build files have been written to: /home/mls/vrx_ws/build/aquabot_example
+[3.162s] Invoked command in '/home/mls/vrx_ws/build/aquabot_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot-Competitor/aquabot_examples/aquabot_example -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[3.165s] Invoking command in '/home/mls/vrx_ws/build/aquabot_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_example -- -j8 -l8
+[3.278s] [ 50%] [32mBuilding CXX object CMakeFiles/aquabot_node.dir/src/aquabot_node.cpp.o[0m
+[12.932s] [100%] [32m[1mLinking CXX executable aquabot_node[0m
+[13.723s] [100%] Built target aquabot_node
+[13.741s] Invoked command in '/home/mls/vrx_ws/build/aquabot_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_example -- -j8 -l8
+[13.781s] Invoking command in '/home/mls/vrx_ws/build/aquabot_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_example
+[13.793s] -- Install configuration: ""
+[13.793s] -- Installing: /home/mls/vrx_ws/install/lib/aquabot_example/aquabot_node
+[13.795s] -- Set runtime path of "/home/mls/vrx_ws/install/lib/aquabot_example/aquabot_node" to ""
+[13.796s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/launch
+[13.796s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/launch/aquabot.launch.py
+[13.796s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_example
+[13.796s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_example
+[13.797s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.sh
+[13.797s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.dsv
+[13.798s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.sh
+[13.798s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.dsv
+[13.798s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.bash
+[13.799s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.sh
+[13.799s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.zsh
+[13.799s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.dsv
+[13.799s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/package.dsv
+[13.800s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_example
+[13.800s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig.cmake
+[13.800s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig-version.cmake
+[13.800s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/package.xml
+[13.805s] Invoked command in '/home/mls/vrx_ws/build/aquabot_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_example

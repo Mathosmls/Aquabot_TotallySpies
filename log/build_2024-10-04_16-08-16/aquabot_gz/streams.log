@@ -1,0 +1,586 @@
+[0.164s] Invoking command in '/home/mls/vrx_ws/build/aquabot_gz': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot/aquabot_gz -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[1.581s] -- The C compiler identification is GNU 11.4.0
+[1.793s] -- The CXX compiler identification is GNU 11.4.0
+[1.846s] -- Detecting C compiler ABI info
+[2.174s] -- Detecting C compiler ABI info - done
+[2.185s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.186s] -- Detecting C compile features
+[2.224s] -- Detecting C compile features - done
+[2.302s] -- Detecting CXX compiler ABI info
+[2.503s] -- Detecting CXX compiler ABI info - done
+[2.515s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.516s] -- Detecting CXX compile features
+[2.517s] -- Detecting CXX compile features - done
+[2.615s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[3.431s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[3.830s] -- Looking for gz-sim7 -- found version 7.9.0
+[4.028s] -- Searching for dependencies of gz-sim7
+[4.037s] -- Looking for sdformat13 -- found version 13.8.0
+[4.038s] -- Searching for dependencies of sdformat13
+[4.169s] -- Checking for module 'tinyxml2'
+[4.263s] --   Found tinyxml2, version 9.0.0
+[4.512s] -- Looking for gz-math7 -- found version 7.5.1
+[4.514s] -- Searching for dependencies of gz-math7
+[4.534s] -- Looking for gz-utils2 -- found version 2.2.0
+[4.536s] -- Searching for dependencies of gz-utils2
+[4.544s] -- Looking for gz-utils2 -- found version 2.2.0
+[4.546s] -- Searching for dependencies of gz-utils2
+[4.546s] -- Searching for <gz-utils2> component [cli]
+[4.567s] -- Looking for gz-utils2-cli -- found version 2.2.0
+[4.569s] -- Searching for dependencies of gz-utils2-cli
+[4.599s] -- Looking for gz-plugin2 -- found version 2.0.3
+[4.601s] -- Searching for dependencies of gz-plugin2
+[4.602s] -- Looking for gz-utils2 -- found version 2.2.0
+[4.622s] -- Searching for <gz-plugin2> component [loader]
+[4.631s] -- Looking for gz-plugin2-loader -- found version 2.0.3
+[4.633s] -- Searching for dependencies of gz-plugin2-loader
+[4.636s] -- Searching for <gz-plugin2> component [register]
+[4.644s] -- Looking for gz-plugin2-register -- found version 2.0.3
+[4.646s] -- Searching for dependencies of gz-plugin2-register
+[4.667s] -- Looking for gz-transport12 -- found version 12.2.1
+[4.668s] -- Searching for dependencies of gz-transport12
+[5.431s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[5.468s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[5.475s] -- Checking for module 'libzmq >= 4'
+[5.590s] --   Found libzmq , version 4.3.4
+[5.649s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[5.681s] -- Checking for module 'uuid'
+[5.741s] --   Found uuid, version 2.37.2
+[5.809s] -- Found UUID: TRUE  
+[5.809s] -- Looking for gz-utils2 -- found version 2.2.0
+[5.825s] -- Looking for gz-msgs9 -- found version 9.5.0
+[5.826s] -- Searching for dependencies of gz-msgs9
+[5.858s] -- Looking for gz-math7 -- found version 7.5.1
+[5.870s] -- Searching for <gz-transport12> component [log]
+[5.890s] -- Looking for gz-transport12-log -- found version 12.2.1
+[5.891s] -- Searching for dependencies of gz-transport12-log
+[5.894s] -- Searching for <gz-transport12> component [parameters]
+[5.907s] -- Looking for gz-transport12-parameters -- found version 12.2.1
+[5.908s] -- Searching for dependencies of gz-transport12-parameters
+[5.912s] -- Looking for gz-msgs9 -- found version 9.5.0
+[5.915s] -- Looking for gz-common5 -- found version 5.6.0
+[5.916s] -- Searching for dependencies of gz-common5
+[5.916s] -- Looking for gz-utils2 -- found version 2.2.0
+[5.916s] -- Looking for dlfcn.h - found
+[5.918s] -- Looking for libdl - found
+[5.919s] -- Found DL: TRUE  
+[5.975s] -- Searching for <gz-common5> component [profiler]
+[6.018s] -- Looking for gz-common5-profiler -- found version 5.6.0
+[6.020s] -- Searching for dependencies of gz-common5-profiler
+[6.024s] -- Searching for <gz-common5> component [events]
+[6.043s] -- Looking for gz-common5-events -- found version 5.6.0
+[6.045s] -- Searching for dependencies of gz-common5-events
+[6.047s] -- Looking for gz-math7 -- found version 7.5.1
+[6.051s] -- Searching for <gz-common5> component [av]
+[6.061s] -- Looking for gz-common5-av -- found version 5.6.0
+[6.063s] -- Searching for dependencies of gz-common5-av
+[6.075s] -- Checking for module 'libswscale'
+[6.094s] --   Found libswscale, version 5.9.100
+[6.140s] -- Found SWSCALE: TRUE  
+[6.163s] -- Checking for module 'libavdevice >= 56.4.100'
+[6.183s] --   Found libavdevice , version 58.13.100
+[6.243s] -- Found AVDEVICE: TRUE (Required is at least version "56.4.100") 
+[6.252s] -- Checking for module 'libavformat'
+[6.272s] --   Found libavformat, version 58.76.100
+[6.328s] -- Found AVFORMAT: TRUE  
+[6.350s] -- Checking for module 'libavcodec'
+[6.396s] --   Found libavcodec, version 58.134.100
+[6.486s] -- Found AVCODEC: TRUE  
+[6.501s] -- Checking for module 'libavutil'
+[6.532s] --   Found libavutil, version 56.70.100
+[6.614s] -- Found AVUTIL: TRUE  
+[6.617s] -- Searching for <gz-common5> component [io]
+[6.624s] -- Looking for gz-common5-io -- found version 5.6.0
+[6.625s] -- Searching for dependencies of gz-common5-io
+[6.635s] -- Looking for gz-fuel_tools8 -- found version 8.1.0
+[6.636s] -- Searching for dependencies of gz-fuel_tools8
+[6.796s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  
+[6.857s] -- Checking for module 'jsoncpp'
+[6.904s] --   Found jsoncpp, version 1.9.5
+[7.016s] -- Found JSONCPP: TRUE  
+[7.061s] -- Checking for module 'libzip'
+[7.107s] --   Found libzip, version 1.7.3
+[7.213s] -- Found ZIP: TRUE  
+[7.214s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.215s] -- Looking for gz-common5 -- found version 5.6.0
+[7.215s] -- Searching for dependencies of gz-common5
+[7.216s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.216s] -- Looking for dlfcn.h - found
+[7.216s] -- Looking for libdl - found
+[7.228s] -- Searching for <gz-common5> component [testing]
+[7.238s] -- Looking for gz-common5-testing -- found version 5.6.0
+[7.239s] -- Searching for dependencies of gz-common5-testing
+[7.242s] -- Looking for gz-math7 -- found version 7.5.1
+[7.243s] -- Looking for gz-msgs9 -- found version 9.5.0
+[7.260s] -- Looking for gz-gui7 -- found version 7.2.2
+[7.261s] -- Searching for dependencies of gz-gui7
+[7.300s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.301s] -- Looking for gz-math7 -- found version 7.5.1
+[7.301s] -- Looking for gz-common5 -- found version 5.6.0
+[7.302s] -- Looking for gz-plugin2 -- found version 2.0.3
+[7.303s] -- Looking for gz-transport12 -- found version 12.2.1
+[7.306s] -- Looking for gz-rendering7 -- found version 7.4.2
+[7.307s] -- Searching for dependencies of gz-rendering7
+[7.307s] -- Looking for gz-math7 -- found version 7.5.1
+[7.308s] -- Searching for dependencies of gz-math7
+[7.309s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.309s] -- Searching for <gz-math7> component [eigen3]
+[7.326s] -- Looking for gz-math7-eigen3 -- found version 7.5.1
+[7.327s] -- Searching for dependencies of gz-math7-eigen3
+[7.340s] -- Looking for gz-common5 -- found version 5.6.0
+[7.341s] -- Searching for dependencies of gz-common5
+[7.341s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.341s] -- Looking for dlfcn.h - found
+[7.341s] -- Looking for libdl - found
+[7.353s] -- Searching for <gz-common5> component [graphics]
+[7.367s] -- Looking for gz-common5-graphics -- found version 5.6.0
+[7.367s] -- Searching for dependencies of gz-common5-graphics
+[7.368s] -- Looking for gz-math7 -- found version 7.5.1
+[7.406s] -- Found GzAssimp: TRUE (found version "5.2.0") 
+[7.407s] -- Searching for <gz-common5> component [events]
+[7.407s] -- Searching for <gz-common5> component [geospatial]
+[7.491s] -- Looking for gz-common5-geospatial -- found version 5.6.0
+[7.493s] -- Searching for dependencies of gz-common5-geospatial
+[7.494s] -- Looking for gz-math7 -- found version 7.5.1
+[7.496s] -- Looking for gz-common5 -- found version 5.6.0
+[7.501s] -- Looking for gz-plugin2 -- found version 2.0.3
+[7.503s] -- Searching for dependencies of gz-plugin2
+[7.504s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.505s] -- Searching for <gz-plugin2> component [all]
+[7.516s] -- Looking for all libraries of gz-plugin2 -- found version 2.0.3
+[7.518s] -- Looking for gz-plugin2 -- found version 2.0.3
+[7.525s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.534s] -- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL 
+[7.551s] -- Looking for gz-msgs9 -- found version 9.5.0
+[7.681s] -- Looking for gz-physics6 -- found version 6.6.0
+[7.682s] -- Searching for dependencies of gz-physics6
+[7.682s] -- Looking for gz-common5 -- found version 5.6.0
+[7.683s] -- Looking for gz-math7 -- found version 7.5.1
+[7.684s] -- Looking for gz-plugin2 -- found version 2.0.3
+[7.685s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.689s] -- Searching for <gz-physics6> component [heightmap]
+[7.704s] -- Looking for gz-physics6-heightmap -- found version 6.6.0
+[7.705s] -- Searching for dependencies of gz-physics6-heightmap
+[7.706s] -- Looking for gz-common5 -- found version 5.6.0
+[7.707s] -- Searching for <gz-physics6> component [mesh]
+[7.721s] -- Looking for gz-physics6-mesh -- found version 6.6.0
+[7.722s] -- Searching for dependencies of gz-physics6-mesh
+[7.723s] -- Looking for gz-common5 -- found version 5.6.0
+[7.724s] -- Searching for <gz-physics6> component [sdf]
+[7.744s] -- Looking for gz-physics6-sdf -- found version 6.6.0
+[7.745s] -- Searching for dependencies of gz-physics6-sdf
+[7.746s] -- Looking for sdformat13 -- found version 13.8.0
+[7.752s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.753s] -- Searching for dependencies of gz-sensors7
+[7.788s] -- Looking for gz-math7 -- found version 7.5.1
+[7.789s] -- Looking for gz-common5 -- found version 5.6.0
+[7.789s] -- Looking for gz-transport12 -- found version 12.2.1
+[7.790s] -- Looking for gz-rendering7 -- found version 7.4.2
+[7.791s] -- Looking for gz-msgs9 -- found version 9.5.0
+[7.792s] -- Looking for sdformat13 -- found version 13.8.0
+[7.802s] -- Searching for <gz-sensors7> component [air_pressure]
+[7.805s] -- Looking for gz-sensors7-air_pressure -- found version 7.3.0
+[7.806s] -- Searching for dependencies of gz-sensors7-air_pressure
+[7.808s] -- Searching for <gz-sensors7> component [air_speed]
+[7.812s] -- Looking for gz-sensors7-air_speed -- found version 7.3.0
+[7.812s] -- Searching for dependencies of gz-sensors7-air_speed
+[7.814s] -- Searching for <gz-sensors7> component [altimeter]
+[7.824s] -- Looking for gz-sensors7-altimeter -- found version 7.3.0
+[7.825s] -- Searching for dependencies of gz-sensors7-altimeter
+[7.828s] -- Searching for <gz-sensors7> component [imu]
+[7.836s] -- Looking for gz-sensors7-imu -- found version 7.3.0
+[7.837s] -- Searching for dependencies of gz-sensors7-imu
+[7.839s] -- Searching for <gz-sensors7> component [force_torque]
+[7.849s] -- Looking for gz-sensors7-force_torque -- found version 7.3.0
+[7.850s] -- Searching for dependencies of gz-sensors7-force_torque
+[7.853s] -- Searching for <gz-sensors7> component [logical_camera]
+[7.857s] -- Looking for gz-sensors7-logical_camera -- found version 7.3.0
+[7.858s] -- Searching for dependencies of gz-sensors7-logical_camera
+[7.860s] -- Searching for <gz-sensors7> component [magnetometer]
+[7.864s] -- Looking for gz-sensors7-magnetometer -- found version 7.3.0
+[7.865s] -- Searching for dependencies of gz-sensors7-magnetometer
+[7.866s] -- Searching for <gz-sensors7> component [navsat]
+[7.871s] -- Looking for gz-sensors7-navsat -- found version 7.3.0
+[7.871s] -- Searching for dependencies of gz-sensors7-navsat
+[7.873s] -- Searching for <gz-sensors7> component [rendering]
+[7.884s] -- Looking for gz-sensors7-rendering -- found version 7.3.0
+[7.885s] -- Searching for dependencies of gz-sensors7-rendering
+[7.888s] -- Searching for <gz-sensors7> component [lidar]
+[7.892s] -- Looking for gz-sensors7-lidar -- found version 7.3.0
+[7.893s] -- Searching for dependencies of gz-sensors7-lidar
+[7.893s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.895s] -- Searching for <gz-sensors7> component [gpu_lidar]
+[7.906s] -- Looking for gz-sensors7-gpu_lidar -- found version 7.3.0
+[7.907s] -- Searching for dependencies of gz-sensors7-gpu_lidar
+[7.908s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.911s] -- Searching for <gz-sensors7> component [camera]
+[7.915s] -- Looking for gz-sensors7-camera -- found version 7.3.0
+[7.916s] -- Searching for dependencies of gz-sensors7-camera
+[7.916s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.918s] -- Searching for <gz-sensors7> component [boundingbox_camera]
+[7.922s] -- Looking for gz-sensors7-boundingbox_camera -- found version 7.3.0
+[7.923s] -- Searching for dependencies of gz-sensors7-boundingbox_camera
+[7.924s] -- Searching for <gz-sensors7> component [segmentation_camera]
+[7.928s] -- Looking for gz-sensors7-segmentation_camera -- found version 7.3.0
+[7.929s] -- Searching for dependencies of gz-sensors7-segmentation_camera
+[7.931s] -- Searching for <gz-sensors7> component [depth_camera]
+[7.935s] -- Looking for gz-sensors7-depth_camera -- found version 7.3.0
+[7.936s] -- Searching for dependencies of gz-sensors7-depth_camera
+[7.937s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.938s] -- Searching for <gz-sensors7> component [rgbd_camera]
+[7.942s] -- Looking for gz-sensors7-rgbd_camera -- found version 7.3.0
+[7.943s] -- Searching for dependencies of gz-sensors7-rgbd_camera
+[7.944s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.946s] -- Searching for <gz-sensors7> component [thermal_camera]
+[7.950s] -- Looking for gz-sensors7-thermal_camera -- found version 7.3.0
+[7.951s] -- Searching for dependencies of gz-sensors7-thermal_camera
+[7.952s] -- Looking for gz-sensors7 -- found version 7.3.0
+[7.953s] -- Searching for <gz-sensors7> component [wide_angle_camera]
+[7.957s] -- Looking for gz-sensors7-wide_angle_camera -- found version 7.3.0
+[7.958s] -- Searching for dependencies of gz-sensors7-wide_angle_camera
+[7.961s] -- Looking for gz-rendering7 -- found version 7.4.2
+[7.961s] -- Looking for gz-math7 -- found version 7.5.1
+[7.962s] -- Looking for gz-utils2 -- found version 2.2.0
+[7.997s] -- Looking for gz-common5 -- found version 5.6.0
+[7.998s] -- Looking for gz-fuel_tools8 -- found version 8.1.0
+[7.998s] -- Looking for gz-math7 -- found version 7.5.1
+[7.999s] -- Looking for gz-msgs9 -- found version 9.5.0
+[7.999s] -- Looking for gz-transport12 -- found version 12.2.1
+[8.000s] -- Looking for gz-plugin2 -- found version 2.0.3
+[8.001s] -- Looking for gz-rendering7 -- found version 7.4.2
+[8.001s] -- Looking for gz-sensors7 -- found version 7.3.0
+[8.002s] -- Looking for gz-utils2 -- found version 2.2.0
+[8.003s] -- Looking for sdformat13 -- found version 13.8.0
+[8.041s] -- Found std_msgs: 4.2.4 (/opt/ros/humble/share/std_msgs/cmake)
+[8.351s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[8.513s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[8.565s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[8.655s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[8.730s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[8.797s] -- Found vrx_gz: 0.0.0 (/home/mls/vrx_ws/install/share/vrx_gz/cmake)
+[9.471s] -- Configuring done
+[9.572s] -- Generating done
+[9.576s] -- Build files have been written to: /home/mls/vrx_ws/build/aquabot_gz
+[9.595s] Invoked command in '/home/mls/vrx_ws/build/aquabot_gz' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot/aquabot_gz -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[9.597s] Invoking command in '/home/mls/vrx_ws/build/aquabot_gz': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_gz -- -j8 -l8
+[9.670s] [ 50%] [32mBuilding CXX object CMakeFiles/PatrolAndFollowScoringPlugin.dir/src/PatrolAndFollowScoringPlugin.cc.o[0m
+[9.670s] [ 50%] [32mBuilding CXX object CMakeFiles/PatrolAndFollowScoringPlugin.dir/home/mls/vrx_ws/src/vrx/vrx_gz/src/WaypointMarkers.cc.o[0m
+[9.670s] [ 50%] [32mBuilding CXX object CMakeFiles/WindturbinesInspectionScoringPlugin.dir/src/WindturbinesInspectionScoringPlugin.cc.o[0m
+[9.674s] [ 66%] [32mBuilding CXX object CMakeFiles/WindturbinesInspectionScoringPlugin.dir/home/mls/vrx_ws/src/vrx/vrx_gz/src/WaypointMarkers.cc.o[0m
+[9.693s] [ 66%] Built target ament_cmake_python_copy_aquabot_gz
+[16.144s] running egg_info
+[16.145s] creating aquabot_gz.egg-info
+[16.145s] writing aquabot_gz.egg-info/PKG-INFO
+[16.146s] writing dependency_links to aquabot_gz.egg-info/dependency_links.txt
+[16.146s] writing top-level names to aquabot_gz.egg-info/top_level.txt
+[16.146s] writing manifest file 'aquabot_gz.egg-info/SOURCES.txt'
+[16.153s] reading manifest file 'aquabot_gz.egg-info/SOURCES.txt'
+[16.154s] writing manifest file 'aquabot_gz.egg-info/SOURCES.txt'
+[16.212s] [ 66%] Built target ament_cmake_python_build_aquabot_gz_egg
+[21.195s] [ 83%] [32m[1mLinking CXX shared library libPatrolAndFollowScoringPlugin.so[0m
+[21.747s] [ 83%] Built target PatrolAndFollowScoringPlugin
+[24.255s] [100%] [32m[1mLinking CXX shared library libWindturbinesInspectionScoringPlugin.so[0m
+[24.853s] [100%] Built target WindturbinesInspectionScoringPlugin
+[24.869s] Invoked command in '/home/mls/vrx_ws/build/aquabot_gz' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_gz -- -j8 -l8
+[24.918s] Invoking command in '/home/mls/vrx_ws/build/aquabot_gz': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_gz
+[24.929s] -- Install configuration: ""
+[24.929s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/resource_paths.dsv
+[24.929s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/resource_paths.sh
+[24.929s] -- Installing: /home/mls/vrx_ws/install/lib/libPatrolAndFollowScoringPlugin.so
+[24.934s] -- Set runtime path of "/home/mls/vrx_ws/install/lib/libPatrolAndFollowScoringPlugin.so" to ""
+[24.934s] -- Installing: /home/mls/vrx_ws/install/lib/libWindturbinesInspectionScoringPlugin.so
+[24.940s] -- Set runtime path of "/home/mls/vrx_ws/install/lib/libWindturbinesInspectionScoringPlugin.so" to ""
+[24.940s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/pythonpath.sh
+[24.940s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/pythonpath.dsv
+[24.940s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz-0.6.0-py3.10.egg-info
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz-0.6.0-py3.10.egg-info/top_level.txt
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz-0.6.0-py3.10.egg-info/PKG-INFO
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz-0.6.0-py3.10.egg-info/dependency_links.txt
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz-0.6.0-py3.10.egg-info/SOURCES.txt
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/__init__.py
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/launch.py
+[24.941s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/bridges.py
+[24.991s] Listing '/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz'...
+[24.991s] Compiling '/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/__init__.py'...
+[24.991s] Compiling '/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/bridges.py'...
+[24.991s] Compiling '/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/aquabot_gz/launch.py'...
+[24.997s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/launch
+[25.026s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/launch/competition.launch.py
+[25.041s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/launch/rviz.launch.py
+[25.046s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models
+[25.077s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_no_obstacles_world
+[25.086s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_no_obstacles_world/model.sdf
+[25.100s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_no_obstacles_world/model.config
+[25.111s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO
+[25.112s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/materials
+[25.112s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/materials/textures
+[25.113s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/materials/textures/Marker0.png
+[25.114s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/materials/textures/aquabot_marker_4_KO.png
+[25.115s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/model.sdf
+[25.116s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/meshes
+[25.116s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/meshes/Marker0.dae
+[25.117s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_KO/model.config
+[25.118s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_island
+[25.121s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_island/model.sdf
+[25.122s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_island/model.config
+[25.123s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_main
+[25.136s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_main/model.sdf
+[25.137s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_main/mesh
+[25.137s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_main/mesh/main.dae
+[25.139s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_main/model.config
+[25.140s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sonar_buoy
+[25.141s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sonar_buoy/model.sdf
+[25.142s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sonar_buoy/mesh
+[25.143s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sonar_buoy/mesh/sonar_buoy.dae
+[25.162s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sonar_buoy/model.config
+[25.175s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO
+[25.188s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/materials
+[25.188s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/materials/textures
+[25.189s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/materials/textures/Marker0.png
+[25.190s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/materials/textures/aquabot_marker_6_KO.png
+[25.191s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/model.sdf
+[25.192s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/meshes
+[25.192s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/meshes/Marker0.dae
+[25.193s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_KO/model.config
+[25.194s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO
+[25.196s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/materials
+[25.197s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/materials/textures
+[25.197s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/materials/textures/Marker0.png
+[25.198s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/materials/textures/aquabot_marker_1_KO.png
+[25.199s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/model.sdf
+[25.200s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/meshes
+[25.200s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/meshes/Marker0.dae
+[25.201s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_KO/model.config
+[25.202s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse
+[25.202s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse/model.sdf
+[25.203s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse/mesh
+[25.203s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse/mesh/lighthouse.dae
+[25.216s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse/model.config
+[25.216s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK
+[25.231s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/materials
+[25.231s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/materials/textures
+[25.232s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/materials/textures/Marker0.png
+[25.233s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/materials/textures/aquabot_marker_1_OK.png
+[25.234s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/model.sdf
+[25.235s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/meshes
+[25.235s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/meshes/Marker0.dae
+[25.236s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_1_OK/model.config
+[25.237s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse_island
+[25.238s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse_island/model.sdf
+[25.238s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_lighthouse_island/model.config
+[25.239s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock
+[25.240s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock/model.sdf
+[25.240s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock/mesh
+[25.241s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock/mesh/rock.dae
+[25.243s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock/model.config
+[25.243s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK
+[25.244s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/materials
+[25.245s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/materials/textures
+[25.246s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/materials/textures/Marker0.png
+[25.246s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/materials/textures/aquabot_marker_6_OK.png
+[25.247s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/model.sdf
+[25.247s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/meshes
+[25.248s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/meshes/Marker0.dae
+[25.249s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_6_OK/model.config
+[25.250s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK
+[25.253s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/materials
+[25.253s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/materials/textures
+[25.254s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/materials/textures/Marker0.png
+[25.255s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/materials/textures/aquabot_marker_2_OK.png
+[25.255s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/model.sdf
+[25.256s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/meshes
+[25.257s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/meshes/Marker0.dae
+[25.257s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_OK/model.config
+[25.258s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK
+[25.259s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/materials
+[25.259s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/materials/textures
+[25.260s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/materials/textures/Marker0.png
+[25.260s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/materials/textures/aquabot_marker_7_OK.png
+[25.261s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/model.sdf
+[25.261s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/meshes
+[25.262s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/meshes/Marker0.dae
+[25.263s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_OK/model.config
+[25.263s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK
+[25.264s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/materials
+[25.264s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/materials/textures
+[25.265s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/materials/textures/aquabot_marker_3_OK.png
+[25.265s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/materials/textures/Marker0.png
+[25.266s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/model.sdf
+[25.267s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/meshes
+[25.267s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/meshes/Marker0.dae
+[25.268s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_OK/model.config
+[25.269s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK
+[25.272s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/materials
+[25.272s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/materials/textures
+[25.273s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/materials/textures/aquabot_marker_9_OK.png
+[25.274s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/materials/textures/Marker0.png
+[25.275s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/model.sdf
+[25.275s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/meshes
+[25.276s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/meshes/Marker0.dae
+[25.277s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_OK/model.config
+[25.278s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_redboat
+[25.279s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_redboat/model.sdf
+[25.279s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_redboat/mesh
+[25.280s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_redboat/mesh/redboat.dae
+[25.306s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_redboat/model.config
+[25.319s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO
+[25.319s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/materials
+[25.320s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/materials/textures
+[25.320s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/materials/textures/Marker0.png
+[25.321s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/materials/textures/aquabot_marker_0_KO.png
+[25.322s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/model.sdf
+[25.323s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/meshes
+[25.323s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/meshes/Marker0.dae
+[25.324s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_KO/model.config
+[25.325s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK
+[25.338s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/materials
+[25.339s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/materials/textures
+[25.339s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/materials/textures/Marker0.png
+[25.340s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/materials/textures/aquabot_marker_8_OK.png
+[25.341s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/model.sdf
+[25.341s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/meshes
+[25.342s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/meshes/Marker0.dae
+[25.343s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_OK/model.config
+[25.344s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sapling
+[25.344s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sapling/model.sdf
+[25.345s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sapling/mesh
+[25.346s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sapling/mesh/sapling.dae
+[25.347s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_sapling/model.config
+[25.348s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock_island_1
+[25.348s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock_island_1/model.sdf
+[25.349s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_rock_island_1/model.config
+[25.350s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO
+[25.350s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/materials
+[25.351s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/materials/textures
+[25.352s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/materials/textures/Marker0.png
+[25.352s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/materials/textures/aquabot_marker_8_KO.png
+[25.353s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/model.sdf
+[25.354s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/meshes
+[25.354s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/meshes/Marker0.dae
+[25.355s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_8_KO/model.config
+[25.356s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK
+[25.357s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/materials
+[25.358s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/materials/textures
+[25.358s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/materials/textures/Marker0.png
+[25.359s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/materials/textures/aquabot_marker_4_OK.png
+[25.359s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/model.sdf
+[25.360s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/meshes
+[25.361s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/meshes/Marker0.dae
+[25.361s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_4_OK/model.config
+[25.362s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK
+[25.363s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/materials
+[25.363s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/materials/textures
+[25.364s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/materials/textures/aquabot_marker_0_OK.png
+[25.365s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/materials/textures/Marker0.png
+[25.365s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/model.sdf
+[25.366s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/meshes
+[25.367s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/meshes/Marker0.dae
+[25.367s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_0_OK/model.config
+[25.368s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK
+[25.368s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/materials
+[25.369s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/materials/textures
+[25.369s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/materials/textures/Marker0.png
+[25.370s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/materials/textures/aquabot_marker_5_OK.png
+[25.371s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/model.sdf
+[25.372s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/meshes
+[25.372s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/meshes/Marker0.dae
+[25.373s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_OK/model.config
+[25.373s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_grass
+[25.383s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_grass/model.sdf
+[25.383s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_grass/mesh
+[25.384s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_grass/mesh/grass.dae
+[25.385s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_grass/model.config
+[25.386s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO
+[25.395s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/materials
+[25.396s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/materials/textures
+[25.397s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/materials/textures/Marker0.png
+[25.398s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/materials/textures/aquabot_marker_2_KO.png
+[25.399s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/model.sdf
+[25.400s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/meshes
+[25.400s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/meshes/Marker0.dae
+[25.401s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_2_KO/model.config
+[25.402s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO
+[25.403s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/materials
+[25.404s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/materials/textures
+[25.404s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/materials/textures/Marker0.png
+[25.405s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/materials/textures/aquabot_marker_3_KO.png
+[25.406s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/model.sdf
+[25.407s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/meshes
+[25.408s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/meshes/Marker0.dae
+[25.409s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_3_KO/model.config
+[25.409s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_world
+[25.410s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_world/model.sdf
+[25.411s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_regatta_world/model.config
+[25.412s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_tree
+[25.413s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_tree/model.sdf
+[25.414s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_tree/mesh
+[25.414s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_tree/mesh/tree.dae
+[25.432s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_tree/model.config
+[25.432s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO
+[25.434s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/materials
+[25.435s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/materials/textures
+[25.436s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/materials/textures/Marker0.png
+[25.436s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/materials/textures/aquabot_marker_5_KO.png
+[25.437s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/model.sdf
+[25.438s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/meshes
+[25.439s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/meshes/Marker0.dae
+[25.440s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_5_KO/model.config
+[25.441s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_rotor
+[25.441s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_rotor/model.sdf
+[25.442s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_rotor/mesh
+[25.443s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_rotor/mesh/rotor.dae
+[25.459s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_windturbine_rotor/model.config
+[25.460s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO
+[25.461s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/materials
+[25.461s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/materials/textures
+[25.462s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/materials/textures/Marker0.png
+[25.463s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/materials/textures/aquabot_marker_7_KO.png
+[25.464s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/model.sdf
+[25.464s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/meshes
+[25.465s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/meshes/Marker0.dae
+[25.466s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_7_KO/model.config
+[25.467s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO
+[25.470s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/materials
+[25.470s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/materials/textures
+[25.471s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/materials/textures/Marker0.png
+[25.472s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/materials/textures/aquabot_marker_9_KO.png
+[25.473s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/model.sdf
+[25.474s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/meshes
+[25.474s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/meshes/Marker0.dae
+[25.475s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_marker_9_KO/model.config
+[25.476s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_greenboat
+[25.477s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_greenboat/model.sdf
+[25.478s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_greenboat/mesh
+[25.479s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_greenboat/mesh/greenboat.dae
+[25.497s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/models/aquabot_greenboat/model.config
+[25.510s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds
+[25.510s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_windturbines_hard.sdf
+[25.511s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_patrolandfollow_hard.sdf
+[25.519s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_patrolandfollow_easy.sdf
+[25.524s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/images
+[25.524s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/images/easy.png
+[25.532s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/images/medium.png
+[25.540s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/images/hard.png
+[25.553s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_windturbines_medium.sdf
+[25.555s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_windturbines_easy.sdf
+[25.556s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_regatta.sdf
+[25.557s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/worlds/aquabot_patrolandfollow_medium.sdf
+[25.559s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/config
+[25.573s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/config/rviz_aquabot.rviz
+[25.580s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_gz
+[25.581s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_gz
+[25.582s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/ament_prefix_path.sh
+[25.582s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/ament_prefix_path.dsv
+[25.583s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/path.sh
+[25.583s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/environment/path.dsv
+[25.584s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/local_setup.bash
+[25.584s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/local_setup.sh
+[25.585s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/local_setup.zsh
+[25.585s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/local_setup.dsv
+[25.586s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/package.dsv
+[25.587s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_gz
+[25.587s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/cmake/aquabot_gzConfig.cmake
+[25.588s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/cmake/aquabot_gzConfig-version.cmake
+[25.588s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_gz/package.xml
+[25.597s] Invoked command in '/home/mls/vrx_ws/build/aquabot_gz' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gz/models/tmp:/home/mls/vrx_ws/install/share/vrx_gz/models:/home/mls/vrx_ws/install/share/vrx_gz/worlds/2023_practice:/home/mls/vrx_ws/install/share/vrx_gz/worlds GZ_SIM_SYSTEM_PLUGIN_PATH=/home/mls/vrx_ws/install/lib LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_gz

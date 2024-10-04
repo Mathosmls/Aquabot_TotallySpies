@@ -1,0 +1,8 @@
+setup.py
+opencv_example/__init__.py
+opencv_example/minimal_image_subscriber_node.py
+opencv_example/opencv_decoder_node.py
+opencv_example.egg-info/PKG-INFO
+opencv_example.egg-info/SOURCES.txt
+opencv_example.egg-info/dependency_links.txt
+opencv_example.egg-info/top_level.txt

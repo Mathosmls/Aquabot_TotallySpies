@@ -1,0 +1,18 @@
+[0.022s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[0.142s] [ 50%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[5.644s] In file included from [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:7[m[K:
+[5.644s] [01m[K/home/mls/vrx_ws/src/navigation/src/aqua_utils.h:13:52:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K;[m[K’ token
+[5.645s]    13 |                            const tf2::Quaternion &q[01;31m[K;[m[K
+[5.645s]       |                                                    [01;31m[K^[m[K
+[5.645s]       |                                                    [32m[K)[m[K
+[5.645s] [01m[K/home/mls/vrx_ws/src/navigation/src/aqua_utils.h:12:26:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K([m[K’
+[5.645s]    12 | calculateFreeAcceleration[01;36m[K([m[Kconst std::vector<double> &accImu,
+[5.645s]       |                          [01;36m[K^[m[K
+[5.906s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kvoid Navigation::imu_callback(const Imu&) const[m[K’:
+[5.906s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:38:57:[m[K [01;31m[Kerror: [m[K‘[01m[Krotation_matrix[m[K’ was not declared in this scope
+[5.906s]    38 |     auto freeAccImu = calculateFreeAcceleration(accImu, [01;31m[Krotation_matrix[m[K);
+[5.906s]       |                                                         [01;31m[K^~~~~~~~~~~~~~~[m[K
+[13.427s] gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+[13.427s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+[13.428s] gmake: *** [Makefile:146: all] Error 2
+[13.431s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8

@@ -1,0 +1,50 @@
+[0.034s] Invoking command in '/home/mls/vrx_ws/build/aquabot_description': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot/aquabot_urdf/aquabot_description -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[0.142s] -- The C compiler identification is GNU 11.4.0
+[0.254s] -- The CXX compiler identification is GNU 11.4.0
+[0.270s] -- Detecting C compiler ABI info
+[0.422s] -- Detecting C compiler ABI info - done
+[0.444s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.444s] -- Detecting C compile features
+[0.449s] -- Detecting C compile features - done
+[0.457s] -- Detecting CXX compiler ABI info
+[0.635s] -- Detecting CXX compiler ABI info - done
+[0.650s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.650s] -- Detecting CXX compile features
+[0.651s] -- Detecting CXX compile features - done
+[0.654s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.991s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.193s] -- Found xacro: 2.0.8 (/opt/ros/humble/share/xacro/cmake)
+[1.304s] -- Configuring done
+[1.308s] -- Generating done
+[1.310s] -- Build files have been written to: /home/mls/vrx_ws/build/aquabot_description
+[1.317s] Invoked command in '/home/mls/vrx_ws/build/aquabot_description' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mls/vrx_ws/src/Aquabot/aquabot_urdf/aquabot_description -DCMAKE_INSTALL_PREFIX=/home/mls/vrx_ws/install
+[1.320s] Invoking command in '/home/mls/vrx_ws/build/aquabot_description': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_description -- -j8 -l8
+[1.377s] Invoked command in '/home/mls/vrx_ws/build/aquabot_description' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_description -- -j8 -l8
+[1.418s] Invoking command in '/home/mls/vrx_ws/build/aquabot_description': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_description
+[1.433s] -- Install configuration: ""
+[1.434s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/resource_paths.dsv
+[1.434s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/resource_paths.sh
+[1.434s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models
+[1.435s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models/aquabot_blue_boat
+[1.435s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models/aquabot_blue_boat/model.sdf
+[1.435s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models/aquabot_blue_boat/mesh
+[1.435s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models/aquabot_blue_boat/mesh/blue_boat.dae
+[1.437s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/models/aquabot_blue_boat/model.config
+[1.437s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/urdf
+[1.438s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/urdf/aquabot.urdf
+[1.438s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_description
+[1.438s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_description
+[1.438s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/ament_prefix_path.sh
+[1.439s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/ament_prefix_path.dsv
+[1.439s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/path.sh
+[1.439s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/environment/path.dsv
+[1.440s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/local_setup.bash
+[1.440s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/local_setup.sh
+[1.440s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/local_setup.zsh
+[1.441s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/local_setup.dsv
+[1.441s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/package.dsv
+[1.441s] -- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_description
+[1.442s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/cmake/aquabot_descriptionConfig.cmake
+[1.442s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/cmake/aquabot_descriptionConfig-version.cmake
+[1.442s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_description/package.xml
+[1.446s] Invoked command in '/home/mls/vrx_ws/build/aquabot_description' returned '0': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble GZ_SIM_RESOURCE_PATH=/home/mls/vrx_ws/install/share/vrx_gazebo/models:/home/mls/vrx_ws/install/share PYTHONPATH=/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_description

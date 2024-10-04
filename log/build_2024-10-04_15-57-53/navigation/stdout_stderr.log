@@ -1,0 +1,28 @@
+[35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kvoid Navigation::imu_callback(const Imu&) const[m[K’:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:36:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass tf2::Quaternion[m[K’ has no member named ‘[01m[KgetRPY[m[K’; did you mean ‘[01m[KsetRPY[m[K’?
+   36 |     qImu.[01;31m[KgetRPY[m[K(roll, pitch, yaw);
+      |          [01;31m[K^~~~~~[m[K
+      |          [32m[KsetRPY[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:40:48:[m[K [01;31m[Kerror: [m[Kpassing ‘[01m[Kconst Navigation[m[K’ as ‘[01m[Kthis[m[K’ argument discards qualifiers [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+   40 |     auto freeAccImu = [01;31m[KcalculateFreeAcceleration(accImu, qImu)[m[K;
+      |                       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:52:3:[m[K [01;36m[Knote: [m[K  in call to ‘[01m[Kstd::vector<double, std::allocator<double> > Navigation::calculateFreeAcceleration(const std::vector<double, std::allocator<double> >&, const tf2::Quaternion&)[m[K’
+   52 |   [01;36m[KcalculateFreeAcceleration[m[K(const std::vector<double> &accImu,
+      |   [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kstd::vector<double, std::allocator<double> > Navigation::calculateFreeAcceleration(const std::vector<double, std::allocator<double> >&, const tf2::Quaternion&)[m[K’:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:74:41:[m[K [01;31m[Kerror: [m[K‘[01m[KgravityVector[m[K’ was not declared in this scope
+   74 |       freeAcceleration[i] = accImu[i] - [01;31m[KgravityVector[m[K[i];
+      |                                         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:77:12:[m[K [01;31m[Kerror: [m[K‘[01m[Kfree_accel[m[K’ was not declared in this scope
+   77 |     return [01;31m[Kfree_accel[m[K;
+      |            [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K At global scope:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:85:1:[m[K [01;31m[Kerror: [m[K‘[01m[Km[m[K’ does not name a type; did you mean ‘[01m[Ktm[m[K’?
+   85 | [01;31m[Km[m[K.getRPY(roll, pitch, yaw);
+      | [01;31m[K^[m[K
+      | [32m[Ktm[m[K
+gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

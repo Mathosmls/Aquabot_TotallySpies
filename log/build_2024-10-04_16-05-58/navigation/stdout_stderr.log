@@ -1,0 +1,22 @@
+[35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[100%] [32m[1mLinking CXX executable navigation[0m
+[100%] Built target navigation
+-- Install configuration: ""
+-- Installing: /home/mls/vrx_ws/install/lib/navigation/navigation
+-- Set runtime path of "/home/mls/vrx_ws/install/lib/navigation/navigation" to ""
+-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/navigation
+-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/navigation
+-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.sh
+-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/ament_prefix_path.dsv
+-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/path.sh
+-- Installing: /home/mls/vrx_ws/install/share/navigation/environment/path.dsv
+-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.bash
+-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.sh
+-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.zsh
+-- Installing: /home/mls/vrx_ws/install/share/navigation/local_setup.dsv
+-- Installing: /home/mls/vrx_ws/install/share/navigation/package.dsv
+-- Installing: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/navigation
+-- Installing: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig.cmake
+-- Installing: /home/mls/vrx_ws/install/share/navigation/cmake/navigationConfig-version.cmake
+-- Installing: /home/mls/vrx_ws/install/share/navigation/package.xml

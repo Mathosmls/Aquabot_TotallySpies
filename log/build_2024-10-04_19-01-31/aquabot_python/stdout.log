@@ -1,0 +1,9 @@
+Built target ament_cmake_python_copy_aquabot_python_setup
+Built target ament_cmake_python_copy_aquabot_python
+running egg_info
+writing aquabot_python.egg-info/PKG-INFO
+writing dependency_links to aquabot_python.egg-info/dependency_links.txt
+writing top-level names to aquabot_python.egg-info/top_level.txt
+reading manifest file 'aquabot_python.egg-info/SOURCES.txt'
+writing manifest file 'aquabot_python.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_aquabot_python_egg

@@ -1,0 +1,45 @@
+[0.131s] Invoking command in '/home/mls/vrx_ws/build/opencv_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/opencv_example -- -j8 -l8
+[0.486s] [  0%] Built target ament_cmake_python_copy_opencv_example
+[0.504s] [35m[1mConsolidate compiler generated dependencies of target minimal_opencv_ros2_node[0m
+[0.601s] [100%] Built target minimal_opencv_ros2_node
+[1.640s] running egg_info
+[1.653s] writing opencv_example.egg-info/PKG-INFO
+[1.655s] writing dependency_links to opencv_example.egg-info/dependency_links.txt
+[1.656s] writing top-level names to opencv_example.egg-info/top_level.txt
+[1.675s] reading manifest file 'opencv_example.egg-info/SOURCES.txt'
+[1.698s] writing manifest file 'opencv_example.egg-info/SOURCES.txt'
+[1.897s] [100%] Built target ament_cmake_python_build_opencv_example_egg
+[1.924s] Invoked command in '/home/mls/vrx_ws/build/opencv_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/opencv_example -- -j8 -l8
+[2.066s] Invoking command in '/home/mls/vrx_ws/build/opencv_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/opencv_example
+[2.086s] -- Install configuration: ""
+[2.089s] -- Up-to-date: /home/mls/vrx_ws/install/lib/opencv_example/minimal_opencv_ros2_node
+[2.090s] -- Up-to-date: /home/mls/vrx_ws/install/lib/opencv_example/minimal_opencv_subscriber.py
+[2.090s] -- Up-to-date: /home/mls/vrx_ws/install/lib/opencv_example/opencv_decoder.py
+[2.091s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/pythonpath.sh
+[2.091s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/pythonpath.dsv
+[2.092s] -- Up-to-date: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example-0.3.0-py3.10.egg-info
+[2.094s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example-0.3.0-py3.10.egg-info/top_level.txt
+[2.094s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example-0.3.0-py3.10.egg-info/PKG-INFO
+[2.096s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example-0.3.0-py3.10.egg-info/dependency_links.txt
+[2.097s] -- Installing: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example-0.3.0-py3.10.egg-info/SOURCES.txt
+[2.098s] -- Up-to-date: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example
+[2.098s] -- Up-to-date: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example/__init__.py
+[2.100s] -- Up-to-date: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example/opencv_decoder_node.py
+[2.108s] -- Up-to-date: /home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example/minimal_image_subscriber_node.py
+[2.222s] Listing '/home/mls/vrx_ws/install/local/lib/python3.10/dist-packages/opencv_example'...
+[2.243s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/opencv_example
+[2.243s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/opencv_example
+[2.243s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/ament_prefix_path.sh
+[2.244s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/ament_prefix_path.dsv
+[2.244s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/path.sh
+[2.244s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/environment/path.dsv
+[2.244s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/local_setup.bash
+[2.244s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/local_setup.sh
+[2.245s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/local_setup.zsh
+[2.245s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/local_setup.dsv
+[2.245s] -- Installing: /home/mls/vrx_ws/install/share/opencv_example/package.dsv
+[2.247s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/opencv_example
+[2.247s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/cmake/opencv_exampleConfig.cmake
+[2.248s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/cmake/opencv_exampleConfig-version.cmake
+[2.248s] -- Up-to-date: /home/mls/vrx_ws/install/share/opencv_example/package.xml
+[2.266s] Invoked command in '/home/mls/vrx_ws/build/opencv_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/opencv_example

@@ -1,0 +1,8 @@
+setup.py
+aquabot_gz/__init__.py
+aquabot_gz/bridges.py
+aquabot_gz/launch.py
+aquabot_gz.egg-info/PKG-INFO
+aquabot_gz.egg-info/SOURCES.txt
+aquabot_gz.egg-info/dependency_links.txt
+aquabot_gz.egg-info/top_level.txt

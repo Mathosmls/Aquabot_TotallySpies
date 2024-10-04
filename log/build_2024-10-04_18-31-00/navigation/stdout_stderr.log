@@ -1,0 +1,10 @@
+[35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[100%] [32m[1mLinking CXX executable navigation[0m
+/usr/bin/ld: CMakeFiles/navigation.dir/src/navigation.cpp.o: in function `Navigation::imu_callback(sensor_msgs::msg::Imu_<std::allocator<void> > const&) const':
+navigation.cpp:(.text._ZNK10Navigation12imu_callbackERKN11sensor_msgs3msg4Imu_ISaIvEEE[_ZNK10Navigation12imu_callbackERKN11sensor_msgs3msg4Imu_ISaIvEEE]+0x122): undefined reference to `Quaternion2RPY(tf2::Quaternion const&)'
+/usr/bin/ld: navigation.cpp:(.text._ZNK10Navigation12imu_callbackERKN11sensor_msgs3msg4Imu_ISaIvEEE[_ZNK10Navigation12imu_callbackERKN11sensor_msgs3msg4Imu_ISaIvEEE]+0x142): undefined reference to `calculateFreeAcceleration(std::vector<double, std::allocator<double> > const&, tf2::Quaternion const&)'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/navigation.dir/build.make:176: navigation] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,11 @@
+[0.082s] Invoking command in '/home/mls/vrx_ws/build/aquabot_python': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_python -- -j8 -l8
+[0.345s] Built target ament_cmake_python_copy_aquabot_python_setup
+[0.345s] Built target ament_cmake_python_copy_aquabot_python
+[1.609s] running egg_info
+[1.614s] writing aquabot_python.egg-info/PKG-INFO
+[1.614s] writing dependency_links to aquabot_python.egg-info/dependency_links.txt
+[1.614s] writing top-level names to aquabot_python.egg-info/top_level.txt
+[1.618s] reading manifest file 'aquabot_python.egg-info/SOURCES.txt'
+[1.638s] writing manifest file 'aquabot_python.egg-info/SOURCES.txt'
+[1.757s] Built target ament_cmake_python_build_aquabot_python_egg
+[1.774s] gmake: *** [Makefile:147: all] Interrupt

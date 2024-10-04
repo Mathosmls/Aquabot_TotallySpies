@@ -1,0 +1,1 @@
+Invoking command in '/home/mls/vrx_ws/build/vrx_gazebo': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/vrx_gazebo -- -j8 -l8

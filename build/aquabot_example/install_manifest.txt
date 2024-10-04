@@ -1,0 +1,17 @@
+/home/mls/vrx_ws/install/lib/aquabot_example/aquabot_node
+/home/mls/vrx_ws/install/share/aquabot_example/launch/aquabot.launch.py
+/home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_example
+/home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_example
+/home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.sh
+/home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.dsv
+/home/mls/vrx_ws/install/share/aquabot_example/environment/path.sh
+/home/mls/vrx_ws/install/share/aquabot_example/environment/path.dsv
+/home/mls/vrx_ws/install/share/aquabot_example/local_setup.bash
+/home/mls/vrx_ws/install/share/aquabot_example/local_setup.sh
+/home/mls/vrx_ws/install/share/aquabot_example/local_setup.zsh
+/home/mls/vrx_ws/install/share/aquabot_example/local_setup.dsv
+/home/mls/vrx_ws/install/share/aquabot_example/package.dsv
+/home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_example
+/home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig.cmake
+/home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig-version.cmake
+/home/mls/vrx_ws/install/share/aquabot_example/package.xml

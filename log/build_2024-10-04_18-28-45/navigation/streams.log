@@ -1,0 +1,15 @@
+[0.025s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[0.128s] [35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[0.165s] [ 50%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[6.054s] In file included from [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:7[m[K:
+[6.054s] [01m[K/home/mls/vrx_ws/src/navigation/src/aqua_utils.h:9:20:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before numeric constant
+[6.054s]     9 | const double G = 9,[01;31m[K807[m[K;
+[6.054s]       |                    [01;31m[K^~~[m[K
+[6.303s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kvoid Navigation::imu_callback(const Imu&) const[m[K’:
+[6.303s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:38:57:[m[K [01;31m[Kerror: [m[K‘[01m[Krotation_matrix[m[K’ was not declared in this scope
+[6.304s]    38 |     auto freeAccImu = calculateFreeAcceleration(accImu, [01;31m[Krotation_matrix[m[K);
+[6.304s]       |                                                         [01;31m[K^~~~~~~~~~~~~~~[m[K
+[14.082s] gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+[14.082s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+[14.083s] gmake: *** [Makefile:146: all] Error 2
+[14.087s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8

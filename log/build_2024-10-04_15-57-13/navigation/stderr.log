@@ -1,0 +1,41 @@
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:96:2:[m[K [01;31m[Kerror: [m[Kunterminated argument list invoking macro "RCLCPP_INFO"
+   96 | }
+      |  [01;31m[K^[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:47:16:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+   47 |     RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(), "free acceleration IMU :  %f ,%f ,%f",
+      |                [01;31m[K^[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:14:40:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   14 | class Navigation : public rclcpp::Node [01;36m[K{[m[K
+      |                                        [01;36m[K^[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In constructor ‘[01m[KNavigation::Navigation()[m[K’:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:17:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscription_gps[m[K’ was not declared in this scope; did you mean ‘[01m[Krmw_subscription_s[m[K’?
+   17 |     [01;31m[Ksubscription_gps[m[K = this->create_subscription<sensor_msgs::msg::NavSatFix>(
+      |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |     [32m[Krmw_subscription_s[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:20:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscription_imu[m[K’ was not declared in this scope
+   20 |     [01;31m[Ksubscription_imu[m[K = this->create_subscription<sensor_msgs::msg::Imu>(
+      |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K In member function ‘[01m[Kvoid Navigation::imu_callback(const Imu&) const[m[K’:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:37:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass tf2::Quaternion[m[K’ has no member named ‘[01m[KgetRPY[m[K’; did you mean ‘[01m[KsetRPY[m[K’?
+   37 |     qImu.[01;31m[KgetRPY[m[K(roll, pitch, yaw);
+      |          [01;31m[K^~~~~~[m[K
+      |          [32m[KsetRPY[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:39:23:[m[K [01;31m[Kerror: [m[K‘[01m[KcalculateFreeAcceleration[m[K’ was not declared in this scope
+   39 |     auto freeAccImu = [01;31m[KcalculateFreeAcceleration[m[K(accImu,qImu );
+      |                       [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:47:5:[m[K [01;31m[Kerror: [m[K‘[01m[KRCLCPP_INFO[m[K’ was not declared in this scope
+   47 |     [01;31m[KRCLCPP_INFO[m[K(this->get_logger(), "free acceleration IMU :  %f ,%f ,%f",
+      |     [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:47:16:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+   47 |     RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(), "free acceleration IMU :  %f ,%f ,%f",
+      |                [01;31m[K^[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:32:61:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   32 |   void imu_callback(const sensor_msgs::msg::Imu &msg) const [01;36m[K{[m[K
+      |                                                             [01;36m[K^[m[K
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:[m[K At global scope:
+[01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:47:16:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id at end of input
+   47 |     RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(), "free acceleration IMU :  %f ,%f ,%f",
+      |                [01;31m[K^[m[K
+gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,11 @@
+[0.023s] Invoking command in '/home/mls/vrx_ws/build/navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8
+[0.104s] [35m[1mConsolidate compiler generated dependencies of target navigation[0m
+[0.139s] [ 33%] [32mBuilding CXX object CMakeFiles/navigation.dir/src/navigation.cpp.o[0m
+[0.190s] [01m[K/home/mls/vrx_ws/src/navigation/src/navigation.cpp:1:10:[m[K [01;31m[Kfatal error: [m[Knavigation.hpp: No such file or directory
+[0.191s]     1 | #include [01;31m[K"navigation.hpp"[m[K
+[0.191s]       |          [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[0.191s] compilation terminated.
+[0.192s] gmake[2]: *** [CMakeFiles/navigation.dir/build.make:76: CMakeFiles/navigation.dir/src/navigation.cpp.o] Error 1
+[0.193s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/navigation.dir/all] Error 2
+[0.193s] gmake: *** [Makefile:146: all] Error 2
+[0.197s] Invoked command in '/home/mls/vrx_ws/build/navigation' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/navigation -- -j8 -l8

@@ -1,0 +1,64 @@
+[0.035s] Invoking command in '/home/mls/vrx_ws/build/vrx_gz': AMENT_PREFIX_PATH=/home/mls/vrx_ws/install:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mls/vrx_ws/install:/opt/ros/humble LD_LIBRARY_PATH=/home/mls/vrx_ws/install/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/mls/vrx_ws/build/vrx_gz -- -j8 -l8
+[0.245s] [  4%] Built target Waves
+[0.286s] [  4%] Built target ament_cmake_python_copy_vrx_gz
+[0.300s] [  8%] Built target ScoringPlugin
+[0.466s] [ 16%] Built target PolyhedraBuoyancyDrag
+[0.496s] [ 22%] Built target AcousticTrackingScoringPlugin
+[0.502s] [ 29%] Built target StationkeepingScoringPlugin
+[0.503s] [ 35%] Built target AcousticPerceptionScoringPlugin
+[0.507s] [ 39%] Built target BallShooterPlugin
+[0.560s] [ 43%] Built target AcousticPingerPlugin
+[0.561s] [ 50%] Built target WayfindingScoringPlugin
+[0.642s] [ 54%] Built target PlacardPlugin
+[0.686s] [ 58%] Built target PerceptionScoringPlugin
+[0.689s] [ 66%] Built target GymkhanaScoringPlugin
+[0.689s] [ 66%] Built target NavigationScoringPlugin
+[0.701s] [ 70%] Built target LightBuoyPlugin
+[0.702s] [ 75%] Built target PublisherPlugin
+[0.784s] [ 79%] Built target ScanDockScoringPlugin
+[0.803s] [ 83%] Built target SimpleHydrodynamics
+[0.867s] [ 87%] Built target USVWind
+[0.869s] [ 91%] Built target WildlifeScoringPlugin
+[0.898s] Traceback (most recent call last):
+[0.898s]   File "/home/mls/vrx_ws/build/vrx_gz/ament_cmake_python/vrx_gz/setup.py", line 1, in <module>
+[0.898s]     from setuptools import find_packages
+[0.898s]   File "/usr/lib/python3/dist-packages/setuptools/__init__.py", line 16, in <module>
+[0.900s] gmake[1]: *** [CMakeFiles/Makefile2:634: CMakeFiles/Surface.dir/all] Interrupt
+[0.904s] gmake[1]: *** [CMakeFiles/Makefile2:688: CMakeFiles/WaveVisual.dir/all] Interrupt
+[0.908s]     import setuptools.version
+[0.908s]   File "/usr/lib/python3/dist-packages/setuptools/version.py", line 1, in <module>
+[0.929s]     import pkg_resources
+[0.929s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 77, in <module>
+[0.958s]     __import__('pkg_resources.extern.packaging.specifiers')
+[0.959s]   File "/usr/lib/python3/dist-packages/pkg_resources/_vendor/packaging/specifiers.py", line 317, in <module>
+[1.048s]     class Specifier(_IndividualSpecifier):
+[1.048s]   File "/usr/lib/python3/dist-packages/pkg_resources/_vendor/packaging/specifiers.py", line 412, in Specifier
+[1.048s]     _regex = re.compile(r"^\s*" + _regex_str + r"\s*$", re.VERBOSE | re.IGNORECASE)
+[1.048s]   File "/usr/lib/python3.10/re.py", line 251, in compile
+[1.049s]     return _compile(pattern, flags)
+[1.049s]   File "/usr/lib/python3.10/re.py", line 303, in _compile
+[1.049s]     p = sre_compile.compile(pattern, flags)
+[1.050s]   File "/usr/lib/python3.10/sre_compile.py", line 788, in compile
+[1.073s]     p = sre_parse.parse(p, flags)
+[1.073s]   File "/usr/lib/python3.10/sre_parse.py", line 955, in parse
+[1.074s]     p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+[1.074s]   File "/usr/lib/python3.10/sre_parse.py", line 444, in _parse_sub
+[1.074s]     itemsappend(_parse(source, state, verbose, nested + 1,
+[1.075s]   File "/usr/lib/python3.10/sre_parse.py", line 846, in _parse
+[1.075s]     state.closegroup(group, p)
+[1.075s]   File "/usr/lib/python3.10/sre_parse.py", line 98, in closegroup
+[1.076s]     self.groupwidths[gid] = p.getwidth()
+[1.076s]   File "/usr/lib/python3.10/sre_parse.py", line 185, in getwidth
+[1.076s]     l, h = av.getwidth()
+[1.076s]   File "/usr/lib/python3.10/sre_parse.py", line 199, in getwidth
+[1.076s]     i, j = av[2].getwidth()
+[1.077s]   File "/usr/lib/python3.10/sre_parse.py", line 185, in getwidth
+[1.077s]     l, h = av.getwidth()
+[1.077s]   File "/usr/lib/python3.10/sre_parse.py", line 199, in getwidth
+[1.077s]     i, j = av[2].getwidth()
+[1.077s]   File "/usr/lib/python3.10/sre_parse.py", line 221, in getwidth
+[1.077s]     self.width = min(lo, MAXREPEAT - 1), min(hi, MAXREPEAT)
+[1.077s] KeyboardInterrupt
+[1.097s] gmake[2]: *** [CMakeFiles/ament_cmake_python_build_vrx_gz_egg.dir/build.make:70: CMakeFiles/ament_cmake_python_build_vrx_gz_egg] Interrupt
+[1.098s] gmake[1]: *** [CMakeFiles/Makefile2:766: CMakeFiles/ament_cmake_python_build_vrx_gz_egg.dir/all] Interrupt
+[1.098s] gmake: *** [Makefile:146: all] Interrupt

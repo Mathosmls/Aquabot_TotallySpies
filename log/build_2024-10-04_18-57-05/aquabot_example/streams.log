@@ -1,0 +1,25 @@
+[0.131s] Invoking command in '/home/mls/vrx_ws/build/aquabot_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_example -- -j8 -l8
+[0.464s] [35m[1mConsolidate compiler generated dependencies of target aquabot_node[0m
+[0.533s] [100%] Built target aquabot_node
+[0.602s] Invoked command in '/home/mls/vrx_ws/build/aquabot_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mls/vrx_ws/build/aquabot_example -- -j8 -l8
+[0.732s] Invoking command in '/home/mls/vrx_ws/build/aquabot_example': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_example
+[0.795s] -- Install configuration: ""
+[0.815s] -- Up-to-date: /home/mls/vrx_ws/install/lib/aquabot_example/aquabot_node
+[0.815s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/launch
+[0.816s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/launch/aquabot.launch.py
+[0.816s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/package_run_dependencies/aquabot_example
+[0.817s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/parent_prefix_path/aquabot_example
+[0.817s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.sh
+[0.818s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/ament_prefix_path.dsv
+[0.818s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.sh
+[0.821s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/environment/path.dsv
+[0.822s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.bash
+[0.822s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.sh
+[0.822s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.zsh
+[0.822s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/local_setup.dsv
+[0.822s] -- Installing: /home/mls/vrx_ws/install/share/aquabot_example/package.dsv
+[0.838s] -- Up-to-date: /home/mls/vrx_ws/install/share/ament_index/resource_index/packages/aquabot_example
+[0.839s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig.cmake
+[0.839s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/cmake/aquabot_exampleConfig-version.cmake
+[0.839s] -- Up-to-date: /home/mls/vrx_ws/install/share/aquabot_example/package.xml
+[0.880s] Invoked command in '/home/mls/vrx_ws/build/aquabot_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mls/vrx_ws/build/aquabot_example
