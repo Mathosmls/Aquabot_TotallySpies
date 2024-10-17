@@ -7,6 +7,8 @@ using std::placeholders::_1;
 
 Navigation::Navigation() : Node("navigation") {
   // Souscriptions
+
+  RCLCPP_INFO(this->get_logger(), "\nNode 'navigation' has started!\n");
   subscription_gps = this->create_subscription<sensor_msgs::msg::NavSatFix>(
       "/aquabot/sensors/gps/gps/fix", 10,
       std::bind(&Navigation::gps_callback, this, _1));
@@ -29,28 +31,11 @@ Navigation::Navigation() : Node("navigation") {
 }
 
 void Navigation::gps_callback(const sensor_msgs::msg::NavSatFix &msg) const {
-  RCLCPP_INFO(this->get_logger(), "latitude GPS : '%f'", msg.latitude);
-  RCLCPP_INFO(this->get_logger(), "longitude GPS : '%f'", msg.longitude);
+
 }
 
 void Navigation::imu_callback(const sensor_msgs::msg::Imu &msg) const {
-  tf2::Quaternion qImu(msg.orientation.x, msg.orientation.y,
-                       msg.orientation.z, msg.orientation.w);
 
-  std::vector<double> accImu{msg.linear_acceleration.x,
-                             msg.linear_acceleration.y,
-                             msg.linear_acceleration.z};
-
-  auto eulerImu = Quaternion2RPY(qImu);
-  auto freeAccImu = calculateFreeAcceleration(accImu, qImu);
-
-  RCLCPP_INFO(this->get_logger(), "roll, pitch yaw IMU : %f,%f,%f",
-              eulerImu[0], eulerImu[1], eulerImu[2]);
-  RCLCPP_INFO(this->get_logger(), "angular velocity IMU : %f ,%f ,%f",
-              msg.angular_velocity.x, msg.angular_velocity.y,
-              msg.angular_velocity.z);
-  RCLCPP_INFO(this->get_logger(), "free acceleration IMU :  %f ,%f ,%f",
-              freeAccImu[0], freeAccImu[1], freeAccImu[2]);
 }
 
 void Navigation::keyboard_callback(const geometry_msgs::msg::Twist::SharedPtr msg) const {

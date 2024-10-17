@@ -14,6 +14,9 @@ def generate_launch_description():
             namespace='',
             executable='rviz2',
             name='rviz2',
+            parameters=[{
+                'use_sim_time': True
+            }],
             arguments=['-d' + os.path.join(get_package_share_directory('aquabot_gz'), 'config', 'rviz_aquabot.rviz')]
         )
     return LaunchDescription([rvz])
