@@ -20,10 +20,15 @@ find_package(tf2 REQUIRED)
 add_executable(navigation src/navigation.cpp src/aqua_utils.cpp)
 ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs tf2)
 
+add_executable(graph_node src/graph_node.cpp) 
+ament_target_dependencies(graph_node rclcpp std_msgs sensor_msgs geometry_msgs tf2)
+
+
 target_include_directories(navigation PRIVATE src)
 
 install(TARGETS
   navigation
+  graph_node
   DESTINATION lib/${PROJECT_NAME})
 
     # Install launch files.
