@@ -6,15 +6,19 @@
 #include "geometry_msgs/msg/pose_array.hpp"
 #include <vector>
 
-
 class Graph : public rclcpp::Node
-{   public:
-  Graph();  // Constructeur
+{
+public:
+    Graph();  // Constructeur
+    const std::vector<geometry_msgs::msg::Pose>& get_poses() const; // Modifié ici
 
 private:
-  // Callbacks
-  void pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr msg) const;
-  
-  // Publishers et Subscribers
-  rclcpp::Subscription<geometry_msgs::msg::PoseArray>::SharedPtr subscription_pose_array;
-  };
+    // Callbacks
+    void pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr msg); // Supprimer const ici
+    void gps_callback(const sensor_msgs::msg::NavSatFix::SharedPtr msg) const;
+
+    std::vector<geometry_msgs::msg::Pose> _wt_poses;
+    // Publishers et Subscribers
+    rclcpp::Subscription<sensor_msgs::msg::NavSatFix>::SharedPtr subscription_gps;
+    rclcpp::Subscription<geometry_msgs::msg::PoseArray>::SharedPtr subscription_pose_array;
+};
