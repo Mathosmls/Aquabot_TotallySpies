@@ -31,8 +31,9 @@ private:
     double _pose_x;
     double _pose_y;
     bool _wt_loc_received = false;
-    int _img_size = 300;
-    double _resolution = 0.36585365;
+    int _img_size = 820;
+    float _l_map = 600;
+    double _resolution = _img_size / _l_map;  
 
 
     // Callbacks

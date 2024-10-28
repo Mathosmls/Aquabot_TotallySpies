@@ -109,8 +109,8 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
 // Fichier temporaire pour stocker les données
 
     if (_wt_loc_received==false) {
-        auto REF = transformToLocal(_lat_ref, _lon_ref, 0); 
-        RCLCPP_INFO(this->get_logger(), "PoseArray received, ref poses x: %f, y: %f", REF.x, REF.y);
+        auto REF = transformToLocal(_lat_ref + 0.001, _lon_ref + 0.001, 0); 
+        RCLCPP_INFO(this->get_logger(), "PoseArray received, ref poses x: %f, y: %f", REF.x * _resolution + _img_size / 2, REF.y* _resolution + _img_size / 2);
 
 
         cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, _img_size, _img_size);
