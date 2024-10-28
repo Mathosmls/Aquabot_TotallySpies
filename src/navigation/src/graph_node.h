@@ -18,6 +18,11 @@ public:
     double get_pose_y() const;
     void set_pose_xy(double x, double y);
 
+    void drw_img();
+
+    double _lon_ref = -4.97632;
+    double _lat_ref = 48.04630;
+
 private:
     // Attributs
     std::vector<geometry_msgs::msg::Pose> _wt_poses;
@@ -25,6 +30,10 @@ private:
     std::vector<double> _wt_loc_poses_y;
     double _pose_x;
     double _pose_y;
+    bool _wt_loc_received = false;
+    int _img_size = 300;
+    double _resolution = 0.36585365;
+
 
     // Callbacks
     void pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr msg); // Supprimer const ici
