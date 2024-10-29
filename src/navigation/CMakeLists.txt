@@ -19,28 +19,33 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(CAIRO REQUIRED cairo)
 pkg_check_modules(GEOGRAPHICLIB REQUIRED geographiclib)
 
-# Ajouter les répertoires d'inclusion pour GeographicLib
+
 include_directories(${GEOGRAPHICLIB_INCLUDE_DIRS})
 
-# Ajouter l'exécutable 'navigation'
+
 add_executable(navigation src/navigation.cpp src/aqua_utils.cpp)
 ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs tf2)
 
-# Ajouter l'exécutable 'graph_node'
+
 add_executable(graph_node src/graph_node.cpp) 
 ament_target_dependencies(graph_node rclcpp std_msgs sensor_msgs geometry_msgs tf2)
 target_include_directories(graph_node PRIVATE ${CAIRO_INCLUDE_DIRS})
 target_link_libraries(graph_node ${CAIRO_LIBRARIES} ${GEOGRAPHICLIB_LIBRARIES})
 
-# Ajouter les répertoires d'inclusion pour 'navigation'
+
+add_executable(graph_node src/graph_node.cpp) 
+ament_target_dependencies(graph_node rclcpp std_msgs sensor_msgs geometry_msgs tf2)
+
+
 target_include_directories(navigation PRIVATE src)
 
 install(TARGETS
   navigation
   graph_node
+  mtr_control
   DESTINATION lib/${PROJECT_NAME})
 
-# Installer les fichiers de lancement.
+
 install(DIRECTORY
 launch
 DESTINATION share/${PROJECT_NAME}/
