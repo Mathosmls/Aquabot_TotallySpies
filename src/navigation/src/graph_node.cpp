@@ -53,37 +53,6 @@ const std::vector<geometry_msgs::msg::Pose>& Graph::get_poses() const {
 }
 
 
-void Graph::drw_img() {
-    // Créer une image au format PNG
-    cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, _img_size, _img_size);
-    cairo_t *cr = cairo_create(surface);
-
-    // Dessiner un fond blanc
-    cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-    cairo_paint(cr);
-
-    // Dessiner les positions des éoliennes
-    cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
-    for (size_t i = 0; i < _wt_loc_poses_x.size(); i++) {
-        double x = _wt_loc_poses_x[i] * _resolution + _img_size / 2;
-        std::cout << "x: " << _wt_loc_poses_x[i] << std::endl;
-        double y = _wt_loc_poses_y[i] * _resolution + _img_size / 2;
-        std::cout << "y: " << _wt_loc_poses_y[i] << std::endl;
-        cairo_arc(cr, x, y, 5.0, 0.0, 2.0 * M_PI);
-        cairo_fill(cr);
-    }
-
-    // Sauvegarder l'image au format PNG
-    cairo_surface_write_to_png(surface, "graph.png");
-
-    // Libérer les ressources de Cairo
-    cairo_destroy(cr);
-    cairo_surface_destroy(surface);
-
-    // Ouvrir l'image avec un programme externe (xdg-open sur Linux)
-    std::system("xdg-open graph.png");
-}
-
 
 Graph::Graph() : Node("graph_node")
 {
@@ -100,7 +69,73 @@ Graph::Graph() : Node("graph_node")
         10,             
         std::bind(&Graph::gps_callback, this, std::placeholders::_1) 
     );
+
+    local_position_publisher_ = this->create_publisher<geometry_msgs::msg::PoseArray>(
+        "/local_wind_turbine_positions", 10
+    );
+
+    pointcloud_publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+        "/wind_turbine_positions_pointcloud", 10
+    );
 }
+
+void Graph::publish_local_positions_pointcloud() {
+    if (_wt_loc_received) {
+        // Créer un message PointCloud2
+        sensor_msgs::msg::PointCloud2 cloud_msg;
+        cloud_msg.header.stamp = this->now();
+        cloud_msg.header.frame_id = "local_frame"; // Nom du repère local
+        cloud_msg.height = 1;
+        cloud_msg.width = _wt_loc_poses_x.size();
+        cloud_msg.is_dense = false;
+        cloud_msg.is_bigendian = false;
+
+        // Définir les champs pour x, y, et z dans le PointCloud2
+        sensor_msgs::PointCloud2Modifier modifier(cloud_msg);
+        modifier.setPointCloud2FieldsByString(1, "xyz");
+
+        // Remplir les données du nuage de points
+        sensor_msgs::PointCloud2Iterator<float> iter_x(cloud_msg, "x");
+        sensor_msgs::PointCloud2Iterator<float> iter_y(cloud_msg, "y");
+        sensor_msgs::PointCloud2Iterator<float> iter_z(cloud_msg, "z");
+
+        for (size_t i = 0; i < _wt_loc_poses_x.size(); ++i) {
+            *iter_x = _wt_loc_poses_x[i];
+            *iter_y = _wt_loc_poses_y[i];
+            *iter_z = 0.0;  // Si z est nul ou une autre valeur, selon le cas
+            ++iter_x; ++iter_y; ++iter_z;
+        }
+
+        // Publier le PointCloud2
+        pointcloud_publisher_->publish(cloud_msg);
+        RCLCPP_INFO(this->get_logger(), "Published wind turbine positions as PointCloud2 with %zu points", _wt_loc_poses_x.size());
+    }
+}
+
+
+
+void Graph::publish_local_positions()
+{
+    if (_wt_loc_received) {
+        geometry_msgs::msg::PoseArray local_positions;
+        local_positions.header.stamp = this->now();
+        local_positions.header.frame_id = "local_frame"; // Nom du repère local
+
+        // Remplir le PoseArray avec les positions locales
+        for (size_t i = 0; i < _wt_loc_poses_x.size(); ++i) {
+            geometry_msgs::msg::Pose pose;
+            pose.position.x = _wt_loc_poses_x[i];
+            pose.position.y = _wt_loc_poses_y[i];
+            pose.position.z = 0.0; // Z si nécessaire
+            local_positions.poses.push_back(pose);
+        }
+
+        // Publier les positions locales
+        local_position_publisher_->publish(local_positions);
+        RCLCPP_INFO(this->get_logger(), "Published local wind turbine positions with %zu poses", local_positions.poses.size());
+    }
+}
+
 
 // Callback pour traiter les messages PoseArray
 void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr msg) 
@@ -124,8 +159,8 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
         {
             
             _wt_poses.push_back(pose);  
-            double lon = pose.position.x;
-            double lat = pose.position.y;
+            double lon = pose.position.y;
+            double lat = pose.position.x;
             double alt = pose.position.z;
             auto local_position = transformToLocal(lat, lon, alt);
 
@@ -133,6 +168,8 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
             double y = local_position.y * _resolution + _img_size / 2;
             std::cout << "res : " << _resolution << std::endl;   
             RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", x, y);
+            RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
+
             
             _wt_loc_poses_x.push_back(local_position.x);
             _wt_loc_poses_y.push_back(local_position.y);
@@ -151,6 +188,9 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
 
         // Ouvrir l'image avec un programme externe (xdg-open sur Linux)
         std::system("xdg-open graph.png");
+
+        publish_local_positions();
+        publish_local_positions_pointcloud();
     }
     
 

@@ -6,6 +6,8 @@
 #include "sensor_msgs/msg/nav_sat_fix.hpp"
 #include "std_msgs/msg/float64.hpp"
 #include <geometry_msgs/msg/twist.hpp>
+#include <sensor_msgs/msg/point_cloud2.hpp>
+#include <sensor_msgs/point_cloud2_iterator.hpp>
 #include "geometry_msgs/msg/pose_array.hpp"
 #include <vector>
 
@@ -39,10 +41,15 @@ private:
     // Callbacks
     void pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr msg); // Supprimer const ici
     void gps_callback(const sensor_msgs::msg::NavSatFix::SharedPtr msg) ;
+    void publish_local_positions();
+    void publish_local_positions_pointcloud();
 
     // Publishers et Subscribers
     rclcpp::Subscription<sensor_msgs::msg::NavSatFix>::SharedPtr subscription_gps;
     rclcpp::Subscription<geometry_msgs::msg::PoseArray>::SharedPtr subscription_pose_array;
+
+    rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr local_position_publisher_;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointcloud_publisher_;
 };
 
 #endif
