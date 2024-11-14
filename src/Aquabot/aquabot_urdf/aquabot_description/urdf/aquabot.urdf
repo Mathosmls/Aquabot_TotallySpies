@@ -341,6 +341,14 @@
       <nRR>979.0</nRR> <!-- Stability derivative, 2nd order, yaw component [kg/m^2] -->
     </plugin>
   </gazebo>
+  <gazebo>
+  <plugin
+	    filename="gz-sim-odometry-publisher-system"
+	    name="gz::sim::systems::OdometryPublisher">
+	    <dimensions>3</dimensions>
+	    <odom_publish_frequency>20</odom_publish_frequency>
+  </plugin>
+   </gazebo>
   <!-- === [Un]lock the robot to the world === -->
   <gazebo>
     <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">

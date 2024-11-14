@@ -46,9 +46,11 @@ def generate_launch_description():
             executable='navsat_transform_node',
             name='navsat_transform_node',
             output='screen',
-            parameters=[{'use_sim_time': True,
+            parameters=[{'frequency' : 50.0,
+                        'use_sim_time': True,
                          'datum': [48.04630, -4.97632, 0.0],
                          'wait_for_datum': True,
+                         'use_sim_time' : True
                          }],  # Add use_sim_time parameter here
             remappings=[
                 ('/gps/fix', '/aquabot/sensors/gps/gps/fix/processed'),

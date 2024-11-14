@@ -17,10 +17,12 @@ find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 
 
 add_executable(sensors_processing src/sensors_processing.cpp)
-ament_target_dependencies(sensors_processing rclcpp std_msgs sensor_msgs geometry_msgs tf2 tf2_geometry_msgs)
+ament_target_dependencies(sensors_processing rclcpp std_msgs sensor_msgs geometry_msgs tf2 tf2_geometry_msgs nav_msgs)
 
 target_include_directories(sensors_processing PRIVATE src)
 

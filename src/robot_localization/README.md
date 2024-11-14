@@ -8,6 +8,7 @@ Please see documentation here: http://wiki.ros.org/robot_localization
 For the aquabot challenge : 
 
 This node fuses the IMU and GPS sensors data (gps data which is transformed in a cartesian coordinate system).
+It mainly use the GPS data as its fast and precise enough. (and the imu caused some offsets for obscure reasons).
 
 To launch (ideally after you launched the aquabot simulation anf after building the ws) :
 ```

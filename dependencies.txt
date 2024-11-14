@@ -1,0 +1,5 @@
+sudo apt-get install libeigen3-dev
+sudo apt install ros-<distro>-tf-transformations
+numba
+pip install --upgrade transforms3d
+
