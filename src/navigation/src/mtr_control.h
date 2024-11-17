@@ -17,10 +17,10 @@ class MtrControl : public rclcpp::Node {
 
     private:    
     // Callbacks
-    void gps_callback(const sensor_msgs::msg::NavSatFix &msg) const;
-    void imu_callback(const sensor_msgs::msg::Imu &msg) const;
+    void gps_callback(const sensor_msgs::msg::NavSatFix &msg);
+    void imu_callback(const sensor_msgs::msg::Imu &msg);
 
-    void motors_control();
+    void motors_control(std_msgs::msg::Float64 right, std_msgs::msg::Float64 left);
 
 
     rclcpp::Subscription<sensor_msgs::msg::NavSatFix>::SharedPtr subscription_gps;
@@ -29,8 +29,7 @@ class MtrControl : public rclcpp::Node {
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr r_motor_angle;
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr l_motor_angle;
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr r_motor_speed;
-    rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr l_motor_speed;
-    
+    rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr l_motor_speed;    
 
 };
 #endif

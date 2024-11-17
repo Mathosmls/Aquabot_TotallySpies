@@ -31,15 +31,22 @@ ament_target_dependencies(graph_node rclcpp std_msgs sensor_msgs geometry_msgs t
 target_include_directories(graph_node PRIVATE ${CAIRO_INCLUDE_DIRS})
 target_link_libraries(graph_node ${CAIRO_LIBRARIES} ${GEOGRAPHICLIB_LIBRARIES})
 
-# Spécifier où installer les exécutables
+
+add_executable(mtr_control src/mtr_control.cpp) 
+ament_target_dependencies(mtr_control rclcpp std_msgs sensor_msgs geometry_msgs tf2)
+target_link_libraries(mtr_control ${GEOGRAPHICLIB_LIBRARIES})
+
+target_include_directories(navigation PRIVATE src)
+
 install(TARGETS
   navigation
-  graph_node
-  DESTINATION lib/${PROJECT_NAME})
+  graph_node # Assurez-vous que cette cible est définie
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 install(DIRECTORY
-launch
-DESTINATION share/${PROJECT_NAME}/
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 ament_package()
