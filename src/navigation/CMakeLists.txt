@@ -15,7 +15,12 @@ find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(nav2_msgs REQUIRED)
 find_package(PkgConfig REQUIRED)
+set(nav2_costmap_2d_DIR "/opt/ros/humble/share/nav2_costmap_2d/cmake")
+find_package(nav2_costmap_2d REQUIRED)
+find_package(nav2_bringup REQUIRED)
+
 pkg_check_modules(CAIRO REQUIRED cairo)
 pkg_check_modules(GEOGRAPHICLIB REQUIRED geographiclib)
 
@@ -23,7 +28,8 @@ include_directories(${GEOGRAPHICLIB_INCLUDE_DIRS})
 
 # Définir l'exécutable navigation
 add_executable(navigation src/navigation.cpp src/aqua_utils.cpp)
-ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs tf2)
+ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs tf2 nav2_msgs nav2_costmap_2d)
+
 
 # Définir l'exécutable graph_node (une seule fois)
 add_executable(graph_node src/graph_node.cpp)
