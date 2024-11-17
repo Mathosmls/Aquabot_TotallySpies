@@ -26,6 +26,8 @@ Nav2aqua::Nav2aqua() : Node("nav2aqua") {
         client_ = rclcpp_action::create_client<nav2_msgs::action::ComputePathToPose>(
         this, "/compute_path_to_pose");
 
+    path_publisher_ = this->create_publisher<nav_msgs::msg::Path>("/plan", 10);
+
 }
 
 // These functions are not used anymore but keeped just in case as it's a very easy way to control the USV
@@ -125,19 +127,28 @@ Nav2aqua::Nav2aqua() : Node("nav2aqua") {
 
 
 
-void Nav2aqua::goal_callback(const geometry_msgs::msg::PoseStamped &msg) 
+void Nav2aqua::goal_callback(const geometry_msgs::msg::PoseStamped &msg)
 {
-    current_goal=msg;
-    current_pose.header=msg.header;
-    current_pose.pose=current_odom.pose.pose;
+    current_goal = msg;
+    current_pose.header = msg.header;
+    current_pose.pose = current_odom.pose.pose;
 
     auto goal_msg = nav2_msgs::action::ComputePathToPose::Goal();
     goal_msg.start = current_pose;  // Définir la pose de départ
     goal_msg.goal = current_goal;    // Définir la pose objectif
+
     auto send_goal_options = rclcpp_action::Client<nav2_msgs::action::ComputePathToPose>::SendGoalOptions();
     send_goal_options.result_callback = [this](auto result) {
         if (result.code == rclcpp_action::ResultCode::SUCCEEDED) {
             RCLCPP_INFO(this->get_logger(), "Chemin calculé par le planner !");
+            
+            // Publier le chemin calculé
+            nav_msgs::msg::Path path;
+            path.header.frame_id = "map";  // Assurez-vous que le cadre est approprié
+            for (const auto &pose : result.result->path.poses) {
+                path.poses.push_back(pose);
+            }
+            path_publisher_->publish(path);  // Publier le chemin sur le topic
         } else {
             RCLCPP_ERROR(this->get_logger(), "Le planner n'a pas pu générer de chemin.");
         }
@@ -145,7 +156,6 @@ void Nav2aqua::goal_callback(const geometry_msgs::msg::PoseStamped &msg)
 
     client_->async_send_goal(goal_msg, send_goal_options);
 }
-
 void Nav2aqua::odom_ekf_callback(const nav_msgs::msg::Odometry &msg) 
 {
     current_odom=msg;
