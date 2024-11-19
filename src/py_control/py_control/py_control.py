@@ -311,6 +311,7 @@ class Controller(Node):
             self.get_logger().info('angle:  "%f"  "%f"' % (angleMotorL.data,  angleMotorR.data))
             self.publisherMotorL.publish(motorL)
             self.publisherMotorR.publish(motorR)
+            self.get_logger().info('motor L, motor R: "%f"  "%f"' % (motorL, motorR ))
             self.publisherAngleMotorL.publish(angleMotorL)
             self.publisherAngleMotorR.publish(angleMotorR)
         
