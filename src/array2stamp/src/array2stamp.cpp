@@ -46,7 +46,7 @@ void Array2StampNode::pose_array_callback(const geometry_msgs::msg::PoseArray::S
         pose_stamped.header.frame_id = "map";
         pose_stamped.pose = closest_pose;
 
-        RCLCPP_INFO(this->get_logger(), "Closest pose stamped position: x = %.2f, y = %.2f",
+        RCLCPP_WARN(this->get_logger(), "Closest pose stamped position: x = %.2f, y = %.2f",
                     pose_stamped.pose.position.x, pose_stamped.pose.position.y);
 
         // Publier le message PoseStamped

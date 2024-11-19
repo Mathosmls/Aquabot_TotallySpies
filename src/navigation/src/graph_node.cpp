@@ -171,7 +171,7 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
             double x = local_position.x * _resolution + _img_size / 2;
             double y = local_position.y * _resolution + _img_size / 2;
             std::cout << "res : " << _resolution << std::endl;   
-            RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", x, y);
+            RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
             RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
 
             
@@ -201,32 +201,29 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
 }
 
 void Graph::gps_callback(const sensor_msgs::msg::NavSatFix::SharedPtr msg) {
-    if (!get_poses().empty()) {
-
         
-        LocalPosition local_position = transformToLocal(msg->latitude, msg->longitude, msg->altitude);
-        set_pose_xy(local_position.x, local_position.y);    
-        
-        geometry_msgs::msg::PoseStamped pose_stamped;
+    LocalPosition local_position = transformToLocal(msg->latitude, msg->longitude, msg->altitude);
+    set_pose_xy(local_position.x, local_position.y);    
+    
+    geometry_msgs::msg::PoseStamped pose_stamped;
 
-	    // Remplir le header (timestamp et frame_id)
-	    pose_stamped.header.stamp = this->get_clock()->now();;
-	    pose_stamped.header.frame_id = "map";
-	    
-	    // Remplir la pose (position et orientation)
-	    pose_stamped.pose.position.x = local_position.x;
-	    pose_stamped.pose.position.y = local_position.y;
-	    pose_stamped.pose.position.z = 0; // Par défaut à 0 si inutile
+    // Remplir le header (timestamp et frame_id)
+    pose_stamped.header.stamp = this->get_clock()->now();;
+    pose_stamped.header.frame_id = "map";
+    
+    // Remplir la pose (position et orientation)
+    pose_stamped.pose.position.x = local_position.x;
+    pose_stamped.pose.position.y = local_position.y;
+    pose_stamped.pose.position.z = 0; // Par défaut à 0 si inutile
 
-	    // Orientation en quaternion (par défaut, aucune rotation)
-	    pose_stamped.pose.orientation.x = 0.0;
-	    pose_stamped.pose.orientation.y = 0.0;
-	    pose_stamped.pose.orientation.z = 0.0;
-	    pose_stamped.pose.orientation.w = 1.0;
-	    
-	    loc_gps_publisher_->publish(pose_stamped);
+    // Orientation en quaternion (par défaut, aucune rotation)
+    pose_stamped.pose.orientation.x = 0.0;
+    pose_stamped.pose.orientation.y = 0.0;
+    pose_stamped.pose.orientation.z = 0.0;
+    pose_stamped.pose.orientation.w = 1.0;
+    
+    loc_gps_publisher_->publish(pose_stamped);
 
-    }
 }
 
 
