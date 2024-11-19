@@ -226,8 +226,6 @@ void Graph::gps_callback(const sensor_msgs::msg::NavSatFix::SharedPtr msg) {
 	    
 	    loc_gps_publisher_->publish(pose_stamped);
 
-        RCLCPP_WARN(this->get_logger(), "Position loc Robot (%f, %f)", pose_stamped.pose.position.x, pose_stamped.pose.position.y);
-
     }
 }
 

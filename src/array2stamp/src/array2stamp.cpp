@@ -62,8 +62,6 @@ void Array2StampNode::pose_array_callback(const geometry_msgs::msg::PoseArray::S
     _x = msg->pose.position.x;
     _y = msg->pose.position.y;
 
-    RCLCPP_WARN(this->get_logger(), "Robot Pose: x = %.2f, y = %.2f",
-                    msg->pose.position.x, msg->pose.position.y);
 }
 
 
