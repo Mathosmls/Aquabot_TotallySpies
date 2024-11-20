@@ -14,7 +14,7 @@ from geometry_msgs.msg import Pose
 from nav_msgs.msg import Path
 from tf_transformations import euler_from_quaternion
 from scipy.spatial import KDTree
-
+import math
 class Controller(Node):
 
     def __init__(self):
@@ -56,8 +56,8 @@ class Controller(Node):
                                             max_thrust=2500,stage_cost_weight=np.array([50.0, 2000.0, 15.0]) )
         self.mppi2=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([80, 80, 0.1, 0.1]), dt=0.1,
                                             max_thrust=1250,stage_cost_weight=np.array([1.0, 60.0, 1.5]) )
-        self.mppi3=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([40, 40, 0.1, 0.1]), dt=0.05,
-                                            max_thrust=450,stage_cost_weight=np.array([10.0, 11.0, 150.0]) )
+        self.mppi3=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([60, 60, 0.1, 0.1]), dt=0.05,
+                                            max_thrust=700,stage_cost_weight=np.array([10.0, 11.0, 150.0]) )
         self.mppis=np.array([self.mppi0,self.mppi1,self.mppi2,self.mppi3])
         self.plan=Path()
         self.plan_array=np.array([[0,0]])
@@ -82,6 +82,9 @@ class Controller(Node):
         motorR.data=control[1]
         angleMotorL.data=control[2]
         angleMotorR.data=control[3]
+        if math.isnan(control[0]):
+            self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
+            print("err, nan detected, reseting the controller...")
 
         self.publisherMotorL.publish(motorL)
         self.publisherMotorR.publish(motorR)
@@ -89,8 +92,8 @@ class Controller(Node):
         self.publisherAngleMotorR.publish(angleMotorR)
         self.mode_cmd()
 
-        # self.get_logger().info('thrust:  "%f"  "%f"' % (control[0], control[1]))
-        # self.get_logger().info('angle:  "%f"  "%f"' % (angleMotorL.data,  angleMotorR.data))
+        self.get_logger().info('thrust:  "%f"  "%f"' % (control[0], control[1]))
+        self.get_logger().info('angle:  "%f"  "%f"' % (angleMotorL.data,  angleMotorR.data))
         
 
     def odom_callback(self, msg):
