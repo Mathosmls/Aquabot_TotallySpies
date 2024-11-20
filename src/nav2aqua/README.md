@@ -7,7 +7,7 @@ To launch :
 ```
 source /opt/ros/humble/setup.bash 
 . install/setup.bash 
-ros2 launch navigation manual_nav.launch.py
+ros2 launch nav2aqua nav2aqua.launch.py
 ```
 
 ```

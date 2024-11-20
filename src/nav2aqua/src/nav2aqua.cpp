@@ -14,6 +14,13 @@ Nav2aqua::Nav2aqua() : Node("nav2aqua") {
           "/goal_pose", 10,
           std::bind(&Nav2aqua::goal_callback, this,
                     std::placeholders::_1));
+
+    subscription_search_qr =
+      this->create_subscription<geometry_msgs::msg::PoseStamped>(
+          "/search_qr", 10,
+          std::bind(&Nav2aqua::search_qr_callback, this,
+                    std::placeholders::_1));
+
     subscription_odom_ekf =
       this->create_subscription<nav_msgs::msg::Odometry>(
           "/odometry/filtered/map", 10,
@@ -25,8 +32,90 @@ Nav2aqua::Nav2aqua() : Node("nav2aqua") {
 
         client_ = rclcpp_action::create_client<nav2_msgs::action::ComputePathToPose>(
         this, "/compute_path_to_pose");
+        client_compute_path_ = rclcpp_action::create_client<nav2_msgs::action::ComputePathThroughPoses>(
+            this, "/compute_path_through_poses");
 
 }
+
+void Nav2aqua::search_qr_callback(const geometry_msgs::msg::PoseStamped &msg)
+{
+    RCLCPP_INFO(this->get_logger(), "\nStart circle to find QR\n");
+
+    // Récupération des coordonnées du centre
+    float x_center = msg.pose.position.x;
+    float y_center = msg.pose.position.y;
+    float radius = 10.0; // Rayon du cercle
+    int num_points = 36; // Nombre de points sur la circonférence (1 point tous les 10°)
+
+    std::vector<geometry_msgs::msg::PoseStamped> circle_points;
+
+    // Génération des points sur la circonférence
+    for (int i = 0; i < num_points; ++i) {
+        double angle = i * (2 * M_PI / num_points); // Conversion en radians
+        geometry_msgs::msg::PoseStamped point;
+        point.header = msg.header;
+        point.pose.position.x = x_center + radius * cos(angle);
+        point.pose.position.y = y_center + radius * sin(angle);
+        point.pose.position.z = 0.0; // Z constant pour le plan 2D
+
+        // Orientation tangente au cercle
+        tf2::Quaternion q;
+        q.setRPY(0, 0, angle + M_PI_2); // Orientation tangente (90° par rapport au rayon)
+        point.pose.orientation = tf2::toMsg(q);
+
+        circle_points.push_back(point);
+    }
+
+    // Ajout du point de départ à la liste pour boucler le cercle
+    circle_points.push_back(circle_points.front());
+
+    // Préparer le message pour ComputePathThroughPoses
+    auto goal_msg = nav2_msgs::action::ComputePathThroughPoses::Goal();
+    goal_msg.goals = circle_points; // Liste des poses à suivre
+
+    // Options pour l'envoi de l'action
+    auto send_goal_options = rclcpp_action::Client<nav2_msgs::action::ComputePathThroughPoses>::SendGoalOptions();
+    send_goal_options.result_callback = [this](auto result) {
+        if (result.code == rclcpp_action::ResultCode::SUCCEEDED) {
+            RCLCPP_INFO(this->get_logger(), "Chemin calculé avec succès !");
+        } else {
+            RCLCPP_ERROR(this->get_logger(), "Échec du calcul du chemin.");
+        }
+    };
+
+    // Envoyer le goal à Nav2
+    client_compute_path_->async_send_goal(goal_msg, send_goal_options);
+}
+
+void Nav2aqua::goal_callback(const geometry_msgs::msg::PoseStamped &msg) 
+{
+    current_goal=msg;
+    current_pose.header=msg.header;
+    current_pose.pose=current_odom.pose.pose;
+
+    auto goal_msg = nav2_msgs::action::ComputePathToPose::Goal();
+    goal_msg.start = current_pose;  // Définir la pose de départ
+    goal_msg.goal = current_goal;    // Définir la pose objectif
+    auto send_goal_options = rclcpp_action::Client<nav2_msgs::action::ComputePathToPose>::SendGoalOptions();
+    send_goal_options.result_callback = [this](auto result) {
+        if (result.code == rclcpp_action::ResultCode::SUCCEEDED) {
+            RCLCPP_INFO(this->get_logger(), "Chemin calculé par le planner !");
+        } else {
+            RCLCPP_ERROR(this->get_logger(), "Le planner n'a pas pu générer de chemin.");
+        }
+    };
+
+    client_->async_send_goal(goal_msg, send_goal_options);
+}
+
+void Nav2aqua::odom_ekf_callback(const nav_msgs::msg::Odometry &msg) 
+{
+    current_odom=msg;
+    
+}
+
+
+
 
 // These functions are not used anymore but keeped just in case as it's a very easy way to control the USV
 // void Nav2aqua::nav_control_callback(const geometry_msgs::msg::Twist &msg) const{
@@ -124,33 +213,6 @@ Nav2aqua::Nav2aqua() : Node("nav2aqua") {
 // }
 
 
-
-void Nav2aqua::goal_callback(const geometry_msgs::msg::PoseStamped &msg) 
-{
-    current_goal=msg;
-    current_pose.header=msg.header;
-    current_pose.pose=current_odom.pose.pose;
-
-    auto goal_msg = nav2_msgs::action::ComputePathToPose::Goal();
-    goal_msg.start = current_pose;  // Définir la pose de départ
-    goal_msg.goal = current_goal;    // Définir la pose objectif
-    auto send_goal_options = rclcpp_action::Client<nav2_msgs::action::ComputePathToPose>::SendGoalOptions();
-    send_goal_options.result_callback = [this](auto result) {
-        if (result.code == rclcpp_action::ResultCode::SUCCEEDED) {
-            RCLCPP_INFO(this->get_logger(), "Chemin calculé par le planner !");
-        } else {
-            RCLCPP_ERROR(this->get_logger(), "Le planner n'a pas pu générer de chemin.");
-        }
-    };
-
-    client_->async_send_goal(goal_msg, send_goal_options);
-}
-
-void Nav2aqua::odom_ekf_callback(const nav_msgs::msg::Odometry &msg) 
-{
-    current_odom=msg;
-    
-}
 
 
 

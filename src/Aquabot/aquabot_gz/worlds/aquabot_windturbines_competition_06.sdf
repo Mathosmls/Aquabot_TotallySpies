@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <sdf version="1.9">
-  <world name="aquabot_regatta">
+  <world name="aquabot_windturbines_competition_06">
 
     <physics name="4ms" type="dart">
       <max_step_size>0.004</max_step_size>
@@ -353,45 +353,7 @@
       <name>aquabot_regatta_world</name>
       <pose>0 0 0 0 0 0</pose>
       <uri>aquabot_regatta_world</uri>
-    </include> 
-
-    <!-- Aquabot wind turbine model file -->
-    <include>
-      <name>aquabot_windturbine_main_0</name>
-      <pose>10 0 0 0 0 0</pose>
-      <uri>aquabot_windturbine_main</uri>
-    </include>
-    <actor name="windturbine_0">
-      <skin>
-        <filename>../models/aquabot_windturbine_rotor/mesh/rotor.dae</filename>
-      </skin>
-      <script>
-        <loop>true</loop>
-        <delay_start>2</delay_start>
-        <auto_start>true</auto_start>
-        <trajectory id="0" type="square">
-          <waypoint>
-            <time>0.0</time>
-            <pose>10 0 30 0 0 0</pose>
-          </waypoint>
-          <waypoint>
-            <time>15.0</time>
-            <pose>10 0 30 -3.1415 0 0</pose>
-          </waypoint>
-          <waypoint>
-            <time>30.0</time>
-            <pose>10 0 30 -6.283 0 0</pose>
-          </waypoint>
-        </trajectory>
-      </script>
-    </actor>
-
-    <!-- QR Code -->
-    <include>
-      <name>aquabot_marker_0_KO</name>
-      <pose>10 0 0 0 0 2</pose>
-      <uri>aquabot_marker_0_KO</uri>
-    </include>
+    </include>    
     
     <!-- The projectile for the ball shooter -->
     <include>
@@ -418,7 +380,7 @@
         </wavefield>
       </plugin>
     </include>
-
+    
     <!-- Load the plugin for the wind --> 
     <plugin
       filename="libUSVWind.so"
@@ -431,7 +393,7 @@
       <!-- Wind -->
       <wind_direction>240</wind_direction>
       <!-- in degrees -->
-      <wind_mean_velocity>0.0</wind_mean_velocity>
+      <wind_mean_velocity>5.0</wind_mean_velocity>
       <var_wind_gain_constants>0</var_wind_gain_constants>
       <var_wind_time_constants>2</var_wind_time_constants>
       <random_seed>10</random_seed>
@@ -449,7 +411,7 @@
           key: "direction"
           value {
             type: DOUBLE
-            double_value: 0.0
+            double_value: 1.570797
           }
         }
         params {
@@ -477,202 +439,150 @@
     </plugin>
 
     <!-- GENERATED SCENARIO -->
+    <generation_seed>V0d3TILiQJgUmHNv</generation_seed>
     <include>
-      <name>aquabot_sonar_buoy_0</name>
-      <pose>-300 -300 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
-    </include>
-
-    <include>
-      <name>aquabot_sonar_buoy_1</name>
-      <pose>-300 300 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
-    </include>
-
-    <include>
-      <name>aquabot_sonar_buoy_2</name>
-      <pose>300 300 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
-    </include>
-
-    <include>
-      <name>aquabot_sonar_buoy_3</name>
-      <pose>300 -300 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
-    </include>
-
-    <include>
-      <name>aquabot_sonar_buoy_4</name>
-      <pose>-400 -400 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
+      <name>platform</name>
+      <uri>platform</uri>
     </include>
     <include>
-      <name>aquabot_sonar_buoy_5</name>
-      <pose>-400 400 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
+      <name>aquabot_windturbine_main_0_KO</name>
+      <pose>142.806373 75.485289 0 0 0 5.266971</pose>
+      <uri>aquabot_windturbine_main</uri>
+    </include>
+    <actor name="aquabot_windturbine_rotor_0_KO">
+      <skin>
+        <filename>../models/aquabot_windturbine_rotor/mesh/rotor.dae</filename>
+      </skin>
+      <script>
+        <loop>true</loop>
+        <delay_start>2</delay_start>
+        <auto_start>true</auto_start>
+        <trajectory id="0" type="square">
+          <waypoint>
+            <time>0.000000</time>
+            <pose>142.806373 75.485289 30.0 0.0000 0 5.266971</pose>
+          </waypoint>
+          <waypoint>
+            <time>15.000000</time>
+            <pose>142.806373 75.485289 30.0 -3.1415 0 5.266971</pose>
+          </waypoint>
+          <waypoint>
+            <time>30.000000</time>
+            <pose>142.806373 75.485289 30.0 -6.2830 0 5.266971</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+    <include>
+      <name>aquabot_marker_0_KO_0</name>
+      <pose>142.806373 75.485289 0 0 0 5.082952</pose>
+      <uri>aquabot_marker_0_KO</uri>
     </include>
     <include>
-      <name>aquabot_sonar_buoy_6</name>
-      <pose>400 400 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
+      <name>aquabot_windturbine_main_1_KO</name>
+      <pose>112.684488 -193.797430 0 0 0 5.381274</pose>
+      <uri>aquabot_windturbine_main</uri>
+    </include>
+    <actor name="aquabot_windturbine_rotor_1_KO">
+      <skin>
+        <filename>../models/aquabot_windturbine_rotor/mesh/rotor.dae</filename>
+      </skin>
+      <script>
+        <loop>true</loop>
+        <delay_start>2</delay_start>
+        <auto_start>true</auto_start>
+        <trajectory id="0" type="square">
+          <waypoint>
+            <time>0.000000</time>
+            <pose>112.684488 -193.797430 30.0 0.0000 0 5.381274</pose>
+          </waypoint>
+          <waypoint>
+            <time>15.000000</time>
+            <pose>112.684488 -193.797430 30.0 -3.1415 0 5.381274</pose>
+          </waypoint>
+          <waypoint>
+            <time>30.000000</time>
+            <pose>112.684488 -193.797430 30.0 -6.2830 0 5.381274</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+    <include>
+      <name>aquabot_marker_1_KO_0</name>
+      <pose>112.684488 -193.797430 0 0 0 2.896775</pose>
+      <uri>aquabot_marker_1_KO</uri>
     </include>
     <include>
-      <name>aquabot_sonar_buoy_7</name>
-      <pose>400 -400 0 0 1.57 0</pose>
-      <uri>aquabot_sonar_buoy</uri>
-      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
-        <fluid_density>1000</fluid_density>
-        <fluid_level>0.0</fluid_level>
-        <linear_drag>25.0</linear_drag>
-        <angular_drag>2.0</angular_drag>
-        <buoyancy name="collision_outer">
-          <link_name>link</link_name>
-          <pose>0 0 0 0 -1.57 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>1.65</radius>
-              <length>0.05</length>
-            </cylinder>
-          </geometry>
-        </buoyancy>
-        <wavefield>
-          <topic>/vrx/wavefield/parameters</topic>
-        </wavefield>
-      </plugin>
+      <name>aquabot_windturbine_main_2_KO</name>
+      <pose>-157.535130 100.045645 0 0 0 0.648508</pose>
+      <uri>aquabot_windturbine_main</uri>
     </include>
-
+    <actor name="aquabot_windturbine_rotor_2_KO">
+      <skin>
+        <filename>../models/aquabot_windturbine_rotor/mesh/rotor.dae</filename>
+      </skin>
+      <script>
+        <loop>true</loop>
+        <delay_start>2</delay_start>
+        <auto_start>true</auto_start>
+        <trajectory id="0" type="square">
+          <waypoint>
+            <time>0.000000</time>
+            <pose>-157.535130 100.045645 30.0 0.0000 0 0.648508</pose>
+          </waypoint>
+          <waypoint>
+            <time>15.000000</time>
+            <pose>-157.535130 100.045645 30.0 -3.1415 0 0.648508</pose>
+          </waypoint>
+          <waypoint>
+            <time>30.000000</time>
+            <pose>-157.535130 100.045645 30.0 -6.2830 0 0.648508</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+    <include>
+      <name>aquabot_marker_2_KO_0</name>
+      <pose>-157.535130 100.045645 0 0 0 5.121665</pose>
+      <uri>aquabot_marker_2_KO</uri>
+    </include>
+    <plugin filename="libWindturbinesInspectionScoringPlugin.so" name="vrx::WindturbinesInspectionScoringPlugin">
+      <vehicle>aquabot</vehicle>
+      <task_name>windturbines_inspection</task_name>
+      <task_info_topic>/vrx/task/info</task_info_topic>
+      <initial_state_duration>10</initial_state_duration>
+      <ready_state_duration>10</ready_state_duration>
+      <running_state_duration>1200</running_state_duration>
+      <release_topic>/vrx/release</release_topic>
+      <pinger_position>112.684488 -193.797430 0</pinger_position>
+      <phase_search_max_time>600</phase_search_max_time>
+      <phase_rally_period_publish>20.0</phase_rally_period_publish>
+      <phase_rally_min_distance>15.0</phase_rally_min_distance>
+      <phase_turnaround_number_turns>-1.0</phase_turnaround_number_turns>
+      <phase_stabilize_total_time>180</phase_stabilize_total_time>
+      <phase_inspection_target_distance>10.0</phase_inspection_target_distance>
+      <phase_stabilize_turnaround_mean_period>30</phase_stabilize_turnaround_mean_period>
+      <collision_min_distance>10.0</collision_min_distance>
+      <collision_finish>true</collision_finish>
+      <collision_penality>10</collision_penality>
+      <critical_marker_name>aquabot_marker_1_KO_0</critical_marker_name>
+      <windturbines>
+        <windturbine>
+          <id>0</id>
+          <status>KO</status>
+          <name>aquabot_windturbine_main_0_KO</name>
+        </windturbine>
+        <windturbine>
+          <id>1</id>
+          <status>KO</status>
+          <name>aquabot_windturbine_main_1_KO</name>
+        </windturbine>
+        <windturbine>
+          <id>2</id>
+          <status>KO</status>
+          <name>aquabot_windturbine_main_2_KO</name>
+        </windturbine>
+      </windturbines>
+    </plugin>
   </world>
 </sdf>

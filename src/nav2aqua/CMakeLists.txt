@@ -17,6 +17,8 @@ find_package(nav2_bringup REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 
 if(BUILD_TESTING)
@@ -32,7 +34,7 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(nav2aqua src/nav2aqua.cpp )
-ament_target_dependencies(nav2aqua rclcpp geometry_msgs std_msgs nav_msgs rclcpp_action nav2_msgs)
+ament_target_dependencies(nav2aqua rclcpp geometry_msgs std_msgs nav_msgs rclcpp_action nav2_msgs tf2 tf2_geometry_msgs)
 
 target_include_directories(nav2aqua PRIVATE src)
 

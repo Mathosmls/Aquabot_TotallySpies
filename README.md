@@ -7,8 +7,12 @@ To do in each terminal :
 source /opt/ros/humble/setup.bash 
 . install/setup.bash 
 ```
+!!!!NEW : IF YOU DONT WANT TO DEBUG, YOU CAN LAUNCH sensors_processing, aquabot_ekfs and nav2aqua AT THE SAME TIME !!!!
+```
+ros2 launch mission sensors_nav.launch.py 
+```
 
-Then (preferably in this order): 
+But if you want to debug it's easier to do  (preferably in this order): 
 
 ```
 ros2 launch aquabot_gz competition.launch.py world:=aquabot_regatta

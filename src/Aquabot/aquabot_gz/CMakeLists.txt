@@ -55,6 +55,7 @@ target_link_libraries(PatrolAndFollowScoringPlugin PUBLIC
   gz-common${GZ_COMMON_VER}::gz-common${GZ_COMMON_VER}
   gz-sim${GZ_SIM_VER}::core
   gz-math${GZ_MATH_VER}
+  ScoringPlugin
 )
 install(
   TARGETS PatrolAndFollowScoringPlugin
@@ -70,6 +71,7 @@ target_link_libraries(WindturbinesInspectionScoringPlugin PUBLIC
   gz-common${GZ_COMMON_VER}::gz-common${GZ_COMMON_VER}
   gz-sim${GZ_SIM_VER}::core
   gz-math${GZ_MATH_VER}
+  ScoringPlugin
 )
 install(
   TARGETS WindturbinesInspectionScoringPlugin

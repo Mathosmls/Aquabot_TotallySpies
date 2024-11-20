@@ -9,8 +9,8 @@ from numba import prange
 class MPPIControllerForAquabot:
     def __init__(
             self,
-            horizon_step_T: int = 100,
-            number_of_samples_K: int = 1000,
+            horizon_step_T: int = 50,
+            number_of_samples_K: int = 800,
             sigma: np.ndarray = np.array([50, 50, 0.15, 0.15]),
             param_lambda: float = 1.0,
             stage_cost_weight: np.ndarray = np.array([0.1, 10, 100.0]),  # poids pour [x, y, theta]

@@ -341,14 +341,6 @@
       <nRR>979.0</nRR> <!-- Stability derivative, 2nd order, yaw component [kg/m^2] -->
     </plugin>
   </gazebo>
-  <gazebo>
-  <plugin
-	    filename="gz-sim-odometry-publisher-system"
-	    name="gz::sim::systems::OdometryPublisher">
-	    <dimensions>3</dimensions>
-	    <odom_publish_frequency>20</odom_publish_frequency>
-  </plugin>
-   </gazebo>
   <!-- === [Un]lock the robot to the world === -->
   <gazebo>
     <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
@@ -679,7 +671,13 @@
     <parent link="wamv/base_link"/>
     <child link="wamv/receiver"/>
   </joint>
-  <gazebo>
+   <!--for debug only, not int he original project-->
+    <plugin
+	filename="gz-sim-odometry-publisher-system"
+	name="gz::sim::systems::OdometryPublisher">
+	<dimensions>3</dimensions>
+    </plugin>
+<gazebo>
     <plugin filename="libAcousticPingerPlugin.so" name="vrx::AcousticPingerPlugin">
       <position>1.0 0 -1.0</position>
       <topic>/aquabot/sensors/acoustics/receiver/range_bearing</topic>
