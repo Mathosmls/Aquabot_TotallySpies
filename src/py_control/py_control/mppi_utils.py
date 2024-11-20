@@ -1,9 +1,6 @@
 import numpy as np
-from numba import jit, njit
 from typing import Tuple
-from numba import prange
-from mppi_compiled import *
-from mppi_compiled import _g
+from py_control.mppi_pythran_normal import _g, dynamics,compute_lateral_error,stage_cost,boucle
 
 #------------------------------------------------------------------------------------------------
 #MPPI controller class
@@ -19,7 +16,7 @@ class MPPIControllerForAquabot:
             stage_cost_weight: np.ndarray = np.array([45, 45, 300.0,0.0]),  # poids pour [x, y, theta]
             control_var=4,
             dt=0.1,
-            max_thrust=1000
+            max_thrust=1000.0
     ):
         self.T = horizon_step_T
         self.K = number_of_samples_K
@@ -114,7 +111,7 @@ class MPPIControllerForAquabot:
 
 
 # #calculte the next state of the robot thanks to the dynamics' equation
-# @njit(nopython=True)
+# @njit(nopython=True, cache=True)
 # def dynamics(state: np.ndarray, control: np.ndarray, m: float, xU: float, xUU: float, 
 #             yV: float, yVV: float, pos_mot_x: float, pos_mot_y: float, nR: float, nRR: float, 
 #             Iz: float, dt: float) -> np.ndarray:
@@ -152,7 +149,7 @@ class MPPIControllerForAquabot:
 
 
 # # function to compute the cost of the calculated state
-# @njit(nopython=True)
+# @njit(nopython=True, cache=True)
 # def stage_cost(state: np.ndarray, target: np.ndarray, stage_cost_weight: np.ndarray,mode :int,plan_array) -> float:
 #     x, y, theta, u, v, r = state
 
@@ -197,12 +194,12 @@ class MPPIControllerForAquabot:
     
 
 # #to emphasize on the last state
-# @njit(nopython=True)
+# @njit(nopython=True, cache=True)
 # def terminal_cost(state: np.ndarray, target: np.ndarray, stage_cost_weight: np.ndarray, mode :int,plan_array) -> float:
 #     return 15 * stage_cost(state, target, stage_cost_weight,mode,plan_array)
 
 # #to adp, we don't use np function as they are not supported by numba
-# @njit(nopython=True)
+# @njit(nopython=True, cache=True)
 # def _g( v: np.ndarray,max_thrust,max_angle) -> np.ndarray:
 #     if v[0] > max_thrust:
 #         v[0] = max_thrust
@@ -226,7 +223,7 @@ class MPPIControllerForAquabot:
 #     return v
 
 # #main part of the MPPI algorithm, compute the total for the T horizon steps K times
-# @njit(nopython=True, parallel=True)
+# @njit(parallel=True, cache=True)
 # def boucle(u,S,K,T,control_var,observed_state,epsilon,m, xU, xUU, yV, yVV, pos_mot_x, 
 #             pos_mot_y, nR, nRR, Iz, dt,max_thrust,max_angle,target_state,stage_cost_weight, mode,plan_array):
 #     for k in prange(K):
@@ -246,11 +243,11 @@ class MPPIControllerForAquabot:
 #             # Cost computation
 #             S[k] += stage_cost(x, target_state, stage_cost_weight, mode,plan_array)
 #         # Terminal cost
-#         S[k] += terminal_cost(x, target_state, stage_cost_weight, mode,plan_array)
+#         S[k] += 15*stage_cost(x, target_state, stage_cost_weight, mode,plan_array)
 #     return S
 
 # #to find the perpendicular distance to the path during path following
-# @njit(nopython=True)
+# @njit(nopython=True, cache=True)
 # def compute_lateral_error(state: np.ndarray, path: np.ndarray) -> float:
 #     x, y = state[:2]  # Les coordonnées actuelles de l'USV
 #     min_dist = float('inf')  # Initialisation de la distance minimale à l'infini
