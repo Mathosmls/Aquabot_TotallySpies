@@ -48,6 +48,9 @@ private:
     nav_msgs::msg::Odometry current_odom;
     geometry_msgs::msg::PoseStamped current_pose;
 
+    rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_publisher_;
+
+
    
 };
 

@@ -10,6 +10,7 @@
 #include <sensor_msgs/point_cloud2_iterator.hpp>
 #include "geometry_msgs/msg/pose_array.hpp"
 #include <vector>
+#include <geometry_msgs/msg/pose_stamped.hpp>
 
 class Graph : public rclcpp::Node
 {
@@ -50,6 +51,7 @@ private:
 
     rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr local_position_publisher_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointcloud_publisher_;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr loc_gps_publisher_;
 };
 
 #endif

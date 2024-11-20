@@ -1,3 +1,4 @@
 build/
 install/
 log/
+lib/python3.10/site-packages/llvmlite/binding/libllvmlite.so
