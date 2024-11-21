@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>py_qr</name>
+  <version>0.0.1</version>
+  <description>A ROS 2 package to decode QR codes from images using OpenCV</description>
+  <maintainer email="votre.email@example.com">VotreNom</maintainer>
+  <license>Apache License 2.0</license>
+
+  <!-- Buildtool dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Dependencies for building and running the node -->
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>opencv-python</depend>
+
+  <!-- Test dependencies -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+
