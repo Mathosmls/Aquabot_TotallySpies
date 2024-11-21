@@ -88,7 +88,7 @@ void Graph::publish_local_positions_pointcloud() {
         // Créer un message PointCloud2
         sensor_msgs::msg::PointCloud2 cloud_msg;
         cloud_msg.header.stamp = this->now();
-        cloud_msg.header.frame_id = "local_frame"; // Nom du repère local
+        cloud_msg.header.frame_id = "map"; // Nom du repère local
         cloud_msg.height = 1;
         cloud_msg.width = _wt_loc_poses_x.size();
         cloud_msg.is_dense = false;

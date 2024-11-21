@@ -73,7 +73,7 @@ global_costmap:
       resolution: 0.95579450418 
       footprint: "[ [1.0, 0.63], [1.0, -0.63], [-3.5, -0.63], [-3.5, 0.63] ]"
       # robot_radius: 1.0
-      plugins: ["static_layer",  "inflation_layer"]
+      plugins: ["static_layer",  "inflation_layer", "obstacle_layer"] 
 
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
@@ -86,6 +86,17 @@ global_costmap:
         cost_scaling_factor: 0.4
         inflation_radius: 300.0  # Rayon d'inflation des obstacles
 
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer" 
+        pointcloud:
+          topic: "/wind_turbine_positions_pointcloud"  # Remplacez par le nom de votre topic pointcloud
+            # Le frame de la caméra ou du capteur
+          data_type: "PointCloud2"  # Le type de message pour le pointcloud
+          clearing: true  
+          marking: true  # Si vrai, marque les zones d'obstacles à partir du pointcloud
+          max_range: 10.0  # Plage maximale des données du pointcloud
+          min_range: 0.1  # Plage minimale des données du pointcloud
+          raytrace_range: 10.0 
 
 
 local_costmap:
