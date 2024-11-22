@@ -85,6 +85,7 @@ Graph::Graph() : Node("graph_node")
 
 void Graph::publish_local_positions_pointcloud() {
     if (_wt_loc_received) {
+
         // Créer un message PointCloud2
         sensor_msgs::msg::PointCloud2 cloud_msg;
         cloud_msg.header.stamp = this->now();
@@ -112,7 +113,7 @@ void Graph::publish_local_positions_pointcloud() {
 
         // Publier le PointCloud2
         pointcloud_publisher_->publish(cloud_msg);
-        RCLCPP_INFO(this->get_logger(), "Published wind turbine positions as PointCloud2 with %zu points", _wt_loc_poses_x.size());
+        // RCLCPP_INFO(this->get_logger(), "Published wind turbine positions as PointCloud2 with %zu points", _wt_loc_poses_x.size());
     }
 }
 
@@ -121,6 +122,7 @@ void Graph::publish_local_positions_pointcloud() {
 void Graph::publish_local_positions()
 {
     if (_wt_loc_received) {
+
         geometry_msgs::msg::PoseArray local_positions;
         local_positions.header.stamp = this->now();
         local_positions.header.frame_id = "local_frame"; // Nom du repère local
@@ -136,7 +138,7 @@ void Graph::publish_local_positions()
 
         // Publier les positions locales
         local_position_publisher_->publish(local_positions);
-        RCLCPP_INFO(this->get_logger(), "Published local wind turbine positions with %zu poses", local_positions.poses.size());
+        // RCLCPP_INFO(this->get_logger(), "Published local wind turbine positions with %zu poses", local_positions.poses.size());
     }
 }
 
@@ -147,18 +149,20 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
     RCLCPP_INFO(this->get_logger(), "Received PoseArray with %zu poses", msg->poses.size());*/
 // Fichier temporaire pour stocker les données
 
-    if (_wt_loc_received==false) {
+    // if (_wt_loc_received==false) {
+        _wt_loc_poses_x.clear();
+        _wt_loc_poses_y.clear();
         auto REF = transformToLocal(_lat_ref + 0.001, _lon_ref + 0.001, 0); 
         RCLCPP_INFO(this->get_logger(), "PoseArray received, ref poses x: %f, y: %f", REF.x * _resolution + _img_size / 2, REF.y* _resolution + _img_size / 2);
 
 
-        cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, _img_size, _img_size);
-        cairo_t *cr = cairo_create(surface);
+        // cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, _img_size, _img_size);
+        // cairo_t *cr = cairo_create(surface);
 
-        cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-        cairo_paint(cr);
+        // cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+        // cairo_paint(cr);
 
-        cairo_set_source_rgb(cr, 255.0, 0.0, 0.0);
+        // cairo_set_source_rgb(cr, 255.0, 0.0, 0.0);
         for (const auto &pose : msg->poses)
         {
             
@@ -170,32 +174,32 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
 
             double x = local_position.x * _resolution + _img_size / 2;
             double y = local_position.y * _resolution + _img_size / 2;
-            std::cout << "res : " << _resolution << std::endl;   
-            RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
-            RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
+            // std::cout << "res : " << _resolution << std::endl;   
+            // RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
+            // RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
 
             
             _wt_loc_poses_x.push_back(local_position.x);
             _wt_loc_poses_y.push_back(local_position.y);
 
-            cairo_arc(cr, local_position.x * _resolution + _img_size/2, local_position.y * _resolution + _img_size/2, 5.0, 0.0, 2.0 * M_PI);
-            cairo_fill(cr);
+            // cairo_arc(cr, local_position.x * _resolution + _img_size/2, local_position.y * _resolution + _img_size/2, 5.0, 0.0, 2.0 * M_PI);
+            // cairo_fill(cr);
 
         } 
         _wt_loc_received = true;
 
-        cairo_surface_write_to_png(surface, "graph.png");
+        // cairo_surface_write_to_png(surface, "graph.png");
 
-        // Libérer les ressources de Cairo
-        cairo_destroy(cr);
-        cairo_surface_destroy(surface);
+        // // Libérer les ressources de Cairo
+        // cairo_destroy(cr);
+        // cairo_surface_destroy(surface);
 
-        // Ouvrir l'image avec un programme externe (xdg-open sur Linux)
-        std::system("xdg-open graph.png");
+        // // Ouvrir l'image avec un programme externe (xdg-open sur Linux)
+        // std::system("xdg-open graph.png");
 
         publish_local_positions();
-        publish_local_positions_pointcloud();
-    }
+        // publish_local_positions_pointcloud();
+    // }
     
 
 }

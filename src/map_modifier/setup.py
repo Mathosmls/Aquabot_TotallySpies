@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'wind_estimator'
+package_name = 'map_modifier'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'wind_estimator_node = wind_estimator.wind_estimator_node:main',
+            'map_modifier = map_modifier.map_modifier:main',
         ],
     },
 )

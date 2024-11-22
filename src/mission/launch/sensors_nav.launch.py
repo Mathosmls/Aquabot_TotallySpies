@@ -21,10 +21,22 @@ def generate_launch_description():
     package_nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(package_nav2_launch_file)
     )
+    node_wt_pos = Node(
+        package='navigation',
+        executable='graph_node',
+        output='screen',
+    )
+    node_map_modifier = Node(
+        package='map_modifier',
+        executable='map_modifier',
+        output='screen',
+    )
     
     # Ajouter tous les fichiers de lancement dans la description
     return LaunchDescription([
         package_sensors_processing_launch,
         package_rl_launch,
         package_nav2_launch,
+        node_wt_pos,
+        node_map_modifier
     ])
