@@ -60,7 +60,7 @@ class Controller(Node):
         self.current_state = np.array([30.0, 0.0, 0.0, 0.0,0.0,0.0])
         self.target_state=np.array([-9999.0,-9999.0,-9999.0])
         self.goal_target=self.target_state
-        self.mppi0=MPPIControllerForAquabot(horizon_step_T=80,sigma=np.array([40, 40, 0.1, 0.1]), dt=0.1,
+        self.mppi0=MPPIControllerForAquabot(horizon_step_T=80,sigma=np.array([30, 30, 0.1, 0.1]), dt=0.1,
                                             max_thrust=250.0,stage_cost_weight=np.array([45.0, 45.0, 300.0]) )
         self.mppi1=MPPIControllerForAquabot(horizon_step_T=25,sigma=np.array([60, 60, 0.1, 0.1]), dt=0.1,
                                             max_thrust=2500.0,stage_cost_weight=np.array([70.0, 2000.0, 75.0]) )
