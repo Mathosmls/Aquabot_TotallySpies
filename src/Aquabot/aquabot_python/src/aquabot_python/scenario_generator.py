@@ -27,7 +27,7 @@ def generate_scenario(prefix_name="scenario", seed=None, obstacles=True):
     # Parse scenario to xml
     serialize(scenario_container, prefix_name + ".sdf", seed=seed)
     # Plot scenario
-    #plot_scenario(scenario_container, environnement_container, prefix_name + ".png")
+    plot_scenario(scenario_container, environnement_container, prefix_name + ".png")
 
 def reopen_scenario(scenario_name="scenario.sdf", obstacles=True):
     # Parse scenario from xml
@@ -36,7 +36,7 @@ def reopen_scenario(scenario_name="scenario.sdf", obstacles=True):
     environnement_container = generate_environnement(obstacles)
     # Plot scenario
     prefix_name = scenario_name.replace(".sdf","")
-    #plot_scenario(scenario_container, environnement_container, prefix_name + "_reopened.png")
+    plot_scenario(scenario_container, environnement_container, prefix_name + "_reopened.png")
 
 def regenerate_scenario_file(scenario_name="scenario.sdf", obstacles=True):
     # Parse scenario from xml
@@ -56,7 +56,7 @@ def regenerate_scenario_file(scenario_name="scenario.sdf", obstacles=True):
     serialize(scenario_container, prefix_name + "_regenerated.sdf")
 
     # Plot scenario
-    #plot_scenario(scenario_container, environnement_container, prefix_name + "_regenerated.png")
+    plot_scenario(scenario_container, environnement_container, prefix_name + "_regenerated.png")
 
 if __name__ == "__main__":
     generate_scenario()

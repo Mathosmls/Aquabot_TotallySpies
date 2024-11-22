@@ -671,13 +671,7 @@
     <parent link="wamv/base_link"/>
     <child link="wamv/receiver"/>
   </joint>
-   <!--for debug only, not int he original project-->
-    <plugin
-	filename="gz-sim-odometry-publisher-system"
-	name="gz::sim::systems::OdometryPublisher">
-	<dimensions>3</dimensions>
-    </plugin>
-<gazebo>
+  <gazebo>
     <plugin filename="libAcousticPingerPlugin.so" name="vrx::AcousticPingerPlugin">
       <position>1.0 0 -1.0</position>
       <topic>/aquabot/sensors/acoustics/receiver/range_bearing</topic>

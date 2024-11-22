@@ -1,0 +1,6 @@
+image: /home/mls/vrx_ws/src/nav2aqua/config/map_400_2_bw.pgm       # Chemin vers l'image de la carte (dans le même répertoire que ce fichier YAML)
+resolution: 1.0     # Résolution de la carte en mètres par pixel (à ajuster selon ta carte)
+origin: [-100.0, -100.0, 0.0] # Position d'origine de la carte
+negate: 0               # 0 = blanc est libre, noir est obstacle
+occupied_thresh: 0.65   # Seuil pour définir si un pixel est un obstacle
+free_thresh: 0.196      # Seuil pour définir si un pixel est libre

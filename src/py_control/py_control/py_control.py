@@ -10,12 +10,13 @@ from rclpy.node import Node
 from std_msgs.msg import Float64
 from std_msgs.msg import UInt8
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Pose
+from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from tf_transformations import euler_from_quaternion
 from scipy.spatial import KDTree
 import math
 import time
+from py_control.mppi_pythran_normal import compute_lateral_error
 
 class Controller(Node):
 
@@ -26,6 +27,7 @@ class Controller(Node):
         self.publisherMotorR = self.create_publisher(Float64, '/aquabot/thrusters/right/thrust', 10)
         self.publisherAngleMotorL = self.create_publisher(Float64, '/aquabot/thrusters/left/pos', 10)
         self.publisherAngleMotorR = self.create_publisher(Float64, '/aquabot/thrusters/right/pos', 10)
+        self.publisherGoalPose= self.create_publisher(PoseStamped, '/goal_pose', 10)
 
         self.timer_period = 0.1  # seconds
         self.timer = self.create_timer(self.timer_period, self.timer_callback)
@@ -49,46 +51,49 @@ class Controller(Node):
             self.mode_callback,
             10)
         
+        self.subscription_goal_target= self.create_subscription(
+            PoseStamped,
+            '/goal_target',
+            self.goal_target_callback,
+            10)
+        
         self.current_state = np.array([30.0, 0.0, 0.0, 0.0,0.0,0.0])
         self.target_state=np.array([-9999.0,-9999.0,-9999.0])
-        self.final_state=np.array([30.0,0.0,0.0])
+        self.goal_target=self.target_state
         self.mppi0=MPPIControllerForAquabot(horizon_step_T=80,sigma=np.array([40, 40, 0.1, 0.1]), dt=0.1,
-                                            max_thrust=800.0,stage_cost_weight=np.array([45.0, 45.0, 300.0]) )
-        self.mppi1=MPPIControllerForAquabot(horizon_step_T=25,sigma=np.array([80, 80, 0.1, 0.1]), dt=0.1,
-                                            max_thrust=2500.0,stage_cost_weight=np.array([50.0, 2000.0, 15.0]) )
-        self.mppi2=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([80, 80, 0.1, 0.1]), dt=0.1,
+                                            max_thrust=250.0,stage_cost_weight=np.array([45.0, 45.0, 300.0]) )
+        self.mppi1=MPPIControllerForAquabot(horizon_step_T=25,sigma=np.array([60, 60, 0.1, 0.1]), dt=0.1,
+                                            max_thrust=2500.0,stage_cost_weight=np.array([70.0, 2000.0, 75.0]) )
+        self.mppi2=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([40, 40, 0.05, 0.05]), dt=0.1,
                                             max_thrust=1250.0,stage_cost_weight=np.array([1.0, 60.0, 1.5]) )
-        self.mppi3=MPPIControllerForAquabot(horizon_step_T=50,sigma=np.array([45, 45, 0.1, 0.1]), dt=0.05,
-                                            max_thrust=450.0,stage_cost_weight=np.array([10.0, 11.0, 150.0]) )
+        self.mppi3=MPPIControllerForAquabot(horizon_step_T=50,sigma=np.array([200, 200, 0.1, 0.1]), dt=0.1,
+                                            max_thrust=450.0,stage_cost_weight=np.array([20.0, 10.0, 50.0]) )
         self.mppis=np.array([self.mppi0,self.mppi1,self.mppi2,self.mppi3])
         self.plan=Path()
         self.plan_array=np.array([[0,0]])
         self.close_points=np.array([[0.0,0.0]])
-        self.mode=3 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
-  
+        self.mode=0 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
 
 
     #--------Callbacks-----------
     def timer_callback(self):
+        start_time = time.time()
         motorL=Float64()
         motorR=Float64()
         angleMotorL=Float64()
         angleMotorR=Float64()
-        # print(self.target_state)
+        self.mode_cmd()
         if self.mode==1 and len(self.plan.poses)<=1 :
             control, _ = self.mppis[0].calc_control_input(self.current_state, self.target_state,self.mode,self.close_points)
             self.get_logger().info('Controller in path mode but no plan given' )
         else :
-            start_time = time.time()
             control, _ = self.mppis[self.mode].calc_control_input(self.current_state, self.target_state,self.mode,self.close_points)
-            end_time = time.time()
-            execution_time = end_time - start_time
-            print(f"Temps d'exécution : {execution_time} secondes")
-            self.get_logger().info('here' )
+
         motorL.data=control[0]
         motorR.data=control[1]
         angleMotorL.data=control[2]
         angleMotorR.data=control[3]
+
         if math.isnan(control[0]):
             self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
             print("err, nan detected, reseting the controller...")
@@ -97,10 +102,11 @@ class Controller(Node):
         self.publisherMotorR.publish(motorR)
         self.publisherAngleMotorL.publish(angleMotorL)
         self.publisherAngleMotorR.publish(angleMotorR)
-        self.mode_cmd()
 
-        # self.get_logger().info('thrust:  "%f"  "%f"' % (control[0], control[1]))
-        # self.get_logger().info('angle:  "%f"  "%f"' % (angleMotorL.data,  angleMotorR.data))
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"Temps d'exécution : {execution_time} secondes")
+
         
 
     def odom_callback(self, msg):
@@ -112,29 +118,35 @@ class Controller(Node):
         self.current_state[4]=msg.twist.twist.linear.y
         self.current_state[5]=msg.twist.twist.angular.z
         if self.target_state[0]==-9999.0:
-            #Jsp pas pourquoi mais  self.target_state =self.plan.poses[:3] fait un passage par référence
+            #Jsp pas pourquoi mais  self.target_state =self.current_state[:3] fait un passage par référence
             self.target_state=np.array([msg.pose.pose.position.x,msg.pose.pose.position.y,yaw])
+            self.goal_target=self.target_state
         
-        
+
         
     def plan_callback(self, msg):
         print("Plan received")
         self.plan=msg
-        yaw = self.Quat2yaw(self.plan.poses[-1].pose.orientation)
-        x,y=self.plan.poses[-1].pose.position.x,self.plan.poses[-1].pose.position.y
-        self.final_state=np.array([x,y,yaw])
         self.extract_positions_from_path()
         self.mode=1
         self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
+
 
     def mode_callback(self,msg):
         if 0<=msg.data<=3 :
             self.mode=int(msg.data)
             self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
-            self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
             self.get_logger().info('mode :"%f"'% (self.mode))
-
-
+            #Jsp pas pourquoi mais  self.target_state =self.current_state[:3] fait un passage par référence
+            self.goal_target[0]=self.current_state[0]
+            self.goal_target[1]=self.current_state[1]
+            self.goal_target[2]=self.current_state[2]
+        self.get_logger().info('Please provide a mode between 0 and 3')
+            
+    def goal_target_callback(self,msg) :
+        self.goal_target[0]=msg.pose.position.x
+        self.goal_target[1]=msg.pose.position._y
+        self.goal_target[2]=self.Quat2yaw(msg.pose.orientation)
 
     #--------Utils-----------
     def Quat2yaw(self,quat_msg) :
@@ -148,49 +160,55 @@ class Controller(Node):
     
     #to configure the mppi in function of the mode
     def mode_cmd(self):
-        if self.mode ==0  : #follow point
-            if self.timer!=0.1 :
-                self.timer_period = 0.1
-                self.timer.cancel()  
-                self.timer = self.create_timer(self.timer_period, self.timer_callback)
 
-        elif self.mode ==1 : #follow path/
-            if self.timer!=0.1 :
-                self.timer_period = 0.1
-                self.timer.cancel()  
-                self.timer = self.create_timer(self.timer_period, self.timer_callback)
+        if self.mode ==1 : #follow path/
             d_final =np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) 
-                                    - np.array([self.final_state[0], self.final_state[1]]))
+                                    - np.array([self.goal_target[0], self.goal_target[1]]))
 
             if len(self.plan.poses)>1 :
-              
-                self.close_points,id_closest_point=self.get_closest_points(self.current_state[:2],self.plan_array,4)
+                
+                self.close_points,id_closest_point=self.get_closest_points(self.current_state[:2],self.plan_array,4.8)
                 self.close_points=np.asarray(self.close_points, dtype=np.float64)
-                i=min(8,len(self.plan.poses)-id_closest_point-1)
+                err=compute_lateral_error(self.current_state,self.close_points)
+                print("err : ",err)
+                if err==0.0:
+                    print("ask new path")
+                    final_pose=PoseStamped()
+                    final_pose.header.frame_id='map'
+                    final_pose.header.stamp=self.get_clock().now().to_msg()
+                    final_pose.pose=self.plan.poses[-1].pose
+                    self.publisherGoalPose.publish(final_pose)
+                i=min(15,len(self.plan.poses)-id_closest_point-1)
                 self.target_state[2]=self.Quat2yaw(self.plan.poses[id_closest_point+i].pose.orientation)
 
-                if d_final <7 :
+                if d_final <10 :
                     self.mode=0 
                     self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
-                    self.target_state[0]=self.plan.poses[-1].pose.position.x
-                    self.target_state[1]=self.plan.poses[-1].pose.position.y
-                    self.target_state[2]=self.Quat2yaw(self.plan.poses[-1].pose.orientation)
-            # else :
-            #     #Jsp pas pourquoi mais  self.target_state =self.current_state[:3] fait un passage par référence
-            #     self.target_state=np.array([self.current_state[0],self.current_state[1],self.current_state[2]])
+
 
         elif self.mode ==2 : #follow cicrle for qr code
-            if self.timer!=0.1 :
-                self.timer_period = 0.1
-                self.timer.cancel()  
-                self.timer = self.create_timer(self.timer_period, self.timer_callback)
+            self.target_state=self.goal_target
+            self.target_state[2]=5.0
+            d_o = np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) - np.array([self.target_state[0] , self.target_state[1] ]))
+            theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
+            diff_theta = self.current_state[2] + theta_t
+            diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
+            print("err distance : ",5-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
      
 
         elif self.mode ==3 : #follow cicrle for bonus phase
-            if self.timer!=0.05 :
-                self.timer_period = 0.05
-                self.timer.cancel()  
-                self.timer = self.create_timer(self.timer_period, self.timer_callback)
+            self.target_state=self.goal_target
+            self.target_state[2]=1.2
+            d_o = np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) - np.array([self.target_state[0] , self.target_state[1] ]))
+            theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
+            diff_theta = self.current_state[2] + theta_t
+            diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
+            print("err distance : ",10-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
+        
+        else : #mode 0, go to point
+            self.target_state=self.goal_target
+
+
             
     # Retourner un tableau numpy avec toutes les positions [x, y] du plan, plsu pratique pour le traitement
     def extract_positions_from_path(self) -> np.ndarray:

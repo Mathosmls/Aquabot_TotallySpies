@@ -8,7 +8,7 @@ ekf_filter_node_odom:
     #                   0.0,  0.0,  0.0,
     #                   0.0,  0.0,  0.0]
 
-    frequency: 40.0
+    frequency: 20.0
 
     # The period, in seconds, after which we consider a sensor to have timed out. In this event, we carry out a predict
     # cycle on the EKF without correcting it. This parameter can be thought of as the minimum frequency with which the
@@ -239,7 +239,7 @@ ekf_filter_node_map:
     #                   0.0,  0.0,  0.0,
     #                   0.0,  0.0,  0.0]
 
-    frequency: 40.0
+    frequency: 20.0
 
     # The period, in seconds, after which we consider a sensor to have timed out. In this event, we carry out a predict
     # cycle on the EKF without correcting it. This parameter can be thought of as the minimum frequency with which the

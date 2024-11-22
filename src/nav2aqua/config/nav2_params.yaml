@@ -65,6 +65,7 @@ global_costmap:
   global_costmap:
     ros__parameters:
       always_send_full_costmap: True
+      # map_topic : "/modified_map"
       update_frequency: 5.0
       publish_frequency: 5.0
       use_sim_time: True
@@ -77,7 +78,7 @@ global_costmap:
 
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
-        map_subscribe_transient_local: true  # S'abonne au topic /map
+        map_subscribe_transient_local: false  # S'abonne au topic /map
         track_unknown_space: false
         use_maximum: false
 
@@ -106,7 +107,7 @@ local_costmap:
 
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
-        map_subscribe_transient_local: true  # S'abonne au topic /map
+        map_subscribe_transient_local: false  # S'abonne au topic /map
         track_unknown_space: false
         use_maximum: false
 

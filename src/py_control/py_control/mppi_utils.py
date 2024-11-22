@@ -1,5 +1,6 @@
 import numpy as np
 from typing import Tuple
+# from numba import jit,njit,prange
 from py_control.mppi_pythran_normal import _g, dynamics,compute_lateral_error,stage_cost,boucle
 
 #------------------------------------------------------------------------------------------------
@@ -16,7 +17,10 @@ class MPPIControllerForAquabot:
             stage_cost_weight: np.ndarray = np.array([45, 45, 300.0,0.0]),  # poids pour [x, y, theta]
             control_var=4,
             dt=0.1,
-            max_thrust=1000.0
+            max_thrust=1000.0,
+            explor=0.9,
+            terminal_cost_mult=15.0,
+            window_size=25,
     ):
         self.T = horizon_step_T
         self.K = number_of_samples_K
@@ -25,6 +29,9 @@ class MPPIControllerForAquabot:
         self.stage_cost_weight = stage_cost_weight
         self.u_prev = np.zeros((self.T, control_var))  # initialisation des commandes précédentes [v, omega]
         self.dt = dt
+        self.explor=explor
+        self.terminal_cost_mult=terminal_cost_mult
+        self.window_size=window_size
 
         
         self.control_var = control_var
@@ -42,6 +49,8 @@ class MPPIControllerForAquabot:
         self.max_angle = np.pi / 4
         self.pos_mot_x = 3.2
         self.pos_mot_y = 0.6
+        if self.window_size>self.T :
+            self.window_size=self.T
 
 
 
@@ -68,8 +77,8 @@ class MPPIControllerForAquabot:
          
         S=boucle(u,S,self.K,self.T,self.control_var,observed_state,epsilon,self.m, self.xU, self.xUU, self.yV, self.yVV, 
                 self.pos_mot_x, self.pos_mot_y, self.nR, self.nRR, self.Iz, self.dt,self.max_thrust,
-                self.max_angle,target_state,self.stage_cost_weight, mode,plan_array)
-
+                self.max_angle,target_state,self.stage_cost_weight, mode,plan_array,self.terminal_cost_mult,self.explor)
+# self.terminal_cost_mult,self.explor
            
 
         # Calcul des poids basés sur les coûts
@@ -79,7 +88,7 @@ class MPPIControllerForAquabot:
         w_epsilon = np.sum(w[:, None, None] * epsilon, axis=0)
 
         # Appliquer le filtre de moyenne mobile
-        w_epsilon = self._moving_average_filter(xx=w_epsilon, window_size=25)
+        w_epsilon = self._moving_average_filter(xx=w_epsilon, window_size=self.window_size)
 
         # Mise à jour des commandes avec les valeurs lissées
         u = u + w_epsilon

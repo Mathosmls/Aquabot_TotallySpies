@@ -1,4 +1,4 @@
-si# Aquabot competition 2024
+# Aquabot competition 2024
 
 The Aquabot competition is a configuration of the VRX competition intended for an audience less knowledgeable about programming and for a shorter duration.
 

@@ -95,22 +95,22 @@ def stage_cost(state, target, stage_cost_weight, mode, plan_array):
                 (stage_cost_weight[2] - 4 * abs(diff_theta)) * (9.5 - u) ** 2)
 
     elif mode == 2:  # Circle for QR code
-        x_t, y_t, _ = target
+        x_t, y_t, distance = target
         d_o = np.linalg.norm(np.array([x, y]) - np.array([x_t, y_t]))
         theta_t = np.arctan2(y - y_t, x_t - x)
         diff_theta = theta - theta_t
         diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
         return (stage_cost_weight[0] * (3 - u) ** 2 +
-                stage_cost_weight[1] * (d_o - 10) ** 2 +
-                stage_cost_weight[2] * (3 / 10 - v) ** 2)
+                stage_cost_weight[1] * (d_o - distance) ** 2 +
+                stage_cost_weight[2] * (u / distance - v) ** 2)
 
     elif mode == 3:  # Bonus phase
-        x_t, y_t, _ = target
+        x_t, y_t, speed = target
         d_o = np.linalg.norm(np.array([x, y]) - np.array([x_t, y_t]))
         theta_t = np.arctan2(y_t - y, x_t - x)
         diff_theta = theta - theta_t
         diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
-        return (stage_cost_weight[0] * (1.0 - v) ** 2 +
+        return (stage_cost_weight[0] * (speed - v) ** 2 +
                 stage_cost_weight[1] * (d_o - 10.0) ** 2 +
                 stage_cost_weight[2] * diff_theta ** 2)
 
@@ -124,13 +124,13 @@ def stage_cost(state, target, stage_cost_weight, mode, plan_array):
     
 
 
-#pythran export boucle(float64[:, :], float64[:], int, int, int, float64[:], float64[:, :, :], float, float, float, float, float, float, float, float, float, float, float, float, float, float64[:], float64[:], int, float64[:, :])
-def boucle(u, S, K, T, control_var, observed_state, epsilon, m, xU, xUU, yV, yVV, pos_mot_x, pos_mot_y, nR, nRR, Iz, dt, max_thrust, max_angle, target_state, stage_cost_weight, mode, plan_array):
+#pythran export boucle(float64[:, :], float64[:], int, int, int, float64[:], float64[:, :, :], float, float, float, float, float, float, float, float, float, float, float, float, float, float64[:], float64[:], int, float64[:, :],float,float)
+def boucle(u, S, K, T, control_var, observed_state, epsilon, m, xU, xUU, yV, yVV, pos_mot_x, pos_mot_y, nR, nRR, Iz, dt, max_thrust, max_angle, target_state, stage_cost_weight, mode, plan_array,terminal_cost_mult,explor):
     for k in range(K):
         v = np.zeros((T, control_var))
         x = observed_state
         for t in range(T):
-            if k < 0.9 * K:
+            if k < explor * K:
                 temp = np.asarray(u[t] + epsilon[k, t], dtype=np.float64)
                 v[t]=np.asarray(_g(temp, max_thrust, max_angle))
             else:
@@ -140,6 +140,6 @@ def boucle(u, S, K, T, control_var, observed_state, epsilon, m, xU, xUU, yV, yVV
             x = dynamics(x, v[t], m, xU, xUU, yV, yVV, pos_mot_x, pos_mot_y, nR, nRR, Iz, dt)
             S[k] += stage_cost(x, target_state, stage_cost_weight, mode, plan_array)
 
-        S[k] += 15*stage_cost(x, target_state, stage_cost_weight, mode, plan_array)
+        S[k] += terminal_cost_mult*stage_cost(x, target_state, stage_cost_weight, mode, plan_array)
     return S
 
