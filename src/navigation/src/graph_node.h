@@ -17,23 +17,28 @@ class Graph : public rclcpp::Node
 public:
     Graph();  // Constructeur
     const std::vector<geometry_msgs::msg::Pose>& get_poses() const; // Modifié ici
-    double get_pose_x() const;
-    double get_pose_y() const;
-    void set_pose_xy(double x, double y);
+    double get_pose_x() const; //getter pose x robot
+    double get_pose_y() const; //getter pose y robot
+    void set_pose_xy(double x, double y); //setter pose robot
 
-    void drw_img();
+    void drw_img(); // Dessiner l'image sur Cairo
 
+    // lat, lon ref
     double _lon_ref = -4.97632;
     double _lat_ref = 48.04630;
 
 private:
     // Attributs
+
+    // widturbine local position
     std::vector<geometry_msgs::msg::Pose> _wt_poses;
     std::vector<double> _wt_loc_poses_x;
     std::vector<double> _wt_loc_poses_y;
+
     double _pose_x;
     double _pose_y;
-    bool _wt_loc_received = false;
+    bool _wt_loc_received = false; // verify if widturbine local position received
+    
     int _img_size = 820;
     float _l_map = 600;
     double _resolution = _img_size / _l_map;  

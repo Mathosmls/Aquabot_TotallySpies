@@ -1,8 +1,8 @@
 Packages for the mppi controller and the control of the USV.
 
-It will take some time to compile the first time you call the mppi in you code.
-For now it await a path in /plan. You can send him one through NAV2.
-It needs all the other nodes (ekf, sensors_processing, nav2aqua) running 
+For now there is  4 modes, you can change them through the topic... /mode
+mode 0 : go to a point, mode 1 : follow a path (use nav2), mode 2 : do a circle while being tangent to it, mode 3 : do a circle toward the center of the circle
+It needs at least ekf and sensors_processing nodes running 
 To launch :
 
 ```
