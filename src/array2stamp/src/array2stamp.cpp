@@ -27,46 +27,47 @@ void Array2StampNode::pose_array_callback(const geometry_msgs::msg::PoseArray::S
     geometry_msgs::msg::Pose closest_pose;
     double min_dist = std::numeric_limits<double>::max();
 
-    // Vérifiez si _x et _y contiennent une valeur
     if (_x.has_value() && _y.has_value()) {
         for (const auto& pose : msg->poses) {
-            // Calculer la distance entre le point de référence et les poses
-            double dist = std::sqrt(std::pow(pose.position.x - _x.value(), 2) + std::pow(pose.position.y - _y.value(), 2));
-
-            // Trouver la pose la plus proche
+            double dist = std::sqrt(std::pow(pose.position.x - _x.value(), 2) +
+                                    std::pow(pose.position.y - _y.value(), 2));
             if (dist < min_dist) {
                 min_dist = dist;
                 closest_pose = pose;
             }
         }
-        int radius = 10;
-        // Publier la pose la plus proche sous forme de PoseStamped
+
+        const double radius = 10.0; // Rayon de 10 m
+        double dx = closest_pose.position.x - _x.value();
+        double dy = closest_pose.position.y - _y.value();
+        double length = std::sqrt(dx * dx + dy * dy);
+
+        // Éviter la division par zéro (protection)
+        if (length > 0) {
+            dx = (dx / length) * radius;
+            dy = (dy / length) * radius;
+        } else {
+            dx = radius; // Par défaut, déplacer de 10 m en x si aucune direction
+            dy = 0.0;
+        }
+
+        // Créer le PoseStamped pour publier
         geometry_msgs::msg::PoseStamped pose_stamped;
         pose_stamped.header.stamp = this->get_clock()->now();
         pose_stamped.header.frame_id = "map";
 
-        double dist1 = abs(closest_pose.position.x+radius - _x.value());
-        double dist2 = abs(closest_pose.position.x-radius - _x.value());
-
-        if (dist1 < dist2) {
-            pose_stamped.pose.position.x = closest_pose.position.x+radius;
-            pose_stamped.pose.position.y = closest_pose.position.y+radius;
-
-        } else {
-            pose_stamped.pose.position.x = closest_pose.position.x-radius;
-            pose_stamped.pose.position.y = closest_pose.position.y-radius;
-        }
-
+        pose_stamped.pose.position.x = closest_pose.position.x + dx;
+        pose_stamped.pose.position.y = closest_pose.position.y + dy;
 
         RCLCPP_WARN(this->get_logger(), "Closest pose stamped position: x = %.2f, y = %.2f",
                     pose_stamped.pose.position.x, pose_stamped.pose.position.y);
 
-        // Publier le message PoseStamped
         publisher_->publish(pose_stamped);
     } else {
         RCLCPP_WARN(this->get_logger(), "GPS data not received yet.");
     }
 }
+
 
 
 
