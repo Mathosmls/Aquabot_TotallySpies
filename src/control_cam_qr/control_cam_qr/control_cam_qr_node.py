@@ -23,12 +23,13 @@ class ControlCamQRNode(Node):
 
         # Publishers
         self.camera_angle_publisher = self.create_publisher(Float64, '/aquabot/thrusters/main_camera_sensor/pos', 10)
-        self.windturbines_status_publisher = self.create_publisher(String, 'windturbines_status', 10)
+        self.windturbines_status_publisher = self.create_publisher(String, '/vrx/windturbinesinspection/windturbine_checkup', 10)
         self.pos_gps_align_qr_publisher = self.create_publisher(PoseArray, 'pos_gps_align_qr', 10)
 
         # Subscribers
         self.image_subscriber = self.create_subscription(Image, '/aquabot/sensors/cameras/main_camera_sensor/image_raw', self.image_callback, 10)
         self.position_subscriber = self.create_subscription(Odometry, '/odometry/filtered/map', self.pos_callback, 10)
+        self.target_pos_subscriber=self.create_subscription(Point, '/current_wt', self.target_pos_callback, 10)
 
         # OpenCV 
         self.br = CvBridge()
@@ -36,7 +37,7 @@ class ControlCamQRNode(Node):
 
         # Variables caméra
         self.current_angle = 0.0
-        self.target_position = [10, 0]
+        self.target_position = [-107, -31]
         self.camera_position = [0, 0]
         
         self.pos_gps_align_qr = [0, 0]
@@ -86,14 +87,11 @@ class ControlCamQRNode(Node):
         if delta_angle < 0:
             delta_angle += 2 * math.pi
 
-        self.total_modified_angle += delta_angle
-        print("self.total_modified_angle ",self.total_modified_angle )
 
         # Publier l'angle ajusté
         msg = Float64()
         msg.data = delta_angle
         self.camera_angle_publisher.publish(msg)
-        self.get_logger().info(f'Camera angle adjusted to: {delta_angle:.2f} radians')
         
 
     def decode_qr_codes(self, frame):
@@ -101,6 +99,7 @@ class ControlCamQRNode(Node):
         data, bbox, _ = self.qr_decoder.detectAndDecode(frame)
 
         if len(data) > 0:
+            print("QRQRQRQRQRQRQ")
             try:
                 data = json.loads(data)
             except json.JSONDecodeError:
@@ -116,11 +115,14 @@ class ControlCamQRNode(Node):
                 self.publish_windturbine_status()
 
     def publish_windturbine_status(self):
-        """Publier l'état des éoliennes sous forme de JSON."""
-        msg = String()
-        msg.data = json.dumps(self.dico_windturbines)
-        self.windturbines_status_publisher.publish(msg)
-        self.get_logger().info(f"État des éoliennes publié: {msg.data}")
+        """Publier l'état des éoliennes sous le format attendu par le récepteur."""
+        for turbine_id, turbine_state in self.dico_windturbines.items():
+            # Construire le JSON directement
+            msg = String()
+            msg.data = json.dumps({"id": turbine_id, "state": turbine_state})  # Pas de champ "data" externe
+            self.windturbines_status_publisher.publish(msg)
+            self.get_logger().info(f"État des éoliennes publié: {msg.data}")
+
 
     def Quat2yaw(self,quat_msg) :
         quaternion = (  quat_msg.x,
@@ -146,7 +148,9 @@ class ControlCamQRNode(Node):
         self.pos_gps_align_qr_publisher.publish(pose_array)
         self.get_logger().info(f"Nouvelle position GPS publiée: {pos_x, pos_y}")
         
-
+    def target_pos_callback(self,msg) :
+        self.target_position[0]=msg.x
+        self.target_position[1]=msg.y
 
 def main(args=None):
     rclpy.init(args=args)

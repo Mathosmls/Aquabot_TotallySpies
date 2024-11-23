@@ -1,7 +1,7 @@
 import numpy as np
 from typing import Tuple
 # from numba import jit,njit,prange
-from py_control.mppi_pythran_normal import _g, dynamics,compute_lateral_error,stage_cost,boucle
+from mppi_pythran_normal import _g, dynamics,compute_lateral_error,stage_cost,boucle
 
 #------------------------------------------------------------------------------------------------
 #MPPI controller class

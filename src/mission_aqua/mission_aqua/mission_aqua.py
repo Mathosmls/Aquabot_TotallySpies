@@ -1,10 +1,11 @@
-from mission_aqua.mission_aqua_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
+from mission_aqua_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
                             find_best_matching_wind_turbine_id)
 import rclpy
 from rclpy.node import Node
+from rclpy.duration import Duration
 import numpy as np
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import PoseStamped,PoseArray,Pose
+from geometry_msgs.msg import PoseStamped,PoseArray,Pose,Point
 from std_msgs.msg import UInt8, String
 from tf_transformations import quaternion_from_euler
 from ros_gz_interfaces.msg import ParamVec
@@ -18,6 +19,7 @@ class MissionAqua(Node):
         self.publisherGoalTarget= self.create_publisher(PoseStamped, '/goal_target', 10)
         self.publisherGoalPose= self.create_publisher(PoseStamped, '/goal_pose', 10)
         self.publisherMode= self.create_publisher(UInt8, '/mode', 10)
+        self.publisherCurrentWt= self.create_publisher(Point, '/current_wt', 10)
 
         self.subscription_pos_wt = self.create_subscription(
             PoseArray,'/local_wind_turbine_positions',
@@ -30,9 +32,11 @@ class MissionAqua(Node):
         self.subscription_odom = self.create_subscription(
             Odometry,'/odometry/filtered/map/processed',
             self.odom_callback,10)
+        
         self.subscription_wt_checkup= self.create_subscription(
             String,'/vrx/windturbinesinspection/windturbine_checkup',
             self.wt_checkup_callback,10)
+        
         self.subscription_range_bearing = self.create_subscription(
             ParamVec, '/aquabot/sensors/acoustics/receiver/range_bearing', 
             self.range_bearing_callback,  10  )
@@ -64,11 +68,11 @@ class MissionAqua(Node):
             print("pos_wt_callback", "pos_wt before tsp : ",self.pos_wt)
             self.pos_wt,_=tsp_solver(self.current_pos[:2],self.pos_wt)
             print("pos_wt_callback", "pos_wt after tsp : ",self.pos_wt)
-            for i in range(len(self.pos_wts_2go)-1) :
+            for i in range(len(self.pos_wt)) :
                 if i==0 :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i],radius=12)
+                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i],radius=10)
                 else :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i],radius=12) 
+                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i],radius=10) 
             print("pos_wt_callback", "pos_wt2go after offset : ",self.pos_wts_2go)
             self.have_wt=True
 
@@ -79,26 +83,49 @@ class MissionAqua(Node):
         self.current_pos[1]=msg.pose.pose.position.y
         yaw = Quat2yaw(msg.pose.pose.orientation)
         self.current_pos[2]=yaw
-        # print("odom callback", "pos : ", self.current_pos)
+        # print("odom callback", "pos : ", self.current_mode)
+
         if not self.start and self.have_wt:
             print("odom callback", "go to first wt pos : ", self.pos_wts_2go[self.current_wt])
-            self.current_mode=1
             self.start=True
+            self.current_mode=1
+            current_wt_pos=Point()
+            current_wt_pos.x=self.pos_wt[self.current_wt][0]
+            current_wt_pos.y=self.pos_wt[self.current_wt][1]
+            self.publisherCurrentWt.publish(current_wt_pos)
             self.go2wt(self.pos_wts_2go[self.current_wt])
+
+        if self.current_mode==1 and self.current_wt>0 and is_within_distance(self.current_pos,self.pos_wts_2go[self.current_wt-1],20.0) :
+            print("odom callback", "slow down")
+            self.current_mode=4
+            mode=UInt8()
+            mode.data=self.current_mode
+            self.publisherMode.publish(mode)
+        if self.current_mode==4 and not is_within_distance(self.current_pos,self.pos_wts_2go[self.current_wt-1],20.0) :
+            print("odom callback", "speed up")
+            self.current_mode=1
+            mode=UInt8()
+            mode.data=self.current_mode
+            self.publisherMode.publish(mode)
+
         if self.current_mode==1 and is_within_distance(self.current_pos,self.current_goal,1.0) and self.phase==1:
+            # print("odom callback", "normal speed")
             self.current_mode=2
-            print("odom callback", "do circle around wt pos : ", self.current_goal)
             self.current_goal[0]=self.pos_wt[self.current_wt][0]
             self.current_goal[1]=self.pos_wt[self.current_wt][1]
             goal_target=self.create_pose_stamped(self.current_goal)
+            print("odom callback", "do circle around wt pos : ", self.current_goal)
             self.publisherGoalTarget.publish(goal_target)
             mode=UInt8()
             mode.data=self.current_mode
             self.publisherMode.publish(mode)
+
         if self.phase ==2 and is_within_distance(self.current_pos,self.current_goal,0.1):
-            if self.start_phase3==None :
-                self.start_phase3=self.get_clock().now().to_msg()
-            if (self.get_clock().now().to_msg()-self.start_phase3)>35 :
+            print("odom callback", "don't move infront of qr : ", self.current_goal)
+            if self.start_phase3 is None :
+                self.start_phase3=self.get_clock().now()
+            elif (self.get_clock().now()-self.start_phase3)>Duration(seconds=35) :
+                print("odom callback", "round trip : ")
                 self.phase=3
                 self.current_mode=3
                 self.current_goal= np.array([self.wind_turbines_dic[self.id_wt2fix]["position"][0],self.wind_turbines_dic[self.id_wt2fix]["position"][1],0])
@@ -112,15 +139,27 @@ class MissionAqua(Node):
 
     #----------Cam part----------
     def wt_checkup_callback(self,msg):
-        self.current_mode=1
+        print("wt_checkup_callback", "received qr code info ",msg.data)
         id=extract_id(msg.data)
-        self.wind_turbines_dic=add_or_update_turbine(id,self.wind_turbines_dic,self.pos_wt[self.current_wt],self.current_wt)
-        if self.current_wt<self.number_wt :
-            self.current_wt+=1
-            self.go2wt(self.pos_wts_2go[self.current_wt])
+        print("wt_checkup_callback", "id ", id)
+        self.wind_turbines_dic,already_checked=add_or_update_turbine(id,self.wind_turbines_dic,self.pos_wt[self.current_wt],self.current_wt)
+        print("wt_checkup_callback", "new dic ", self.wind_turbines_dic)
+        if not already_checked :
+            if self.current_wt<self.number_wt-1 :
+                self.current_wt+=1
+                print("wt_checkup_callback", "got to wt nb ", self.current_wt)
+                self.current_mode=1
+                self.go2wt(self.pos_wts_2go[self.current_wt])
+                current_wt_pos=Point()
+                current_wt_pos.x=self.pos_wt[self.current_wt][0]
+                current_wt_pos.y=self.pos_wt[self.current_wt][1]
+                self.publisherCurrentWt.publish(current_wt_pos)
+            else :
+                self.current_mode=0
+                self.phase=2
+                print("all wt checked, waiting for the one to inspect...")
         else :
-            self.current_mode=0
-            print("all wt checked, waiting for the one to inspect...")
+            print("This one has already been checked")
 
     def pos4Qr_callback(self,msg) :
         id=msg.position.z
@@ -130,18 +169,29 @@ class MissionAqua(Node):
 
 
     def range_bearing_callback(self,msg):
-        # if self.id_wt2fix==-1 :
-        #     distance=msg.params[2].value.double_value
-        #     self.id_wt2fix=find_best_matching_wind_turbine_id(self.current_pos,self.wind_turbines_dic,distance)
-        #     self.current_mode=1
-        #     self.phase=2
-        #     pos_qr2go= self.wind_turbines_dic[self.id_wt2fix]["pos_qr"]
-        #     self.go2wt(pos_qr2go)     
-        None
+        print("range_bearing_callback","wt_dic",self.wind_turbines_dic)
+        if self.id_wt2fix==-1 and self.phase==2:
+            distance=0.
+            bearing=0.
+            for param in msg.params:
+                if param.name == "range":
+                    distance=param.value.double_value
+                if param.name=="bearing":
+                    bearing=param.value.double_value
+            print("range_bearing_callback ","distance and bearing",distance,bearing)
+            self.id_wt2fix=find_best_matching_wind_turbine_id(self.current_pos,self.wind_turbines_dic,distance,bearing)
+            print("range_bearing_callback ","id",self.id_wt2fix)
+            self.current_mode=1
+            self.phase=2
+            self.current_wt+=1
+            pos_qr2go= self.wind_turbines_dic[self.id_wt2fix]["pos_qr"]
+            print("range_bearing_callback", "pos_qr2go" ,pos_qr2go)
+            self.go2wt(pos_qr2go)     
+        
 
     def go2wt(self,goal)  :
         self.current_goal=goal
-
+        print("go2wt"," goal : ",self.current_goal)
         goal_pose=self.create_pose_stamped(self.current_goal)
         self.publisherGoalPose.publish(goal_pose)
 
@@ -193,6 +243,6 @@ if __name__ == '__main__':
     main()
      
 
-
+            
 # Ce type de message string fonctionne "{data: '{\"id\":1,\"state\":\"OK\"}'}"
 # Tu peux le tester avec la commande suivante : ros2 topic pub --once /vrx/windturbinesinspection/windturbine_checkup std_msgs/String "{data: '{\"id\":1,\"state\":\"OK\"}'}"

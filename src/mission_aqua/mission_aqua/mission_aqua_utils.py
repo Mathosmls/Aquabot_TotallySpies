@@ -99,31 +99,31 @@ def calculate_offset_target(robot_position, target_position, radius=5, angle_off
 
     return np.array([new_x, new_y,angle_to_target])
 
-
-
 def extract_id(message):
     try:
-        # Étape 1 : Extraire la partie après "data: "
-        inner_data = message.split("data: ")[1].strip().strip("'")
+        # Nettoyer la chaîne en retirant les accolades et les guillemets doubles
+        cleaned_message = message.strip().strip('{}').replace('"', '')
         
-        # Étape 2 : Chercher "id" et extraire sa valeur
-        inner_data = inner_data.replace("{", "").replace("}", "").replace("\"", "")
-        pairs = inner_data.split(",")
-        
+        # Diviser en paires clé-valeur
+        pairs = cleaned_message.split(',')
+
+        # Parcourir chaque paire
         for pair in pairs:
-            key, value = pair.split(":")
+            # Trouver le premier ":" pour séparer la clé de la valeur
+            key, value = pair.split(':', 1)  # Limite à un seul split
             if key.strip() == "id":
                 return int(value.strip())  # Retourne l'ID comme un entier
         
         # Si "id" n'est pas trouvé
-        raise ValueError("ID non trouvé dans le message.")
+        raise ValueError("Champ 'id' non trouvé dans le message.")
     except Exception as e:
         raise ValueError(f"Erreur lors de l'extraction de l'ID : {e}")
 
+
 # Exemple d'utilisation
-message = "{data: '{\"id\":2,\"state\":\"OK\"}'}"
-id_eolienne = extract_id(message)
-# print(f"ID de l'éolienne : {id_eolienne}")
+# message = "{data: '{\"id\":2,\"state\":\"OK\"}'}"
+# id_eolienne = extract_id(message)
+# # print(f"ID de l'éolienne : {id_eolienne}")
 
 
 def update_order(wind_turbines, turbine_id, new_order):
@@ -141,7 +141,7 @@ def update_order(wind_turbines, turbine_id, new_order):
     else:
         print(f"Update order : Éolienne avec ID {turbine_id} introuvable.")
 
-def add_or_update_turbine(turbine_id, wind_turbines_dic, position=(0, 0), order=0, pos_qr=np.array([0, 0, 0])):
+def add_or_update_turbine(turbine_id, wind_turbines_dic, position=(0.0, 0.0), order=0, pos_qr=np.array([0.0, 0.0, 0.0])):
     """
     Ajoute une nouvelle éolienne ou met à jour une éolienne existante.
 
@@ -154,20 +154,27 @@ def add_or_update_turbine(turbine_id, wind_turbines_dic, position=(0, 0), order=
     :param pos_qr: Position pour le QR code (par défaut : np.array([0, 0, 0])).
     :return: Le dictionnaire mis à jour.
     """
+    
+    pos_qr_local = np.copy(pos_qr)
+    already_checked=False
     if turbine_id not in wind_turbines_dic:
         # Ajouter une nouvelle éolienne
+        pos_qr_local[0]=position[0]+10
+        pos_qr_local[1]=position[1]+10
+        pos_qr_local[2] = math.atan2(position[1]-pos_qr_local[1], position[0]-pos_qr_local[0])
         wind_turbines_dic[turbine_id] = {
             "position": position,
             "order": order,
-            "pos_qr": pos_qr
+            "pos_qr": pos_qr_local
         }
-        print(f"Nouvelle éolienne ajoutée : ID {turbine_id}, Position {position}, Ordre {order}, Pos QR {pos_qr}")
+        print(f"Nouvelle éolienne ajoutée : ID {turbine_id}, Position {position}, Ordre {order}, Pos QR {pos_qr_local}")
     else:
         # Mettre à jour uniquement pos_qr
-        wind_turbines_dic[turbine_id]["pos_qr"] = pos_qr
-        print(f"Éolienne avec ID {turbine_id} existe déjà. Pos QR mis à jour : {pos_qr}")
+        wind_turbines_dic[turbine_id]["pos_qr"] = pos_qr_local
+        print(f"Éolienne avec ID {turbine_id} existe déjà. Pos QR mis à jour : {pos_qr_local}")
+        already_checked=True
     
-    return wind_turbines_dic
+    return wind_turbines_dic,already_checked
 
 
 def is_within_distance(current_position, target_position, threshold_distance):
@@ -179,18 +186,18 @@ def is_within_distance(current_position, target_position, threshold_distance):
     :param threshold_distance: Distance seuil
     :return: True si la distance est inférieure au seuil, sinon False
     """
-    print("is_within_distance", current_position, target_position)
+    # print("is_within_distance", current_position, target_position)
     # Calculer la distance Euclidienne entre les deux positions (ignorer theta)
     distance = math.sqrt((current_position[0] - target_position[0])**2 +
                          (current_position[1] - target_position[1])**2)
-    print("is_within_distance",distance)
+    # print("is_within_distance",distance)
     # Vérifier si la distance est inférieure au seuil
     return distance < threshold_distance
 
 
 import math
 
-def find_best_matching_wind_turbine_id(boat_position, wind_turbines_dic, target_distance):
+def find_best_matching_wind_turbine_id(boat_position, wind_turbines_dic, target_distance, bearing):
     """
     Trouve l'ID de l'éolienne qui correspond le mieux à une distance donnée.
 
@@ -204,22 +211,47 @@ def find_best_matching_wind_turbine_id(boat_position, wind_turbines_dic, target_
 
     for turbine_id, turbine_data in wind_turbines_dic.items():
         turbine_position = turbine_data["position"]
-
+        print("turbine_id", turbine_id)
         # Calculer la distance entre le bateau et l'éolienne
         distance = math.sqrt((boat_position[0] - turbine_position[0])**2 +
-                             (boat_position[1] - turbine_position[1])**2)
+                                (boat_position[1] - turbine_position[1])**2)
         
-        # Calculer la différence entre la distance calculée et la distance cible
-        difference = abs(distance - target_distance)
+        # Calculer la différence de distance
+        distance_difference = abs(distance - target_distance)
+
+        # Calculer l'angle entre le bateau et l'éolienne
+        delta_x = turbine_position[0] - boat_position[0]
+        delta_y = turbine_position[1] - boat_position[1]
+        angle_to_turbine = math.atan2(delta_y, delta_x)
+        print(angle_to_turbine)
+        angle_to_turbine -=boat_position[2]
+        print(angle_to_turbine)
+        # Calculer la différence angulaire (en radians)
+        angle_difference = abs((angle_to_turbine-bearing  + math.pi) % (2 * math.pi) - math.pi)
+        print(angle_difference)
+        print(distance_difference)
+        # Combiner les deux critères : distance et angle
+        # Pondération : donner plus d'importance à la distance ou à l'angle selon vos besoins
+        score = distance_difference + 20*angle_difference  # Simple somme pour l'instant
         
-        # Trouver l'éolienne avec la plus petite différence
-        if difference < smallest_difference:
-            smallest_difference = difference
+        # Trouver l'éolienne avec le plus petit score
+        if score < smallest_difference:
+            smallest_difference = score
             best_id = turbine_id
-    
+
     return best_id
 
 
+# Données d'entrée
+wind_turbines_dic = {
+    1: {'position': np.array([-106.087801, -41.82547]), 'order': 0, 'pos_qr': np.array([150.048196, 95.08883, -2.35619449])},
+    0: {'position': np.array([-137.713217, 145.230187]), 'order': 1, 'pos_qr': np.array([150.048196, 95.08883, -2.35619449])},
+    2: {'position': np.array([140.048196, 85.08883]), 'order': 2, 'pos_qr': np.array([150.048196, 95.08883, -2.35619449])}
+}
 
+pos_robot = np.array([155,95,-2.37])  # Position du robot
+target_distance = 195  # Distance cible
 
-
+# Tester la fonction
+best_turbine_id = find_best_matching_wind_turbine_id(pos_robot, wind_turbines_dic, target_distance,-0.27)
+print(f"L'ID de l'éolienne correspondant est : {best_turbine_id}")

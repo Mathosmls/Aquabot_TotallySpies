@@ -85,7 +85,7 @@ def compute_lateral_error(state, path):
 def stage_cost(state, target, stage_cost_weight, mode, plan_array):
     x, y, theta, u, v, r = state
 
-    if mode == 1:  # Follow path
+    if mode == 1 or mode ==4:  # Follow path
         x_t, y_t, theta_t = target
         e_lat = compute_lateral_error(state, plan_array)
         diff_theta = theta - theta_t
