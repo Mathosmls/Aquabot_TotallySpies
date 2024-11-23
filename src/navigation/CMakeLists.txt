@@ -27,19 +27,11 @@ pkg_check_modules(GEOGRAPHICLIB REQUIRED geographiclib)
 include_directories(${GEOGRAPHICLIB_INCLUDE_DIRS})
 
 
-<<<<<<< HEAD
-=======
-# Définir l'exécutable graph_node 
->>>>>>> 2c49581 (re)
 add_executable(graph_node src/graph_node.cpp)
 ament_target_dependencies(graph_node rclcpp std_msgs sensor_msgs geometry_msgs tf2)
 target_include_directories(graph_node PRIVATE ${CAIRO_INCLUDE_DIRS})
 target_link_libraries(graph_node ${CAIRO_LIBRARIES} ${GEOGRAPHICLIB_LIBRARIES})
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c49581 (re)
 install(TARGETS
   graph_node # Assurez-vous que cette cible est définie
   DESTINATION lib/${PROJECT_NAME}
