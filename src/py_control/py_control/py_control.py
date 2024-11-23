@@ -188,7 +188,7 @@ class Controller(Node):
 
         elif self.mode ==2 : #follow cicrle for qr code
             self.target_state=self.goal_target
-            self.target_state[2]=5.0
+            self.target_state[2]=8.0
             d_o = np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) - np.array([self.target_state[0] , self.target_state[1] ]))
             theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
             diff_theta = self.current_state[2] + theta_t
