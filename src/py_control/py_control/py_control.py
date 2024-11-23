@@ -105,7 +105,8 @@ class Controller(Node):
 
         end_time = time.time()
         execution_time = end_time - start_time
-        print(f"Temps d'exécution : {execution_time} secondes")
+        # print(f"Temps d'exécution : {execution_time} secondes")
+        print("mode : ",self.mode, "target_sate : ", self.target_state, "target_goal : ",self.goal_target)
 
         
 
@@ -193,7 +194,7 @@ class Controller(Node):
             theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
             diff_theta = self.current_state[2] + theta_t
             diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
-            print("err distance : ",5-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
+            # print("err distance : ",5-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
      
 
         elif self.mode ==3 : #follow cicrle for bonus phase

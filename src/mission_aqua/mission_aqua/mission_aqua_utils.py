@@ -179,10 +179,11 @@ def is_within_distance(current_position, target_position, threshold_distance):
     :param threshold_distance: Distance seuil
     :return: True si la distance est inférieure au seuil, sinon False
     """
+    print("is_within_distance", current_position, target_position)
     # Calculer la distance Euclidienne entre les deux positions (ignorer theta)
     distance = math.sqrt((current_position[0] - target_position[0])**2 +
                          (current_position[1] - target_position[1])**2)
-    
+    print("is_within_distance",distance)
     # Vérifier si la distance est inférieure au seuil
     return distance < threshold_distance
 

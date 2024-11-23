@@ -1,4 +1,4 @@
-from mission_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
+from mission_aqua.mission_aqua_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
                             find_best_matching_wind_turbine_id)
 import rclpy
 from rclpy.node import Node
@@ -10,10 +10,10 @@ from tf_transformations import quaternion_from_euler
 from ros_gz_interfaces.msg import ParamVec
 
 
-class Mission(Node):
+class MissionAqua(Node):
     def __init__(self):
         super().__init__('mission_node')
-        self.get_logger().info('Mission node has started !')
+        self.get_logger().info('MissionAqua node has started !')
 
         self.publisherGoalTarget= self.create_publisher(PoseStamped, '/goal_target', 10)
         self.publisherGoalPose= self.create_publisher(PoseStamped, '/goal_pose', 10)
@@ -66,9 +66,9 @@ class Mission(Node):
             print("pos_wt_callback", "pos_wt after tsp : ",self.pos_wt)
             for i in range(len(self.pos_wts_2go)-1) :
                 if i==0 :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i])
+                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i],radius=12)
                 else :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i]) 
+                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i],radius=12) 
             print("pos_wt_callback", "pos_wt2go after offset : ",self.pos_wts_2go)
             self.have_wt=True
 
@@ -178,7 +178,7 @@ class Mission(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    mission = Mission()
+    mission = MissionAqua()
 
     rclpy.spin(mission)
 

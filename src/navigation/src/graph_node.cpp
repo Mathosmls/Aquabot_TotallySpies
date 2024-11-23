@@ -153,7 +153,7 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
         _wt_loc_poses_x.clear();
         _wt_loc_poses_y.clear();
         auto REF = transformToLocal(_lat_ref + 0.001, _lon_ref + 0.001, 0); 
-        RCLCPP_INFO(this->get_logger(), "PoseArray received, ref poses x: %f, y: %f", REF.x * _resolution + _img_size / 2, REF.y* _resolution + _img_size / 2);
+        // RCLCPP_INFO(this->get_logger(), "PoseArray received, ref poses x: %f, y: %f", REF.x * _resolution + _img_size / 2, REF.y* _resolution + _img_size / 2);
 
 
         // cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, _img_size, _img_size);
@@ -173,8 +173,8 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
             auto local_position = transformToLocal(lat, lon, alt);
 
             std::cout << "res : " << _resolution << std::endl;   
-            RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
-            RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
+            // RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
+            // RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
 
             
             _wt_loc_poses_x.push_back(local_position.x);
@@ -186,19 +186,19 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
         } 
         _wt_loc_received = true;
 
-        std::string output_path = "../../nav2aqua/config/graph.png"; 
+        // std::string output_path = "../../nav2aqua/config/graph.png"; 
         
-        cairo_surface_write_to_png(surface, output_path.c_str());
+        // cairo_surface_write_to_png(surface, output_path.c_str());
 
-        RCLCPP_INFO(this->get_logger(), "Saving image to: %s", output_path.c_str());
+        // RCLCPP_INFO(this->get_logger(), "Saving image to: %s", output_path.c_str());
 
-        cairo_surface_write_to_png(surface, output_path.c_str());
+        // cairo_surface_write_to_png(surface, output_path.c_str());
 
-        if (cairo_surface_status(surface) != CAIRO_STATUS_SUCCESS) {
-            RCLCPP_ERROR(this->get_logger(), "Failed to save image.");
-        } else {
-            RCLCPP_INFO(this->get_logger(), "Image saved successfully.");
-        }
+        // if (cairo_surface_status(surface) != CAIRO_STATUS_SUCCESS) {
+        //     RCLCPP_ERROR(this->get_logger(), "Failed to save image.");
+        // } else {
+        //     RCLCPP_INFO(this->get_logger(), "Image saved successfully.");
+        // }
 
         // // Libérer les ressources de Cairo
         // cairo_destroy(cr);
