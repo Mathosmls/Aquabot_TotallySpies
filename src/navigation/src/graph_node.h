@@ -39,9 +39,9 @@ private:
     double _pose_y;
     bool _wt_loc_received = false; // verify if widturbine local position received
     
-    int _img_size = 820;
-    float _l_map = 600;
-    double _resolution = _img_size / _l_map;  
+    int _img_size = 837;
+    float _l_map = 800;
+    double _resolution = 1/0.95579450418;  
 
 
     // Callbacks

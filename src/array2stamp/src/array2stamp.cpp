@@ -39,12 +39,24 @@ void Array2StampNode::pose_array_callback(const geometry_msgs::msg::PoseArray::S
                 closest_pose = pose;
             }
         }
-
+        int radius = 10;
         // Publier la pose la plus proche sous forme de PoseStamped
         geometry_msgs::msg::PoseStamped pose_stamped;
         pose_stamped.header.stamp = this->get_clock()->now();
         pose_stamped.header.frame_id = "map";
-        pose_stamped.pose = closest_pose;
+
+        double dist1 = abs(closest_pose.position.x+radius - _x.value());
+        double dist2 = abs(closest_pose.position.x-radius - _x.value());
+
+        if (dist1 < dist2) {
+            pose_stamped.pose.position.x = closest_pose.position.x+radius;
+            pose_stamped.pose.position.y = closest_pose.position.y+radius;
+
+        } else {
+            pose_stamped.pose.position.x = closest_pose.position.x-radius;
+            pose_stamped.pose.position.y = closest_pose.position.y-radius;
+        }
+
 
         RCLCPP_WARN(this->get_logger(), "Closest pose stamped position: x = %.2f, y = %.2f",
                     pose_stamped.pose.position.x, pose_stamped.pose.position.y);

@@ -172,11 +172,9 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
             double alt = pose.position.z;
             auto local_position = transformToLocal(lat, lon, alt);
 
-            double x = local_position.x * _resolution + _img_size / 2;
-            double y = local_position.y * _resolution + _img_size / 2;
-            // std::cout << "res : " << _resolution << std::endl;   
-            // RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
-            // RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
+            std::cout << "res : " << _resolution << std::endl;   
+            RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
+            RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
 
             
             _wt_loc_poses_x.push_back(local_position.x);
@@ -188,7 +186,19 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
         } 
         _wt_loc_received = true;
 
-        // cairo_surface_write_to_png(surface, "graph.png");
+        std::string output_path = "../../nav2aqua/config/graph.png"; 
+        
+        cairo_surface_write_to_png(surface, output_path.c_str());
+
+        RCLCPP_INFO(this->get_logger(), "Saving image to: %s", output_path.c_str());
+
+        cairo_surface_write_to_png(surface, output_path.c_str());
+
+        if (cairo_surface_status(surface) != CAIRO_STATUS_SUCCESS) {
+            RCLCPP_ERROR(this->get_logger(), "Failed to save image.");
+        } else {
+            RCLCPP_INFO(this->get_logger(), "Image saved successfully.");
+        }
 
         // // Libérer les ressources de Cairo
         // cairo_destroy(cr);
