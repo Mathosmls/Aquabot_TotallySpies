@@ -1,16 +1,19 @@
-robot_localization
-==================
+# robot_localization
 
-robot_localization is a package of nonlinear state estimation nodes. The package was developed by Charles River Analytics, Inc.
+**robot_localization** est un package de nœuds d'estimation d'état non linéaire.  
+Le package a été développé par Charles River Analytics, Inc.
 
-Please see documentation here: http://wiki.ros.org/robot_localization
+Vous pouvez consulter la documentation ici : [http://wiki.ros.org/robot_localization](http://wiki.ros.org/robot_localization)
 
-For the aquabot challenge : 
+## Pour le défi Aquabot :
 
-This node fuses the IMU and GPS sensors data (gps data which is transformed in a cartesian coordinate system).
-It mainly use the GPS data as its fast and precise enough. (and the imu caused some offsets for obscure reasons).
+Ce noeud fusionne les données des capteurs IMU et GPS (les données GPS sont transformées dans un système de coordonnées cartésien).  
+Il utilise principalement les données GPS, car elles sont rapides et suffisamment précises (l'IMU a causé des décalages pour des raisons obscures).
 
-To launch (ideally after you launched the aquabot simulation anf after building the ws) :
+## Lancement
+
+Lancer idéalement après avoir démarré la simulation Aquabot et sourcé :
+
 ```
 source /opt/ros/humble/setup.bash 
 . install/setup.bash 
