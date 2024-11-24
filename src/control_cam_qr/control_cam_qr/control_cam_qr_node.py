@@ -37,7 +37,7 @@ class ControlCamQRNode(Node):
 
         # Variables caméra
         self.current_angle = 0.0
-        self.target_position = [-107, -31]
+        self.target_position = [10, 0]
         self.camera_position = [0, 0]
         
         self.pos_gps_align_qr = [0, 0]
@@ -66,7 +66,7 @@ class ControlCamQRNode(Node):
 
         # Afficher l'image
         cv2.imshow("Camera View", cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB))
-        cv2.waitKey(1)
+        cv2.waitKey(5)
 
         # Décoder les QR codes
         self.decode_qr_codes(current_frame)
@@ -96,8 +96,22 @@ class ControlCamQRNode(Node):
 
     def decode_qr_codes(self, frame):
         """Décoder les QR codes et mettre à jour l'état des éoliennes."""
-        data, bbox, _ = self.qr_decoder.detectAndDecode(frame)
 
+        if frame is None or frame.size == 0:
+            print("Erreur : L'image est vide ou invalide.")
+            return
+        
+        if frame.shape[0] == 0 or frame.shape[1] == 0:
+            print("Erreur : L'image a une taille invalide.")
+            return
+            # Essayez de détecter et décoder les QR codes
+        try:
+            data, bbox, _ = self.qr_decoder.detectAndDecode(frame)
+        except cv2.error as e:
+            # Capturer l'erreur OpenCV et gérer l'exception
+            print(f"Erreur lors de la détection du QR code avec OpenCV")
+            return  # Sortir de la fonction sans continuer
+        
         if len(data) > 0:
             print("QRQRQRQRQRQRQ")
             try:
@@ -151,6 +165,8 @@ class ControlCamQRNode(Node):
     def target_pos_callback(self,msg) :
         self.target_position[0]=msg.x
         self.target_position[1]=msg.y
+
+
 
 def main(args=None):
     rclpy.init(args=args)

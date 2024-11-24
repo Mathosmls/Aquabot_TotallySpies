@@ -169,9 +169,7 @@ def add_or_update_turbine(turbine_id, wind_turbines_dic, position=(0.0, 0.0), or
         }
         print(f"Nouvelle éolienne ajoutée : ID {turbine_id}, Position {position}, Ordre {order}, Pos QR {pos_qr_local}")
     else:
-        # Mettre à jour uniquement pos_qr
-        wind_turbines_dic[turbine_id]["pos_qr"] = pos_qr_local
-        print(f"Éolienne avec ID {turbine_id} existe déjà. Pos QR mis à jour : {pos_qr_local}")
+        print(f"Éolienne avec ID {turbine_id} existe déjà")
         already_checked=True
     
     return wind_turbines_dic,already_checked

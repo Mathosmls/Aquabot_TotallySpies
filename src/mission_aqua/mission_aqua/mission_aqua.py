@@ -70,9 +70,9 @@ class MissionAqua(Node):
             print("pos_wt_callback", "pos_wt after tsp : ",self.pos_wt)
             for i in range(len(self.pos_wt)) :
                 if i==0 :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i],radius=10)
+                    self.pos_wts_2go[i]=calculate_offset_target(self.current_pos,self.pos_wt[i],radius=12)
                 else :
-                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i],radius=10) 
+                    self.pos_wts_2go[i]=calculate_offset_target(self.pos_wts_2go[i-1],self.pos_wt[i],radius=12) 
             print("pos_wt_callback", "pos_wt2go after offset : ",self.pos_wts_2go)
             self.have_wt=True
 
@@ -130,6 +130,7 @@ class MissionAqua(Node):
                 self.current_mode=3
                 self.current_goal= np.array([self.wind_turbines_dic[self.id_wt2fix]["position"][0],self.wind_turbines_dic[self.id_wt2fix]["position"][1],0])
                 goal_target=self.create_pose_stamped(self.current_goal)
+                print("odom callback", "round trip : ","goal",self.current_goal)
                 self.publisherGoalTarget.publish(goal_target)
                 mode=UInt8()
                 mode.data=self.current_mode
@@ -139,27 +140,29 @@ class MissionAqua(Node):
 
     #----------Cam part----------
     def wt_checkup_callback(self,msg):
-        print("wt_checkup_callback", "received qr code info ",msg.data)
-        id=extract_id(msg.data)
-        print("wt_checkup_callback", "id ", id)
-        self.wind_turbines_dic,already_checked=add_or_update_turbine(id,self.wind_turbines_dic,self.pos_wt[self.current_wt],self.current_wt)
-        print("wt_checkup_callback", "new dic ", self.wind_turbines_dic)
-        if not already_checked :
-            if self.current_wt<self.number_wt-1 :
-                self.current_wt+=1
-                print("wt_checkup_callback", "got to wt nb ", self.current_wt)
-                self.current_mode=1
-                self.go2wt(self.pos_wts_2go[self.current_wt])
-                current_wt_pos=Point()
-                current_wt_pos.x=self.pos_wt[self.current_wt][0]
-                current_wt_pos.y=self.pos_wt[self.current_wt][1]
-                self.publisherCurrentWt.publish(current_wt_pos)
+        if self.phase <2 :
+            print("wt_checkup_callback", "received qr code info ",msg.data)
+            id=extract_id(msg.data)
+            print("wt_checkup_callback", "id ", id)
+            self.wind_turbines_dic,already_checked=add_or_update_turbine(id,self.wind_turbines_dic,self.pos_wt[self.current_wt],self.current_wt)
+            print("wt_checkup_callback", "new dic ", self.wind_turbines_dic)
+            if not already_checked :
+                if self.current_wt<self.number_wt-1 :
+                    self.current_wt+=1
+                    print("wt_checkup_callback", "got to wt nb ", self.current_wt)
+                    self.current_mode=1
+                    self.go2wt(self.pos_wts_2go[self.current_wt])
+                    current_wt_pos=Point()
+                    current_wt_pos.x=self.pos_wt[self.current_wt][0]
+                    current_wt_pos.y=self.pos_wt[self.current_wt][1]
+                    self.publisherCurrentWt.publish(current_wt_pos)
+                else :
+                    self.current_mode=0
+                    self.phase=2
+                    print("wt_checkup_callback","wt_dic",self.wind_turbines_dic)
+                    print("all wt checked, waiting for the one to inspect...")
             else :
-                self.current_mode=0
-                self.phase=2
-                print("all wt checked, waiting for the one to inspect...")
-        else :
-            print("This one has already been checked")
+                print("This one has already been checked")
 
     def pos4Qr_callback(self,msg) :
         id=msg.position.z

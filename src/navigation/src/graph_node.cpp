@@ -172,7 +172,7 @@ void Graph::pose_array_callback(const geometry_msgs::msg::PoseArray::SharedPtr m
             double alt = pose.position.z;
             auto local_position = transformToLocal(lat, lon, alt);
 
-            std::cout << "res : " << _resolution << std::endl;   
+            // std::cout << "res : " << _resolution << std::endl;   
             // RCLCPP_WARN(this->get_logger(), "Pose loc turbine: (%f, %f)", local_position.x, local_position.y);
             // RCLCPP_WARN(this->get_logger(), "Pose glob turbine: (%f, %f)", lon, lat);
 
