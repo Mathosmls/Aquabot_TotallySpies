@@ -1,11 +1,21 @@
+sudo apt update
+
 sudo apt-get install libeigen3-dev
 sudo apt install ros-<distro>-tf-transformations
-numba
 pip install --upgrade transforms3d
-
-sudo apt update
 sudo apt install libgeographic-dev
-
-sudo apt update
 sudo apt install libcairo2-dev
+pip install opencv-python
 
+numpy
+sensor_msgs
+nav_msgs
+nav2_map_server
+nav2_costmap_2d
+nav2_lifecycle_manager
+  <depend>nav2_bringup</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_geometry_msgs</depend>
