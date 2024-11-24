@@ -116,6 +116,7 @@ class ControlCamQRNode(Node):
             print("QRQRQRQRQRQRQ")
             try:
                 data = json.loads(data)
+                print("QRCODE")
             except json.JSONDecodeError:
                 self.get_logger().warn("Erreur de décodage JSON.")
                 return
