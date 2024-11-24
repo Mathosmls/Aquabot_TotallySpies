@@ -57,7 +57,7 @@ class Controller(Node):
             self.goal_target_callback,
             10)
         
-        self.current_state = np.array([10.0, 0.0, 0.0, 0.0,0.0,0.0])
+        self.current_state = np.array([0.0, 0.0, 0.0, 0.0,0.0,0.0])
         self.target_state=np.array([-9999.0,-9999.0,-9999.0])
         self.goal_target=self.target_state
         self.mppi0=MPPIControllerForAquabot(horizon_step_T=75,sigma=np.array([30, 30, 0.1, 0.1]), dt=0.1,
@@ -75,40 +75,37 @@ class Controller(Node):
         self.plan=Path()
         self.plan_array=np.array([[0,0]])
         self.close_points=np.array([[0.0,0.0]])
-        self.mode=2 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
+        self.mode=3 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
 
 
     #--------Callbacks-----------
     def timer_callback(self):
-        start_time = time.time()
-        motorL=Float64()
-        motorR=Float64()
-        angleMotorL=Float64()
-        angleMotorR=Float64()
-        self.mode_cmd()
-        if self.mode==1 and len(self.plan.poses)<=1 :
-            self.get_logger().info('Controller in path mode but no plan given' )
-        else :
-            control, _ = self.mppis[self.mode].calc_control_input(self.current_state, self.target_state,self.mode,self.close_points)
+        if self.target_state[0]!=-9999.0:
+            motorL=Float64()
+            motorR=Float64()
+            angleMotorL=Float64()
+            angleMotorR=Float64()
+            self.mode_cmd()
+            if self.mode==1 and len(self.plan.poses)<=1 :
+                self.get_logger().info('Controller in path mode but no plan given' )
+            else :
+                control, _ = self.mppis[self.mode].calc_control_input(self.current_state, self.target_state,self.mode,self.close_points)
 
-            motorL.data=control[0]
-            motorR.data=control[1]
-            angleMotorL.data=control[2]
-            angleMotorR.data=control[3]
+                motorL.data=control[0]
+                motorR.data=control[1]
+                angleMotorL.data=control[2]
+                angleMotorR.data=control[3]
 
-            if math.isnan(control[0]):
-                self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
-                print("err, nan detected, reseting the controller...")
+                if math.isnan(control[0]):
+                    self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
+                    print("err, nan detected, reseting the controller...")
 
-            self.publisherMotorL.publish(motorL)
-            self.publisherMotorR.publish(motorR)
-            self.publisherAngleMotorL.publish(angleMotorL)
-            self.publisherAngleMotorR.publish(angleMotorR)
+                self.publisherMotorL.publish(motorL)
+                self.publisherMotorR.publish(motorR)
+                self.publisherAngleMotorL.publish(angleMotorL)
+                self.publisherAngleMotorR.publish(angleMotorR)
 
-            end_time = time.time()
-            execution_time = end_time - start_time
-            # print(f"Temps d'exécution : {execution_time} secondes")
-            print("mode : ",self.mode, "target_sate : ", self.target_state, "target_goal : ",self.goal_target)
+                print("mode : ",self.mode, "target_sate : ", self.target_state, "target_goal : ",self.goal_target)
 
         
 
@@ -121,7 +118,7 @@ class Controller(Node):
         self.current_state[4]=msg.twist.twist.linear.y
         self.current_state[5]=msg.twist.twist.angular.z
         if self.target_state[0]==-9999.0:
-            #Jsp pas pourquoi mais  self.target_state =self.current_state[:3] fait un passage par référence
+            self.target_state=np.array([msg.pose.pose.position.x,msg.pose.pose.position.y,yaw])
             self.target_state=np.array([10,0,yaw])
             self.goal_target=self.target_state
         

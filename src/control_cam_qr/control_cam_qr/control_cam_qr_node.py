@@ -4,13 +4,13 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from std_msgs.msg import Float64, String
-from geometry_msgs.msg import PoseArray, Point
+from geometry_msgs.msg import PoseArray, Point,PoseStamped
 from nav_msgs.msg import Odometry
 import cv2
 import json
 import math
 from cv_bridge import CvBridge
-from tf_transformations import euler_from_quaternion
+from tf_transformations import euler_from_quaternion, quaternion_from_euler
 import numpy as np
 
 
@@ -24,7 +24,7 @@ class ControlCamQRNode(Node):
         # Publishers
         self.camera_angle_publisher = self.create_publisher(Float64, '/aquabot/thrusters/main_camera_sensor/pos', 10)
         self.windturbines_status_publisher = self.create_publisher(String, '/vrx/windturbinesinspection/windturbine_checkup', 10)
-        self.pos_gps_align_qr_publisher = self.create_publisher(PoseArray, 'pos_gps_align_qr', 10)
+        self.pos_gps_align_qr_publisher = self.create_publisher(PoseStamped, '/pos_gps_align_qr', 10)
 
         # Subscribers
         self.image_subscriber = self.create_subscription(Image, '/aquabot/sensors/cameras/main_camera_sensor/image_raw', self.image_callback, 10)
@@ -44,6 +44,10 @@ class ControlCamQRNode(Node):
 
         # Initialiser l'angle total de la caméra que l'on a modifié
         self.total_modified_angle = 0.0
+        self.angle0=False
+        self.pos_qr=np.array([0.,0.,0.])
+        self.poses_qr=[]
+        self.best_poses_qr=[]
 
 
         # Dictionnaire pour stocker l'état des éoliennes
@@ -72,13 +76,13 @@ class ControlCamQRNode(Node):
         self.decode_qr_codes(current_frame)
 
         # Si les positions cibles et actuelles sont disponibles, ajuster la caméra
-        if self.target_position and self.camera_position:
-            target_x, target_y = self.target_position
-            cam_x, cam_y = self.camera_position
+        # if self.target_position and self.camera_position:
+        #     target_x, target_y = self.target_position
+        #     cam_x, cam_y = self.camera_position
 
-            # Calculer l'angle cible
-            target_angle = math.atan2(target_y - cam_y, target_x - cam_x)
-            self.set_camera_angle(target_angle)
+        #     # Calculer l'angle cible
+        #     target_angle = math.atan2(target_y - cam_y, target_x - cam_x)
+        #     self.set_camera_angle(target_angle)
 
     def set_camera_angle(self, target_angle):
         """Calcule et publie l'angle optimal pour orienter la caméra."""
@@ -91,7 +95,7 @@ class ControlCamQRNode(Node):
         # Publier l'angle ajusté
         msg = Float64()
         msg.data = delta_angle
-        self.camera_angle_publisher.publish(msg)
+        # self.camera_angle_publisher.publish(msg)
         
 
     def decode_qr_codes(self, frame):
@@ -113,20 +117,43 @@ class ControlCamQRNode(Node):
             return  # Sortir de la fonction sans continuer
         
         if len(data) > 0:
-            print("QRQRQRQRQRQRQ")
-            try:
-                data = json.loads(data)
-            except json.JSONDecodeError:
-                self.get_logger().warn("Erreur de décodage JSON.")
+            angle=self.calculate_angle_from_bbox(bbox)
+            print(angle)
+            # si le qr code est aligné, on enregistre la pos calculée pour être à 10m de l'éolienne 
+            if abs(angle)<0.02 :
+                # print(bbox)
+                self.angle0=True
+                if abs(angle)<=0.01021 :
+                    self.pos_qr=self.calculate_position_at_10m_from_eolienne(self.target_position, self.camera_position)
+                    self.poses_qr.append(self.pos_qr)
+                    if len(self.poses_qr)>len(self.best_poses_qr):
+                        self.best_poses_qr=self.poses_qr
+                else :
+                    self.poses_qr=[]
+                # print("here",angle,self.pos_qr,self.camera_position,self.target_position)
                 return
+            if abs(angle)>0.1 and self.angle0 :
+                self.angle0=False
+                print(self.best_poses_qr)
+                middle_index = (len(self.best_poses_qr) - 1) // 2  
+                self.pos_qr=self.best_poses_qr[middle_index]
+                print("pos_opti" ,self.pos_qr)
+                try:
+                    data = json.loads(data)
+                except json.JSONDecodeError:
+                    self.get_logger().warn("Erreur de décodage JSON.")
+                    return
 
-            turbine_id = data.get("id")
-            turbine_state = data.get("state")
+                turbine_id = data.get("id")
+                turbine_state = data.get("state")
 
-            if turbine_id not in self.dico_windturbines:
-                self.dico_windturbines[turbine_id] = turbine_state
-                #On ne publie le dico que quand une nouvelle éolienne est détectée
-                self.publish_windturbine_status()
+                if turbine_id not in self.dico_windturbines:
+                    self.dico_windturbines[turbine_id] = turbine_state
+                    pose_qr=self.create_pose_stamped(self.pos_qr,turbine_id)
+                    print("published pose_qr", pose_qr)
+                    #On ne publie le dico que quand une nouvelle éolienne est détectée
+                    self.publish_windturbine_status()
+                    self.pos_gps_align_qr_publisher.publish(pose_qr)
 
     def publish_windturbine_status(self):
         """Publier l'état des éoliennes sous le format attendu par le récepteur."""
@@ -147,26 +174,80 @@ class ControlCamQRNode(Node):
         yaw = (yaw + np.pi) % (2 * np.pi) - np.pi
         return yaw
     
-    def publish_pos_gps_align_qr(self):
-        """Publier la nouvelle position GPS pour être détecter le Qr code en face."""
-        # Créer un objet PoseArray
-        pose_array = PoseArray()
-
-        pos_x = self.pos_gps_align_qr[0]
-        pos_y = self.pos_gps_align_qr[1]
-    
-        pose_array.poses.append(Point(x=pos_x, y=pos_y, z=0.0)) #la cote z n'est pas utile ici
-
-
-        #on publie les coordonnées gps pour être en face du Qr Code
-        self.pos_gps_align_qr_publisher.publish(pose_array)
-        self.get_logger().info(f"Nouvelle position GPS publiée: {pos_x, pos_y}")
         
     def target_pos_callback(self,msg) :
         self.target_position[0]=msg.x
         self.target_position[1]=msg.y
 
+    
+    def calculate_angle_from_bbox(self,bbox):
+        """
+        Calcule l'angle de rotation du QR code par rapport à l'axe X (horizontal).
+        Supposition : le QR code est toujours aligné avec le sol (plan XY).
+        """
+        if bbox is not None and len(bbox) == 1 and len(bbox[0]) == 4:  # Vérification que bbox a 4 coins
+            # Extraire les coordonnées des coins du QR code
+            pt1 = np.array(bbox[0][0])  # Coin supérieur gauche
+            pt2 = np.array(bbox[0][1])  # Coin supérieur droit
+            
+            # Calculer le vecteur du coin supérieur gauche au coin supérieur droit
+            vector_top = pt2 - pt1  # Vecteur horizontal
+            
+            # Calculer l'angle de ce vecteur par rapport à l'axe horizontal (X)
+            angle_rad = math.atan2(vector_top[1], vector_top[0])  # atan2 donne l'angle par rapport à X
+            angle_rad-=np.pi
+            angle_rad = (angle_rad + np.pi) % (2 * np.pi) - np.pi
+            return angle_rad
+        else:
+            print("Erreur : bbox mal formée ou vide.")
+            return 0  # Si bbox est mal formée ou vide, renvoyer 0 comme angle
+    
 
+    def calculate_position_at_10m_from_eolienne(self, pos_eolienne, pos_bateau, distance=10):
+        """
+        Calcule la position du bateau à 10m de l'éolienne, en face du QR code.
+
+        :param x_eolienne: Coordonnée x de l'éolienne
+        :param y_eolienne: Coordonnée y de l'éolienne
+        :param x_bateau: Coordonnée x du bateau
+        :param y_bateau: Coordonnée y du bateau
+        :param distance: Distance à laquelle le bateau doit être positionné (par défaut 10m)
+        :return: Nouvelle position du bateau (x, y)
+        """
+        # Calcul de l'angle entre l'éolienne et le bateau actuel
+        dx = pos_bateau[0] - pos_eolienne[0]
+        dy = pos_bateau[1] - pos_eolienne[1]
+        angle_eolienne_bateau = math.atan2(dy, dx)  # L'angle entre l'éolienne et le bateau
+        
+        # Calcul de la nouvelle position du bateau à 10 mètres de l'éolienne, en face
+        x_new = pos_eolienne[0] + distance * np.cos(angle_eolienne_bateau)
+        y_new = pos_eolienne[1] + distance * np.sin(angle_eolienne_bateau)
+        angle=angle_eolienne_bateau-np.pi
+        angle = (angle + np.pi) % (2 * np.pi) - np.pi
+        return np.array([x_new,y_new,angle])
+    
+    def create_pose_stamped(self,array,id):
+        if len(array) != 3:
+            raise ValueError("L'entrée doit être un tableau de longueur 3 : [x, y, theta].")
+        
+        # Création du message PoseStamped
+        pose_msg = PoseStamped()
+        pose_msg.header.frame_id = 'map'  # Référence du cadre
+        pose_msg.header.stamp = self.get_clock().now().to_msg()  # Timestamp actuel
+        
+        # Position
+        pose_msg.pose.position.x = array[0]
+        pose_msg.pose.position.y = array[1]
+        pose_msg.pose.position.z = float(id)  # on triche pour envoyer l'id
+        
+        # Orientation : conversion de theta (yaw) en quaternion
+        quaternion = quaternion_from_euler(0, 0, array[2])  
+        pose_msg.pose.orientation.x = quaternion[0]
+        pose_msg.pose.orientation.y = quaternion[1]
+        pose_msg.pose.orientation.z = quaternion[2]
+        pose_msg.pose.orientation.w = quaternion[3]
+        
+        return pose_msg
 
 def main(args=None):
     rclpy.init(args=args)
