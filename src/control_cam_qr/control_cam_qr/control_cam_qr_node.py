@@ -74,28 +74,6 @@ class ControlCamQRNode(Node):
 
         # Décoder les QR codes
         self.decode_qr_codes(current_frame)
-
-        # Si les positions cibles et actuelles sont disponibles, ajuster la caméra
-        # if self.target_position and self.camera_position:
-        #     target_x, target_y = self.target_position
-        #     cam_x, cam_y = self.camera_position
-
-        #     # Calculer l'angle cible
-        #     target_angle = math.atan2(target_y - cam_y, target_x - cam_x)
-        #     self.set_camera_angle(target_angle)
-
-    def set_camera_angle(self, target_angle):
-        """Calcule et publie l'angle optimal pour orienter la caméra."""
-        delta_angle = target_angle - self.current_angle
-        
-        if delta_angle < 0:
-            delta_angle += 2 * math.pi
-
-
-        # Publier l'angle ajusté
-        msg = Float64()
-        msg.data = delta_angle
-        # self.camera_angle_publisher.publish(msg)
         
 
     def decode_qr_codes(self, frame):

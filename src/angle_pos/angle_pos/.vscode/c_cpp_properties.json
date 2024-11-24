@@ -6,7 +6,10 @@
         "limitSymbolsToIncludedHeaders": false
       },
       "includePath": [
+        "/home/ghita/Documents/auaboat/Aquabot_TotallySpies/install/include/**",
         "/opt/ros/humble/include/**",
+        "/home/ghita/Documents/auaboat/Aquabot_TotallySpies/src/array2stamp/include/**",
+        "/home/ghita/Documents/auaboat/Aquabot_TotallySpies/src/robot_localization/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

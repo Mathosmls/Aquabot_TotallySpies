@@ -1,11 +1,22 @@
-This package corrects the transforms of the package "aquabot". It also launches Rviz2 and add covariances to the IMU and GPS messages.
-14/11 : added low pass filter on odom pos and vel messages
+# sensors_processing
 
+This package corrects the transforms of the "aquabot" package. It also launches Rviz2 and adds covariances to the IMU and GPS messages.
 
-To launch (ideally after you launched the aquabot simulation anf after building the ws) :
+**14/11:** Added a low pass filter to odometry position and velocity messages.
 
+## Initialization
+To initialize the environment, run the following commands:
 ```
 source /opt/ros/humble/setup.bash 
-. install/setup.bash 
-ros2 launch sensors_processing sensors_processing.launch.py 
+. install/setup.bash
+```
+
+
+## Starting the Node
+
+To run the control node, execute the following commands in order (other simulation modes are supported):
+```
+ros2 launch aquabot_gz competition.launch.py world:=aquabot_regatta
+
+ros2 launch sensors_processing sensors_processing.launch.py
 ```
