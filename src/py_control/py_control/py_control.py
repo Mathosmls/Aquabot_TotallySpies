@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------------------------
 # ROS NODE
 #------------------------------------------------------------------------------------------------
-from mppi_utils import MPPIControllerForAquabot
+from py_control.mppi_utils import MPPIControllerForAquabot
 import numpy as np
 import rclpy
 from rclpy.node import Node
@@ -16,7 +16,7 @@ from tf_transformations import euler_from_quaternion, quaternion_from_euler
 from scipy.spatial import KDTree
 import math
 import time
-from mppi_pythran_normal import compute_lateral_error
+from py_control.mppi_pythran_normal import compute_lateral_error
 
 class Controller(Node):
 

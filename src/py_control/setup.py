@@ -13,7 +13,6 @@ setup(
     install_requires=[
         'setuptools',
         'numpy',
-        'numba',
         'matplotlib',
         'rclpy',  # dépendance ROS 2 Python
         
