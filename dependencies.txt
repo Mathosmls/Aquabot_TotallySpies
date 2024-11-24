@@ -1,21 +1,24 @@
-sudo apt update
+# Make sure you have installed all this dependencies before launching our nodes
 
-sudo apt-get install libeigen3-dev
-sudo apt install ros-<distro>-tf-transformations
-pip install --upgrade transforms3d
+## ROS 2 packages
+sudo apt update
+sudo apt install numpy
+sudo apt install sensor-msgs
+sudo apt install nav-msgs
+sudo apt install nav2-map-server
+sudo apt install nav2-costmap-2d
+sudo apt install nav2-lifecycle-manager
+sudo apt install nav2-bringup
+sudo apt install std-msgs
+sudo apt install geometry-msgs
+sudo apt install tf2
+sudo apt install tf2-geometry-msgs
 sudo apt install libgeographic-dev
 sudo apt install libcairo2-dev
-pip install opencv-python
+sudo apt-get install libeigen3-dev
+sudo apt install ros-<distro>-tf-transformations
 
-numpy
-sensor_msgs
-nav_msgs
-nav2_map_server
-nav2_costmap_2d
-nav2_lifecycle_manager
-  <depend>nav2_bringup</depend>
-  <depend>std_msgs</depend>
-  <depend>geometry_msgs</depend>
-  <depend>nav_msgs</depend>
-  <depend>tf2</depend>
-  <depend>tf2_geometry_msgs</depend>
+## Python dependencies 
+pip install numpy
+pip install opencv-python
+pip install --upgrade transforms3d
