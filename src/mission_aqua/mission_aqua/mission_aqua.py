@@ -136,8 +136,10 @@ class MissionAqua(Node):
         #------------phase 2-----------------
         #if the USV is close to the critical target point, start the countdown
         if self.phase ==2 and is_within_distance(self.current_pos,self.current_goal,0.1):
-            print("odom callback", "don't move infront of qr : ", self.current_goal)
+            # print("odom callback", "don't move infront of qr : ", self.current_goal)
             if self.start_phase3 is None :
+                goal_target=self.create_pose_stamped(self.current_goal)
+                self.publisherGoalTarget.publish(goal_target)
                 self.start_phase3=self.get_clock().now()
                 current_wt_pos=Point()
                 current_wt_pos.x=self.wind_turbines_dic[self.id_wt2fix]["position"][0]

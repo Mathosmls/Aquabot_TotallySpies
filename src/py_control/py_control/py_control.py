@@ -118,7 +118,7 @@ class Controller(Node):
         self.current_state[5]=msg.twist.twist.angular.z
         if self.target_state[0]==-9999.0:
             self.target_state=np.array([msg.pose.pose.position.x,msg.pose.pose.position.y,yaw])
-            self.goal_target=self.target_state
+            self.goal_target=np.copy(self.target_state)
         
 
     #handle path planning
@@ -176,7 +176,7 @@ class Controller(Node):
                 self.target_state[2]=self.Quat2yaw(self.plan.poses[id_closest_point+i].pose.orientation)
 
                 if d_final <10 : #if close to target, go directly to the point
-                    self.target_state=self.goal_target
+                    self.target_state=np.copy(self.goal_target)
                     self.mode=0 
                     self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
 
@@ -197,22 +197,22 @@ class Controller(Node):
                 self.target_state[2]=self.Quat2yaw(self.plan.poses[id_closest_point+i].pose.orientation)
 
                 if d_final <12 :
-                    self.target_state=self.goal_target
+                    self.target_state=np.copy(self.goal_target)
                     self.mode=0 
                     self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
 
         elif self.mode ==2 : #follow cicrle for qr code
-            self.target_state=self.goal_target
+            self.target_state=np.copy(self.goal_target)
             self.target_state[2]=10.0 #radius of circle
           
 
         elif self.mode ==3 : #follow cicrle for bonus phase
-            self.target_state=self.goal_target
+            self.target_state=np.copy(self.goal_target)
             self.target_state[2]=1.2 # lateral speed 
            
         
         else : #mode 0, go to point
-            self.target_state=self.goal_target
+            self.target_state=np.copy(self.goal_target)
     #--------------------------------------------------------------
     #-----------------------utils----------------------------------
     #--------------------------------------------------------------
