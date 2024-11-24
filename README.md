@@ -69,7 +69,7 @@ ros2 run py_control controller_node --ros-args -p use_sim_time:=true
 ## Structure des Packages et Nodes
 ### Packages principaux
 - **`aquabot_gz`** : Simulation et intégration avec Gazebo.
-- **`sensors_p`rocessing** : Pré-traitement des données capteurs (IMU, GPS, etc.).
+- **`sensors_processing`** : Pré-traitement des données capteurs (IMU, GPS, etc.).
 - **`robot_localization`** : Estimation d’état à l’aide de EKFs.
 - **`nav2aqua`** : Stack de navigation Nav2 adaptée à l’Aquabot.
 - **`py_control`** : Contrôleur personnalisé en pour la gestion des différents mouvements de l'Aquabot (suivi de chemin, d'une trajectoire circulaire...).
