@@ -55,7 +55,6 @@ private:
     rclcpp::Subscription<geometry_msgs::msg::PoseArray>::SharedPtr subscription_pose_array;
 
     rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr local_position_publisher_;
-    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointcloud_publisher_;
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr loc_gps_publisher_;
 };
 

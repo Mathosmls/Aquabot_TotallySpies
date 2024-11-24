@@ -75,46 +75,9 @@ Graph::Graph() : Node("graph_node")
         "/local_wind_turbine_positions", 10
     );
 
-    pointcloud_publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>(
-        "/wind_turbine_positions_pointcloud", 10
-    );
     
     loc_gps_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
         "/loc_gps", 10);
-}
-
-void Graph::publish_local_positions_pointcloud() {
-    if (_wt_loc_received) {
-
-        // Créer un message PointCloud2
-        sensor_msgs::msg::PointCloud2 cloud_msg;
-        cloud_msg.header.stamp = this->now();
-        cloud_msg.header.frame_id = "map"; // Nom du repère local
-        cloud_msg.height = 1;
-        cloud_msg.width = _wt_loc_poses_x.size();
-        cloud_msg.is_dense = false;
-        cloud_msg.is_bigendian = false;
-
-        // Définir les champs pour x, y, et z dans le PointCloud2
-        sensor_msgs::PointCloud2Modifier modifier(cloud_msg);
-        modifier.setPointCloud2FieldsByString(1, "xyz");
-
-        // Remplir les données du nuage de points
-        sensor_msgs::PointCloud2Iterator<float> iter_x(cloud_msg, "x");
-        sensor_msgs::PointCloud2Iterator<float> iter_y(cloud_msg, "y");
-        sensor_msgs::PointCloud2Iterator<float> iter_z(cloud_msg, "z");
-
-        for (size_t i = 0; i < _wt_loc_poses_x.size(); ++i) {
-            *iter_x = _wt_loc_poses_x[i];
-            *iter_y = _wt_loc_poses_y[i];
-            *iter_z = 0.0;  // Si z est nul ou une autre valeur, selon le cas
-            ++iter_x; ++iter_y; ++iter_z;
-        }
-
-        // Publier le PointCloud2
-        pointcloud_publisher_->publish(cloud_msg);
-        // RCLCPP_INFO(this->get_logger(), "Published wind turbine positions as PointCloud2 with %zu points", _wt_loc_poses_x.size());
-    }
 }
 
 
