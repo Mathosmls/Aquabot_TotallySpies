@@ -1,5 +1,5 @@
 # Aquabot Challenge 2024 - Workspace des TotallySpies
-
+Pour lancer nos codes, référez vous à la section **Lancer les nodes**
 ## Description
 Ce projet est notre workspace principal pour la **Aquabot Challenge 2024**. Vous pourrez y trouver les différents packages et nodes nécessaires à la simulation et au contrôle de l’Aquabot. Ce fichier README décrit les étapes pour configurer et lancer les différentes parties du système.
 
@@ -28,10 +28,13 @@ source /opt/ros/humble/setup.bash
 
 ## Lancer les Nodes
 
-### Lancer tout en une commande
-Si vous ne souhaitez pas déboguer, utilisez cette commande pour démarrer les principaux composants (sensors_processing, aquabot_ekfs et nav2aqua) en même temps :
+# Lancer tout le projet
+!!!!!!!Avant de lancer nos codes, il est fortement recommandé de lancer une simulation avant!!!!! 
+## !!!!! Commandes à éxécuter dans cette ordre pour être sûr que tout se passe bien!!!!! :
 ```
-ros2 launch mission sensors_nav.launch.py
+ros2 launch mission_aqua controller_wt_cam.launch.py 
+ros2 launch mission_aqua nav_localization.launch.py 
+ros2 run mission_aqua mission_aqua_node --ros-args -p use_sim_time:=true
 ```
 
 ---
@@ -68,9 +71,8 @@ ros2 run py_control controller_node --ros-args -p use_sim_time:=true
 
 ## Structure des Packages et Nodes
 ### Packages principaux
-- **`aquabot_gz`** : Simulation et intégration avec Gazebo.
 - **`sensors_processing`** : Pré-traitement des données capteurs (IMU, GPS, etc.).
 - **`robot_localization`** : Estimation d’état à l’aide de EKFs.
 - **`nav2aqua`** : Stack de navigation Nav2 adaptée à l’Aquabot.
-- **`py_control`** : Contrôleur personnalisé en pour la gestion des différents mouvements de l'Aquabot (suivi de chemin, d'une trajectoire circulaire...).
-- **`control_cam_qr`** : Analyse des données de la caméra, détection des QR codes et orientation de la caméra.
+- **`py_control`** : Contrôleur MPPI pour la gestion des différents mouvements de l'Aquabot (suivi de chemin, d'une trajectoire circulaire...).
+- **`control_cam_qr`** : Analyse des données de la caméra, détection des QR codes .
