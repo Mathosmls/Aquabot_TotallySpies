@@ -1,4 +1,4 @@
-from mission_aqua_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
+from mission_aqua.mission_aqua_utils import( tsp_solver,calculate_offset_target,Quat2yaw,extract_id,add_or_update_turbine,is_within_distance,
                             find_best_matching_wind_turbine_id,update_turbine_qr_position)
 import rclpy
 from rclpy.node import Node
