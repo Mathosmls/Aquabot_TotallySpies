@@ -1,7 +1,7 @@
 
 
 #------------------------------------------------------------------------------------------------
-# ROS NODE
+# ROS NODE, used to control the AQUABOT thanks to a mppi
 #------------------------------------------------------------------------------------------------
 from py_control.mppi_utils import MPPIControllerForAquabot
 import numpy as np
@@ -22,7 +22,7 @@ class Controller(Node):
 
     def __init__(self):
         super().__init__('controller')
-        print("Node controller")
+        self.get_logger().info('Controller initialized successfully!')
         self.publisherMotorL = self.create_publisher(Float64, '/aquabot/thrusters/left/thrust', 10)
         self.publisherMotorR = self.create_publisher(Float64, '/aquabot/thrusters/right/thrust', 10)
         self.publisherAngleMotorL = self.create_publisher(Float64, '/aquabot/thrusters/left/pos', 10)
@@ -63,7 +63,7 @@ class Controller(Node):
         self.mppi0=MPPIControllerForAquabot(horizon_step_T=75,sigma=np.array([30, 30, 0.1, 0.1]), dt=0.1,
                                             max_thrust=250.0,stage_cost_weight=np.array([45.0, 45.0, 300.0]) )
         self.mppi1=MPPIControllerForAquabot(horizon_step_T=25,sigma=np.array([60, 60, 0.1, 0.1]), dt=0.1,
-                                            max_thrust=2500.0,stage_cost_weight=np.array([70.0, 2000.0, 70.0]) )
+                                            max_thrust=2500.0,stage_cost_weight=np.array([60.0, 2000.0, 69.0]) )
         self.mppi2=MPPIControllerForAquabot(horizon_step_T=55,sigma=np.array([40, 40, 0.05, 0.05]), dt=0.1,
                                             max_thrust=1250.0,stage_cost_weight=np.array([1.0, 10.0, 0.5]) )
         self.mppi3=MPPIControllerForAquabot(horizon_step_T=50,sigma=np.array([200, 200, 0.1, 0.1]), dt=0.1,
@@ -75,7 +75,7 @@ class Controller(Node):
         self.plan=Path()
         self.plan_array=np.array([[0,0]])
         self.close_points=np.array([[0.0,0.0]])
-        self.mode=3 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
+        self.mode=0 # 0 :go to point | 1: follow path | 2: do a circle for qr search | 3: do the bonus phase circle
 
 
     #--------Callbacks-----------
@@ -105,10 +105,9 @@ class Controller(Node):
                 self.publisherAngleMotorL.publish(angleMotorL)
                 self.publisherAngleMotorR.publish(angleMotorR)
 
-                print("mode : ",self.mode, "target_sate : ", self.target_state, "target_goal : ",self.goal_target)
 
         
-
+    #update the usv pose
     def odom_callback(self, msg):
         self.current_state[0]=msg.pose.pose.position.x
         self.current_state[1]=msg.pose.pose.position.y
@@ -119,11 +118,10 @@ class Controller(Node):
         self.current_state[5]=msg.twist.twist.angular.z
         if self.target_state[0]==-9999.0:
             self.target_state=np.array([msg.pose.pose.position.x,msg.pose.pose.position.y,yaw])
-            self.target_state=np.array([10,0,yaw])
             self.goal_target=self.target_state
         
 
-        
+    #handle path planning
     def plan_callback(self, msg):
         print("Plan received")
         self.plan=msg
@@ -132,7 +130,7 @@ class Controller(Node):
             self.mode=1
         self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
 
-
+    #handle the mode callback
     def mode_callback(self,msg):
         if 0<=msg.data<=4 :
             self.mode=int(msg.data)
@@ -142,7 +140,7 @@ class Controller(Node):
             self.get_logger().info('Please provide a mode between 0 and 4')
 
         
-            
+    #hanlde goal_target (for circle and point)        
     def goal_target_callback(self,msg) :
         self.goal_target[0]=msg.pose.position.x
         self.goal_target[1]=msg.pose.position._y
@@ -158,31 +156,31 @@ class Controller(Node):
         yaw = (yaw + np.pi) % (2 * np.pi) - np.pi
         return yaw
     
-    #to configure the mppi in function of the mode
+    #to handle the behavior of the controller in function of the mode
     def mode_cmd(self):
 
         if self.mode ==1 : #follow path fast
             d_final =np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) 
                                     - np.array([self.goal_target[0], self.goal_target[1]]))
-            print("d_final",d_final)
-            if len(self.plan.poses)>1 :
+            if len(self.plan.poses)>1 : #if path
                 
                 self.close_points,id_closest_point=self.get_closest_points(self.current_state[:2],self.plan_array,4.2)
                 self.close_points=np.asarray(self.close_points, dtype=np.float64)
                 err=compute_lateral_error(self.current_state,self.close_points)
                 # print("err : ",err)
-                if err==0.0:
+                if err==0.0: #if to far from path, ask new path
                     print("ask new path")
                     final_pose=self.create_pose_stamped(self.goal_target)
                     self.publisherGoalPose.publish(final_pose)
-                i=min(15,len(self.plan.poses)-id_closest_point-1)
+                i=min(15,len(self.plan.poses)-id_closest_point-1) #take the angle 15 position above current
                 self.target_state[2]=self.Quat2yaw(self.plan.poses[id_closest_point+i].pose.orientation)
 
-                if d_final <10 :
+                if d_final <10 : #if close to target, go directly to the point
+                    self.target_state=self.goal_target
                     self.mode=0 
                     self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
 
-        elif self.mode ==4 : #follow path slow
+        elif self.mode ==4 : #follow path slow, same than before with some changes in parameters
             d_final =np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) 
                                     - np.array([self.goal_target[0], self.goal_target[1]]))
 
@@ -191,7 +189,6 @@ class Controller(Node):
                 self.close_points,id_closest_point=self.get_closest_points(self.current_state[:2],self.plan_array,4.0)
                 self.close_points=np.asarray(self.close_points, dtype=np.float64)
                 err=compute_lateral_error(self.current_state,self.close_points)
-                # print("err : ",err)
                 if err==0.0:
                     print("ask new path")
                     final_pose=self.create_pose_stamped(self.goal_target)
@@ -199,33 +196,26 @@ class Controller(Node):
                 i=min(6,len(self.plan.poses)-id_closest_point-1)
                 self.target_state[2]=self.Quat2yaw(self.plan.poses[id_closest_point+i].pose.orientation)
 
-                if d_final <3 :
+                if d_final <12 :
+                    self.target_state=self.goal_target
                     self.mode=0 
                     self.mppis[self.mode].u_prev = np.zeros((self.mppis[self.mode].T, self.mppis[self.mode].control_var))
 
         elif self.mode ==2 : #follow cicrle for qr code
             self.target_state=self.goal_target
-            self.target_state[2]=10.0
-            d_o = np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) - np.array([self.target_state[0] , self.target_state[1] ]))
-            theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
-            diff_theta = self.current_state[2] + theta_t
-            diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
-            # print("err distance : ",5-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
-     
+            self.target_state[2]=10.0 #radius of circle
+          
 
         elif self.mode ==3 : #follow cicrle for bonus phase
             self.target_state=self.goal_target
-            self.target_state[2]=1.2
-            d_o = np.linalg.norm(np.array([self.current_state[0], self.current_state[1]]) - np.array([self.target_state[0] , self.target_state[1] ]))
-            theta_t = np.arctan2(self.current_state[1] - self.target_state[1] , self.target_state[0] - self.current_state[0])
-            diff_theta = self.current_state[2] + theta_t
-            diff_theta = (diff_theta + np.pi) % (2 * np.pi) - np.pi
-            print("err distance : ",10-d_o, " err angle diff : ",diff_theta, " angle t : ",theta_t, "angle ", self.current_state[2])
+            self.target_state[2]=1.2 # lateral speed 
+           
         
         else : #mode 0, go to point
             self.target_state=self.goal_target
-
-
+    #--------------------------------------------------------------
+    #-----------------------utils----------------------------------
+    #--------------------------------------------------------------
             
     # Retourner un tableau numpy avec toutes les positions [x, y] du plan, plsu pratique pour le traitement
     def extract_positions_from_path(self) -> np.ndarray:
@@ -236,7 +226,8 @@ class Controller(Node):
             y = pose_stamped.pose.position.y
             positions.append([x, y])
         self.plan_array=np.array(positions)
-
+    
+    #get the points of the around the current pose of the usv, used to be efficient 
     def get_closest_points(self,USV_position, all_points, threshold):
         # Créer un KD-Tree avec tous les points
         tree = KDTree(all_points)
@@ -250,7 +241,7 @@ class Controller(Node):
         
         return closest_points,index
 
-
+    #create a message pose stamped from a array (x,y,yaw)
     def create_pose_stamped(self,array):
         if len(array) != 3:
             raise ValueError("L'entrée doit être un tableau de longueur 3 : [x, y, theta].")

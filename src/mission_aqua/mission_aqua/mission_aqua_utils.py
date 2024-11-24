@@ -1,3 +1,5 @@
+#UTILS FOR THE NODE MISSION_AQUA
+
 import numpy as np
 from itertools import permutations
 from tf_transformations import euler_from_quaternion
@@ -214,6 +216,8 @@ def find_best_matching_wind_turbine_id(boat_position, wind_turbines_dic, target_
     smallest_difference = float('inf')  # Initialise avec un écart infini
 
     for turbine_id, turbine_data in wind_turbines_dic.items():
+        print("find best")
+        print(turbine_id)
         turbine_position = turbine_data["position"]
         # Calculer la distance entre le bateau et l'éolienne
         distance = math.sqrt((boat_position[0] - turbine_position[0])**2 +
@@ -231,8 +235,9 @@ def find_best_matching_wind_turbine_id(boat_position, wind_turbines_dic, target_
         angle_difference = abs((angle_to_turbine-bearing  + math.pi) % (2 * math.pi) - math.pi)
         # Combiner les deux critères : distance et angle
         # Pondération : donner plus d'importance à la distance ou à l'angle selon vos besoins
-        score = distance_difference + 20*angle_difference  # Simple somme pour l'instant
         
+        score = distance_difference + 30*angle_difference  # Simple somme pour l'instant
+        print(distance_difference,angle_difference,score)
         # Trouver l'éolienne avec le plus petit score
         if score < smallest_difference:
             smallest_difference = score

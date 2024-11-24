@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+ #Node for handling the QR code detection
 
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from std_msgs.msg import Float64, String
-from geometry_msgs.msg import PoseArray, Point,PoseStamped
+from geometry_msgs.msg import  Point,PoseStamped
 from nav_msgs.msg import Odometry
 import cv2
 import json
@@ -58,10 +58,7 @@ class ControlCamQRNode(Node):
         self.camera_position[0] = msg.pose.pose.position.x
         self.camera_position[1] = msg.pose.pose.position.y
         self.current_angle = self.Quat2yaw(msg.pose.pose.orientation)
-
-        # Ajuster l'angle entre 0 et 2pi
-        if self.current_angle < 0:
-            self.current_angle += 2 * math.pi
+        
 
     def image_callback(self, msg):
         """Callback pour traiter les images de la caméra."""
@@ -96,12 +93,11 @@ class ControlCamQRNode(Node):
         
         if len(data) > 0:
             angle=self.calculate_angle_from_bbox(bbox)
-            print(angle)
             # si le qr code est aligné, on enregistre la pos calculée pour être à 10m de l'éolienne 
             if abs(angle)<0.02 :
                 # print(bbox)
                 self.angle0=True
-                if abs(angle)<=0.01021 :
+                if abs(angle)<=0.0105 :
                     self.pos_qr=self.calculate_position_at_10m_from_eolienne(self.target_position, self.camera_position)
                     self.poses_qr.append(self.pos_qr)
                     if len(self.poses_qr)>len(self.best_poses_qr):
@@ -110,11 +106,16 @@ class ControlCamQRNode(Node):
                     self.poses_qr=[]
                 # print("here",angle,self.pos_qr,self.camera_position,self.target_position)
                 return
-            if abs(angle)>0.1 and self.angle0 :
+            if abs(angle)>0.1 and self.angle0 and len(self.best_poses_qr)>2 :
                 self.angle0=False
-                print(self.best_poses_qr)
-                middle_index = (len(self.best_poses_qr) - 1) // 2  
-                self.pos_qr=self.best_poses_qr[middle_index]
+                if self.best_poses_qr:
+                    middle_index = (len(self.best_poses_qr) - 1) // 2
+                    self.pos_qr = self.best_poses_qr[middle_index]
+                else:
+                    self.pos_qr = np.array([0.0,0.0,0.0])  # Ou une autre valeur par défaut appropriée
+
+                self.best_poses_qr=[]
+                self.poses_qr=[]
                 print("pos_opti" ,self.pos_qr)
                 try:
                     data = json.loads(data)
@@ -126,9 +127,10 @@ class ControlCamQRNode(Node):
                 turbine_state = data.get("state")
 
                 if turbine_id not in self.dico_windturbines:
+                    
                     self.dico_windturbines[turbine_id] = turbine_state
                     pose_qr=self.create_pose_stamped(self.pos_qr,turbine_id)
-                    print("published pose_qr", pose_qr)
+                    print("published pose_qr")
                     #On ne publie le dico que quand une nouvelle éolienne est détectée
                     self.publish_windturbine_status()
                     self.pos_gps_align_qr_publisher.publish(pose_qr)

@@ -10,7 +10,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/sensors_nav.launch.py']),  # Inclure le fichier de lancement
+        ('share/' + package_name + '/launch', ['launch/nav_localization.launch.py']),  # Inclure le fichier de lancement
+         ('share/' + package_name + '/launch', ['launch/controller_wt_cam.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
